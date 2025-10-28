@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
     <title>Nova senha</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-        html {
+        /*html {
             font-family: "Inter", sans-serif;
         }
         main {
@@ -44,18 +44,18 @@
         }
         h1 {
             margin-top: 0;
-        }
+        }*/
     </style>
 </head>
 <body>
-    <main>
-        <form action="">
-            <h1>Redefinir senha</h1>
-            <label for="no-senha">Nova senha</label>
-            <input type="text" id="no-senha">
-            <label for="co-senha">Confirmar senha</label>
-            <input type="text" id="co-senha">
-            <input class="alt-btn" type="button" value="Alterar">
+    <main class="justify-start justify-items-center w-full">
+        <form action="" class="justify-center justify-items-center p-3 text-red-500 border-2 border-solid border-red-500">
+            <h1 class="mt-0 font-bold text-xl font-inter">Redefinir senha</h1>
+            <label for="no-senha" class="block font-bold justify-self-start mb-1 text-black">Nova senha</label>
+            <input type="text" id="no-senha" class="text-black block mb-2 border-2 border-solid border-red-500 rounded-sm p-3 w-full">
+            <label for="co-senha" class="block font-bold justify-self-start mb-1 text-black">Confirmar senha</label>
+            <input type="text" id="co-senha" class="text-black block mb-2 border-2 border-solid border-red-500 rounded-sm p-3 w-full">
+            <input type="button" value="Alterar" class="text-white bg-red-500 w-1/2 block mb-2 border-2 border-solid border-red-500 rounded-sm p-3 font-bold">
         </form>
 
     </main>
