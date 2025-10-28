@@ -15,36 +15,44 @@
             width: 100%;
         }
         form {
-            background-color: #D9D9D9;
             justify-content: center;
             justify-items: center;
             padding: 3vh;
+            color: #FF0000;
+            border: solid #FF0000;
         }
         label {
             display: block;
             font-weight: bold;
             justify-self: start;
             margin-bottom: 1vh;
+            color: black;
         }
         input {
             display: block;
             margin-bottom: 2vh;
-            border: none;
-            border-radius: 3vh;
+            border: solid #FF0000;
+            border-radius: 0.5vh;
             padding: 1vh;
+            color: white;
+            font-weight: bold;
+            width: 100%;
         }
         .alt-btn {
-            background-color: #56BE3C;
+            background-color: #FF0000;
+            width: 50%;
+        }
+        h1 {
+            margin-top: 0;
         }
     </style>
 </head>
 <body>
     <main>
-        <h1>Esqueci senha</h1>
         <form action="">
-            <h2>Esqueci senha</h2>
+            <h1>Esqueci senha</h1>
             <label for="no-senha">Código</label>
-            <input type="text" placeholder="Ex.: Diana" id="no-senha">
+            <input type="text" placeholder="Ex.: 1234" id="no-senha">
             <input class="alt-btn" type="button" value="Enviar">
         </form>
 
