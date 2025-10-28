@@ -11,12 +11,39 @@
     <script src="js/index.js"></script>
 
 </head>
+<style>
+.cta-container {
+  text-align: center; /* centraliza horizontalmente */
+  margin: 0; /* sem margem extra */
+  min-height: 120px; /* fixa altura para 2 linhas */
+}
+
+.titulo-principal {
+  font-family: 'Garagegothic', monospace;
+  font-size: 90px;
+  color: #ffefc7;
+  line-height: 1em;
+  white-space: pre-line;
+  display: inline-block;
+  margin: -50px 0 50px 0; /* remove margem padrão do h1 */
+}
+
+.cursor {
+  display: inline;
+  color: #ffefc7;
+  animation: blink 0.7s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+</style>
 <body class="bg-amber-50">
     
-    <header class="w-full bg-red-600 shadow-md sticky top-0 z-40">
+    <header class="w-full bg-black shadow-md sticky top-0 z-40">
         <nav class="relative max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 py-3">
             <a href="index.html" class="flex items-center">
-                <img src="img/logo_branco.png" alt="Logo SENAI SP" class="h-10 w-auto"> 
+                <img src="img/logo_vermelho.png" alt="Logo SENAI SP" class="h-10 w-auto"> 
             </a>
             
             <ul class="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-8">
@@ -50,22 +77,14 @@
     </header>
 
     <main>
-
+        
         <section class="bg-white text-center py-20 px-4">
-            <div class="max-w-7xl mx-auto">
-                
-                <h1 class="text-5xl md:text-6xl font-bold text-gray-900">
-                    <span class="animate-typing-title m-auto">
-                        TÍTULO
-                    </span>
-                </h1>
-                
-                <p class="text-lg md:text-xl text-gray-600 mt-3">
-                    <span class="animate-typing-subtitle m-auto">
-                        Breve descrição
-                    </span>
-                </p>
-            </div>
+            <div class="code-embed w-embed w-script"><div class="cta-container">
+  <h1 class="titulo-principal">
+    <span class="texto"></span><span class="cursor">|</span>
+  </h1>
+</div>
+
         </section>
 
 
@@ -203,6 +222,9 @@
 
     </main>
 
+    <footer class="bg-gray-800 text-gray-200 relative">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            
     <footer class="bg-black text-gray-200 relative">
         
         <div class=" py-12 px-4 sm:px-6 lg:px-8 w-full">
@@ -263,8 +285,13 @@
                  <a href="#" aria-label="WhatsApp" class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center text-white text-2xl hover:bg-green-600 transition-colors">
                     <i class="fab fa-whatsapp"></i>
                 </a>
+<<<<<<< HEAD
                 <a href="https://www.instagram.com/senaisorocaba/" aria-label="Instagram" class="w-12 h-12 bg-gradient-to-br from-yellow-400 via-pink-500 to-purple-600 rounded-lg flex items-center justify-center text-white text-2xl hover:opacity-90 transition-opacity">
                     <i class="fab fa-instagram"></i>
+=======
+                <a href="#" aria-label="Instagram" class="w-12 h-12 bg-gradient-to-br from-yellow-400 via-pink-500 to-purple-600 rounded-lg flex items-center justify-center text-white text-2xl hover:opacity-90 transition-opacity">
+                    <i class="fa-brands fa-instagram"></i>
+>>>>>>> 03852fcfe752e3448bb674c1491949e0d35ac805
                 </a>
                 <a href="https://www.facebook.com/senaisp.sorocabarosalia/" aria-label="Facebook" class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center text-white text-2xl hover:bg-blue-700 transition-colors">
                     <i class="fab fa-facebook"></i>
@@ -273,5 +300,41 @@
             
         </div>
     </footer>
+    <script>
+const frases = [
+  "WAIT FOR ME,\nI'M COMING.",
+  "VOU ATÉ O FIM,\nME ESPERA."
+];
+
+let i = 0;
+let j = 0;
+let apagando = false;
+
+const textoSpan = document.querySelector('.titulo-principal .texto');
+
+function typeLoop() {
+  let textoAtual = frases[i];
+  
+  if (!apagando) {
+    textoSpan.textContent = textoAtual.slice(0, j++);
+    if (j > textoAtual.length) {
+      apagando = true;
+      setTimeout(typeLoop, 1500);
+      return;
+    }
+  } else {
+    textoSpan.textContent = textoAtual.slice(0, j--);
+    if (j < 0) {
+      apagando = false;
+      i = (i + 1) % frases.length;
+      j = 0;
+    }
+  }
+  
+  setTimeout(typeLoop, apagando ? 50 : 100);
+}
+
+typeLoop();
+</script></div>
 </body>
 </html>
