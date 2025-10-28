@@ -1,1 +1,59 @@
 @import "tailwindcss";
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #E02424; }
+}
+
+.animate-typing-title {
+    width: 0;
+    animation: 
+typing 1s steps(var(--steps, 6), end) forwards, /* Fallback para 6 (TÍTULO) */
+blink-caret .75s step-end infinite;
+    border-right: 4px solid transparent; /* Inicia transparente para animar */
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.animate-typing-subtitle {
+    width: 0;
+    animation: 
+typing 2s steps(var(--steps, 17), end) forwards,
+blink-caret .75s step-end infinite;
+    border-right: 4px solid transparent;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    
+    animation-delay: 1.5s; 
+    animation-fill-mode: both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animate-typing-title,
+    .animate-typing-subtitle {
+animation: typing 1s steps(var(--steps, 6), end) forwards;
+border-right-color: #E02424;
+    }
+    .animate-typing-subtitle {
+animation: typing 2s steps(var(--steps, 17), end) forwards;
+animation-delay: 1.5s;
+animation-fill-mode: both;
+    }
+}
+
+.swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background-color: #fecaca;
+    opacity: 1;
+}
+.swiper-pagination-bullet-active {
+    background-color: #E02424;
+}
