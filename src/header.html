@@ -1,2 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+</head>
+<style>
+.cta-container {
+  text-align: center; /* centraliza horizontalmente */
+  margin: 0; /* sem margem extra */
+  min-height: 120px; /* fixa altura para 2 linhas */
+}
 
-    <h1>TESTE</h1>
+.titulo-principal {
+  font-family: 'Garagegothic', monospace;
+  font-size: 90px;
+  color: #ffefc7;
+  line-height: 1em;
+  white-space: pre-line;
+  display: inline-block;
+  margin: -50px 0 50px 0; /* remove margem padrão do h1 */
+}
+
+.cursor {
+  display: inline;
+  color: #ffefc7;
+  animation: blink 0.7s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+</style>
+<body>
+    <header class=" bg-black sticky top-0 z-40">
+        <nav class="relative max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 py-3">
+            <a href="index.html" class="flex items-center">
+                <img src="img/logo_vermelho.png" alt="Logo SENAI SP" class="h-10 w-auto"> 
+            </a>
+            
+            <ul class="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-8">
+                <li><a href="#" class="font-medium text-white border-b-2 border-white pb-1">Início</a></li>
+                <li><a href="#" class="font-medium text-white hover:text-gray-200 transition-colors">FAQ</a></li>
+                <li><a href="#" class="font-medium text-white hover:text-gray-200 transition-colors">Pipipi</a></li>
+                <li><a href="#" class="font-medium text-white hover:text-gray-200 transition-colors">Sobre</a></li>
+            </ul>
+            <a href="#" class="hidden lg:block bg-white text-red-600 font-medium px-6 py-2 rounded-md hover:bg-gray-100 transition-colors">
+                botoes
+            </a>
+        </nav>
+        
+        <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-red-600 shadow-lg z-50">
+            <ul class="flex flex-col items-center gap-6 py-8">
+                <li><a href="#" class="font-medium text-white text-lg">Início</a></li>
+                <li><a href="#" class="font-medium text-white text-lg hover:text-gray-200 transition-colors">pipipi</a></li>
+                <li><a href="#" class="font-medium text-white text-lg hover:text-gray-200 transition-colors">pipipi</a></li>
+                <li><a href="#" class="font-medium text-white text-lg hover:text-gray-200 transition-colors">Sobre</a></li>
+                <li>
+                    <a href="#" class="bg-white text-red-600 font-medium px-8 py-3 rounded-md hover:bg-gray-100 transition-colors">
+                        botoes
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+</body>
+</html>

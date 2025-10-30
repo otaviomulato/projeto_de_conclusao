@@ -39,43 +39,13 @@
 }
 </style>
 <body class="bg-white">
-
-    <header class="w-full bg-black shadow-md sticky top-0 z-40">
-        <nav class="relative max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 py-3">
-            <a href="index.html" class="flex items-center">
-                <img src="img/logo_vermelho.png" alt="Logo SENAI SP" class="h-10 w-auto"> 
-            </a>
+<iframe src="header.html" width="100%" height="100%" class="sticky top-0 z-40"></iframe>
+    <header class=" bg-black sticky top-0 z-40">
+            <!-- ANALISAR ESSAS CLASSES P/ O CARROSSEL-->
+            <button id="menu-toggle" class="lg:hidden p-2" aria-label="Abrir menu" aria-expanded="false"></button>
             
-            <ul class="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-8">
-                <li><a href="#" class="font-medium text-white border-b-2 border-white pb-1">Início</a></li>
-                <li><a href="#" class="font-medium text-white hover:text-gray-200 transition-colors">FAQ</a></li>
-                <li><a href="#" class="font-medium text-white hover:text-gray-200 transition-colors">Pipipi</a></li>
-                <li><a href="#" class="font-medium text-white hover:text-gray-200 transition-colors">Sobre</a></li>
-            </ul>
-            <a href="#" class="hidden lg:block bg-white text-red-600 font-medium px-6 py-2 rounded-md hover:bg-gray-100 transition-colors">
-                botoes
-            </a>
-            
-            <button id="menu-toggle" class="lg:hidden p-2" aria-label="Abrir menu" aria-expanded="false">
-                <i class="fas fa-bars text-2xl text-white"></i>
-            </button>
-        </nav>
-        
-        <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-red-600 shadow-lg z-50">
-            <ul class="flex flex-col items-center gap-6 py-8">
-                <li><a href="#" class="font-medium text-white text-lg">Início</a></li>
-                <li><a href="#" class="font-medium text-white text-lg hover:text-gray-200 transition-colors">pipipi</a></li>
-                <li><a href="#" class="font-medium text-white text-lg hover:text-gray-200 transition-colors">pipipi</a></li>
-                <li><a href="#" class="font-medium text-white text-lg hover:text-gray-200 transition-colors">Sobre</a></li>
-                <li>
-                    <a href="#" class="bg-white text-red-600 font-medium px-8 py-3 rounded-md hover:bg-gray-100 transition-colors">
-                        botoes
-                    </a>
-                </li>
-            </ul>
-        </div>
     </header>
-    <iframe src="header.html"></iframe>
+    
     <main>
         
         <section class="bg-white text-center py-20 px-4">
@@ -161,7 +131,7 @@
                 </div>
             </div>
         </section>
-
+        
         <section class="bg-white py-16 px-4">
             <div class="max-w-7xl mx-auto">
                 <div class="flex items-center justify-center gap-4 md:gap-6 mb-12">
@@ -169,7 +139,7 @@
                     <h2 class="text-3xl md:text-4xl font-bold text-red-600 uppercase text-center">Avaliações</h2>
                     <div class="space-y-1 w-16 md:w-24"><div class="h-0.5 bg-red-600"></div><div class="h-0.5 bg-red-600"></div><div class="h-0.5 bg-red-600"></div></div>
                 </div>
-
+                <!-- id="menu-toggle" class="lg:hidden p-2" aria-label="Abrir menu" aria-expanded="false" -->
                 <div class="swiper review-swiper max-w-6xl mx-auto">
                     <div class="swiper-wrapper pb-12">
                         
