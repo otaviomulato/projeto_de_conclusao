@@ -11,7 +11,86 @@
     <script src="js/index.js"></script>
 </head>
 
+<style>
+.cta-container {
+  text-align: center; /* centraliza horizontalmente */
+  margin: 0; /* sem margem extra */
+  min-height: 120px; /* fixa altura para 2 linhas */
+}
+
+.titulo-principal {
+  font-family: 'Garagegothic', monospace;
+  font-size: 90px;
+  color: #ffefc7;
+  line-height: 1em;
+  white-space: pre-line;
+  display: inline-block;
+  margin: -50px 0 50px 0; /* remove margem padrão do h1 */
+}
+
+.cursor {
+  display: inline;
+  color: #ffefc7;
+  animation: blink 0.7s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+.gradient-hover-shake {
+  font-size: 1.8rem;
+  background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: transform 0.3s ease;
+}
+
+/* ativa o shake apenas no hover */
+.gradient-hover-shake:hover {
+  animation: fa-bounce 1.5s infinite;
+}
+.whatsapp-bounce{
+    font-size: 1.5rem;
+    background: #3ce159;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: transform 0.3s ease;
+}
+.whatsapp-bounce:hover{
+    animation: fa-bounce 1.5s infinite;
+}
+.facebook-bounce{
+    font-size: 1.5rem;
+    background: #0865ff;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: transform 0.3s ease;
+}
+.facebook-bounce:hover{
+    animation: fa-bounce 1.5s infinite;
+}
+
+/* CSS ADICIONADO PARA O CARROSSEL DE AVALIAÇÕES
+*/
+.review-swiper .swiper-slide {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .review-swiper .swiper-slide:not(.swiper-slide-active) {
+    transform: scale(0.9);
+    opacity: 0.6;
+  }
+}
+
+.review-swiper .swiper-slide-active {
+  transform: scale(1);
+  opacity: 1;
+}
+</style>
+
 <body class="bg-white">
+
 <header class=" bg-black sticky top-0 z-40">
     <nav class="relative max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 py-3">
         <a href="index.html" class="flex items-center">
@@ -72,7 +151,7 @@
         </ul>
     </div>
 </header>
-   
+    
     
     <main>
         
@@ -85,102 +164,27 @@
 
         </section>
         <section class="bg-white py-16 px-4">
-    <div class="max-w-7xl mx-auto">
-        <div class="flex items-center justify-center gap-4 md:gap-6 mb-12">
-            <div class="space-y-1 w-16 md:w-24"><div class="h-0.5 bg-red-600"></div><div class="h-0.5 bg-red-600"></div><div class="h-0.5 bg-red-600"></div></div>
-            <h2 class="text-3xl md:text-4xl font-bold text-red-600 uppercase text-center">Avaliações</h2>
-            <div class="space-y-1 w-16 md:w-24"><div class="h-0.5 bg-red-600"></div><div class="h-0.5 bg-red-600"></div><div class="h-0.5 bg-red-600"></div></div>
-        </div>
-        
-        <div class="swiper review-swiper max-w-6xl mx-auto">
-            <div class="swiper-wrapper pb-12">
-                
-                <div class="swiper-slide h-auto">
-                    <div class="border border-gray-200 rounded-lg p-6 text-center shadow-sm h-full flex flex-col">
-                        <div class="flex justify-center text-yellow-500 text-xl mb-4">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        </div>
-                        <p class="italic text-gray-700 flex-grow">"Algo algo bla bla bla"</p>
-                        <p class="font-bold text-gray-900 mt-4">- Alguém</p>
-                    </div>
-                </div>
-                
-                <div class="swiper-slide h-auto">
-                    <div class="border border-gray-200 rounded-lg p-6 text-center shadow-sm h-full flex flex-col">
-                        <div class="flex justify-center text-yellow-500 text-xl mb-4">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        </div>
-                        <p class="italic text-gray-700 flex-grow">"A aquisição dos micro-ondas e geladeiras mantém a minha marmita agradável!"</p>
-                        <p class="font-bold text-gray-900 mt-4">- Outro Alguém</p>
-                    </div>
+            <div class="max-w-7xl mx-auto">
+                <div class="flex items-center justify-center gap-4 md:gap-6 mb-12">
+                    <div class="space-y-1 w-16 md:w-24"><div class="h-0.5 bg-red-600"></div><div class="h-0.5 bg-red-600"></div><div class="h-0.5 bg-red-600"></div></div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-red-600 uppercase text-center">Produtos</h2>
+                    <div class="space-y-1 w-16 md:w-24"><div class="h-0.5 bg-red-600"></div><div class="h-0.5 bg-red-600"></div><div class="h-0.5 bg-red-600"></div></div>
                 </div>
 
-                <div class="swiper-slide h-auto">
-                    <div class="border border-gray-200 rounded-lg p-6 text-center shadow-sm h-full flex flex-col">
-                        <div class="flex justify-center text-yellow-500 text-xl mb-4">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        </div>
-                        <p class="italic text-gray-700 flex-grow">"Algo algo bla bla bla"</p>
-                        <p class="font-bold text-gray-900 mt-4">- Mais Um</p>
+                <div class="swiper product-swiper relative max-w-6xl mx-auto">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><img src="img/teste-carrossel-1.jpg" alt="Produto 1" class="w-full h-auto object-cover rounded-lg"></div>
+                        <div class="swiper-slide"><img src="img/teste-carrossel-2.jpg" alt="Produto 2" class="w-full h-auto object-cover rounded-lg"></div>
+                        <div class="swiper-slide"><img src="img/teste-carrossel-3.jpg" alt="Produto 3" class="w-full h-auto object-cover rounded-lg"></div>
+                        <div class="swiper-slide"><img src="img/teste-carrossel-4.jpg" alt="Produto 4" class="w-full h-auto object-cover rounded-lg"></div>
+                        <div class="swiper-slide"><img src="img/teste-carrossel-5.jpg" alt="Produto 5" class="w-full h-auto object-cover rounded-lg"></div>
                     </div>
+                    <div class="swiper-pagination mt-8 relative"></div>
+                    <div class="swiper-button-prev text-red-600 -left-2 md:-left-10 hidden md:flex"></div>
+                    <div class="swiper-button-next text-red-600 -right-2 md:-right-10 hidden md:flex"></div>
                 </div>
-                
-                <div class="swiper-slide h-auto">
-                    <div class="border border-gray-200 rounded-lg p-6 text-center shadow-sm h-full flex flex-col">
-                        <div class="flex justify-center text-yellow-500 text-xl mb-4">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
-                        </div>
-                        <p class="italic text-gray-700 flex-grow">"Gostei, mas podia ter mais bla bla."</p>
-                        <p class="font-bold text-gray-900 mt-4">- Usuário</p>
-                    </div>
-                </div>
-
-                <div class="swiper-slide h-auto">
-                    <div class="border border-gray-200 rounded-lg p-6 text-center shadow-sm h-full flex flex-col">
-                        <div class="flex justify-center text-yellow-500 text-xl mb-4">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        </div>
-                        <p class="italic text-gray-700 flex-grow">"Algo algo bla bla bla"</p>
-                        <p class="font-bold text-gray-900 mt-4">- Alguém</p>
-                    </div>
-                </div>
-                
-                <div class="swiper-slide h-auto">
-                    <div class="border border-gray-200 rounded-lg p-6 text-center shadow-sm h-full flex flex-col">
-                        <div class="flex justify-center text-yellow-500 text-xl mb-4">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        </div>
-                        <p class="italic text-gray-700 flex-grow">"A aquisição dos micro-ondas e geladeiras mantém a minha marmita agradável!"</p>
-                        <p class="font-bold text-gray-900 mt-4">- Outro Alguém</p>
-                    </div>
-                </div>
-
-                <div class="swiper-slide h-auto">
-                    <div class="border border-gray-200 rounded-lg p-6 text-center shadow-sm h-full flex flex-col">
-                        <div class="flex justify-center text-yellow-500 text-xl mb-4">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        </div>
-                        <p class="italic text-gray-700 flex-grow">"Algo algo bla bla bla"</p>
-                        <p class="font-bold text-gray-900 mt-4">- Mais Um</p>
-                    </div>
-                </div>
-                
-                <div class="swiper-slide h-auto">
-                    <div class="border border-gray-200 rounded-lg p-6 text-center shadow-sm h-full flex flex-col">
-                        <div class="flex justify-center text-yellow-500 text-xl mb-4">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
-                        </div>
-                        <p class="italic text-gray-700 flex-grow">"Gostei, mas podia ter mais bla bla."</p>
-                        <p class="font-bold text-gray-900 mt-4">- Usuário</p>
-                    </div>
-                </div>
-
             </div>
-            <div class="swiper-pagination"></div> 
-        </div>
-
-    </div>
-</section>
+        </section>
 
         <section class="bg-red-600 text-white py-20 px-4">
             <div class="max-w-5xl mx-auto">
@@ -235,17 +239,56 @@
         </section>
         
         <section class="bg-white py-16 px-4">
-                <button id="menu-toggle" class="lg:hidden p-2" aria-label="Abrir menu" aria-expanded="false"></button>
             <div class="max-w-7xl mx-auto">
                 <div class="flex items-center justify-center gap-4 md:gap-6 mb-12">
                     <div class="space-y-1 w-16 md:w-24"><div class="h-0.5 bg-red-600"></div><div class="h-0.5 bg-red-600"></div><div class="h-0.5 bg-red-600"></div></div>
                     <h2 class="text-3xl md:text-4xl font-bold text-red-600 uppercase text-center">Avaliações</h2>
                     <div class="space-y-1 w-16 md:w-24"><div class="h-0.5 bg-red-600"></div><div class="h-0.5 bg-red-600"></div><div class="h-0.5 bg-red-600"></div></div>
                 </div>
-                <!-- id="menu-toggle" class="lg:hidden p-2" aria-label="Abrir menu" aria-expanded="false" -->
+                
                 <div class="swiper review-swiper max-w-6xl mx-auto">
                     <div class="swiper-wrapper pb-12">
                         
+                        <div class="swiper-slide h-auto">
+                            <div class="border border-gray-200 rounded-lg p-6 text-center shadow-sm h-full flex flex-col">
+                                <div class="flex justify-center text-yellow-500 text-xl mb-4">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="italic text-gray-700 flex-grow">"Algo algo bla bla bla"</p>
+                                <p class="font-bold text-gray-900 mt-4">- Alguém</p>
+                            </div>
+                        </div>
+                        
+                        <div class="swiper-slide h-auto">
+                            <div class="border border-gray-200 rounded-lg p-6 text-center shadow-sm h-full flex flex-col">
+                                <div class="flex justify-center text-yellow-500 text-xl mb-4">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="italic text-gray-700 flex-grow">"A aquisição dos micro-ondas e geladeiras mantém a minha marmita agradável!"</p>
+                                <p class="font-bold text-gray-900 mt-4">- Outro Alguém</p>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide h-auto">
+                            <div class="border border-gray-200 rounded-lg p-6 text-center shadow-sm h-full flex flex-col">
+                                <div class="flex justify-center text-yellow-500 text-xl mb-4">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="italic text-gray-700 flex-grow">"Algo algo bla bla bla"</p>
+                                <p class="font-bold text-gray-900 mt-4">- Mais Um</p>
+                            </div>
+                        </div>
+                        
+                        <div class="swiper-slide h-auto">
+                            <div class="border border-gray-200 rounded-lg p-6 text-center shadow-sm h-full flex flex-col">
+                                <div class="flex justify-center text-yellow-500 text-xl mb-4">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+                                </div>
+                                <p class="italic text-gray-700 flex-grow">"Gostei, mas podia ter mais bla bla."</p>
+                                <p class="font-bold text-gray-900 mt-4">- Usuário</p>
+                            </div>
+                        </div>
+
                         <div class="swiper-slide h-auto">
                             <div class="border border-gray-200 rounded-lg p-6 text-center shadow-sm h-full flex flex-col">
                                 <div class="flex justify-center text-yellow-500 text-xl mb-4">
@@ -294,12 +337,13 @@
         </section>
 
     </main>
+
 <footer class="bg-black text-gray-200 relative overflow-hidden">
 
     <div class="max-w-7xl mx-auto pt-8 pb-6 px-4 sm:px-6 lg:px-8 w-full">
         
         <div class="flex flex-row justify-center space-x-6 pb-8">
-             <a href="https://api.whatsapp.com/send?phone=55113220050" target="_blank" aria-label="WhatsApp">
+             <a href="https://api.whatsapp.com/send?phone=551133220050" target="_blank" aria-label="WhatsApp">
                  <i class="fab fa-whatsapp whatsapp-bounce"></i>
              </a>
              <a href="https://www.instagram.com/senaisorocaba/" target="_blank" aria-label="Instagram" >
@@ -366,7 +410,6 @@
     </div>
 </footer>
 
-<!--Lógica das letras do título-->
 <script>
 const frases = [
   "WAIT FOR ME,\nI'M COMING.",
@@ -402,6 +445,7 @@ function typeLoop() {
 }
 
 typeLoop();
-</script></div>
+</script>
+
 </body>
 </html>

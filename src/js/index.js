@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Bloco do menu - Está correto
+    // Bloco do menu
     const menuToggle = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
     const menuIcon = menuToggle.querySelector('i');
@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Bloco de Animação de Título - Está correto
+    // Bloco de Animação de Título
+    // (O seu código não tinha 'animate-typing-title', mas se tiver, está aqui)
     const typingTitle = document.querySelector('.animate-typing-title');
     if (typingTitle) {
         const textLength = typingTitle.textContent.trim().length;
@@ -33,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         typingSubtitle.style.setProperty('--steps', textLength);
     }
 
-    // Bloco do productSwiper - Está correto
+    // Bloco do productSwiper
     const productSwiper = new Swiper('.product-swiper', {
         loop: true,
         slidesPerView: 1,
@@ -54,15 +55,16 @@ document.addEventListener('DOMContentLoaded', () => {
         },
     });
 
-    // ######### MUDANÇA AQUI #########
-    // O bloco do reviewSwiper foi atualizado com 'autoplay'
+    // 
+    // Bloco do reviewSwiper ATUALIZADO
+    //
     const reviewSwiper = new Swiper('.review-swiper', {
         loop: true,
         centeredSlides: true, 
         slidesPerView: 1,
         spaceBetween: 20,
         
-        // MUDANÇA: Adicionado Autoplay
+        // Autoplay adicionado
         autoplay: {
             delay: 3000, // Move a cada 3 segundos
             disableOnInteraction: false, // Não para quando o usuário mexe
@@ -79,6 +81,5 @@ document.addEventListener('DOMContentLoaded', () => {
             clickable: true,
         },
     });
-    // ######### FIM DA MUDANÇA #########
 
 });
