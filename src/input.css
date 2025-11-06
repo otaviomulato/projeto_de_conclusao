@@ -5,54 +5,65 @@
     --font-inter: "Inter", sans-serif;
 }
 
-@keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
+.cta-container {
+  text-align: center; /* centraliza horizontalmente */
+  margin: 0; /* sem margem extra */
+  min-height: 120px; /* fixa altura para 2 linhas */
 }
 
-@keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: #E02424; }
+.titulo-principal {
+  font-family: 'Garagegothic', monospace;
+  font-size: 90px;
+  color: #ffefc7;
+  line-height: 1em;
+  white-space: pre-line;
+  display: inline-block;
+  margin: -50px 0 50px 0; /* remove margem padrão do h1 */
 }
 
-.animate-typing-title {
-    width: 0;
-    animation: 
-typing 1s steps(var(--steps, 6), end) forwards, /* Fallback para 6 (TÍTULO) */
-blink-caret .75s step-end infinite;
-    border-right: 4px solid transparent; /* Inicia transparente para animar */
-    overflow: hidden;
-    white-space: nowrap;
-    display: inline-block;
+.cursor {
+  display: inline;
+  color: #ffefc7;
+  animation: blink 0.7s steps(1) infinite;
 }
 
-.animate-typing-subtitle {
-    width: 0;
-    animation: 
-typing 2s steps(var(--steps, 17), end) forwards,
-blink-caret .75s step-end infinite;
-    border-right: 4px solid transparent;
-    overflow: hidden;
-    white-space: nowrap;
-    display: inline-block;
-    
-    animation-delay: 1.5s; 
-    animation-fill-mode: both;
+@keyframes blink {
+  50% { opacity: 0; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .animate-typing-title,
-    .animate-typing-subtitle {
-animation: typing 1s steps(var(--steps, 6), end) forwards;
-border-right-color: #E02424;
-    }
-    .animate-typing-subtitle {
-animation: typing 2s steps(var(--steps, 17), end) forwards;
-animation-delay: 1.5s;
-animation-fill-mode: both;
-    }
+/*FOOTER CSS*/
+.gradient-hover-shake {
+  font-size: 1.8rem;
+  background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: transform 0.3s ease;
 }
 
+.gradient-hover-shake:hover {
+  animation: fa-bounce 1.5s infinite;
+}
+.whatsapp-bounce{
+    font-size: 1.5rem;
+    background: #3ce159;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: transform 0.3s ease;
+}
+.whatsapp-bounce:hover{
+    animation: fa-bounce 1.5s infinite;
+}
+.facebook-bounce{
+    font-size: 1.5rem;
+    background: #0865ff;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: transform 0.3s ease;
+}
+.facebook-bounce:hover{
+    animation: fa-bounce 1.5s infinite;
+}
+/*Bolinhas do caroussel*/
 .swiper-pagination-bullet {
     width: 10px;
     height: 10px;
@@ -61,4 +72,29 @@ animation-fill-mode: both;
 }
 .swiper-pagination-bullet-active {
     background-color: #E02424;
+}
+/*Carrossel avaliação*/
+/* Adiciona uma transição suave para o efeito de escala e opacidade.
+  Isso faz o slide crescer e sumir suavemente.
+*/
+.review-swiper .swiper-slide {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Em telas de desktop (768px ou mais):
+  Diminui o tamanho e a opacidade dos slides que NÃO estão no meio.
+*/
+@media (min-width: 768px) {
+  .review-swiper .swiper-slide:not(.swiper-slide-active) {
+    transform: scale(0.9);
+    opacity: 0.6;
+  }
+}
+
+/* Garante que o slide do meio (o .swiper-slide-active)
+  fique com 100% do tamanho e 100% de opacidade.
+*/
+.review-swiper .swiper-slide-active {
+  transform: scale(1);
+  opacity: 1;
 }
