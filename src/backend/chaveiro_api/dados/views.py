@@ -2,8 +2,8 @@ from django.shortcuts import render
 
 # Create your views here.
 from rest_framework import generics
-from .models import Usuario , Produto , Administrador
-from .serializers import UsuarioSerializer , ProdutoSerializer , AdministradorSerializer
+from .models import Usuario , Produto , Administrador , Pedido
+from .serializers import UsuarioSerializer , ProdutoSerializer , AdministradorSerializer , PedidoSerializer
 class UsuarioList(generics.ListCreateAPIView):
     queryset = Usuario.objects.all()
     serializer_class = UsuarioSerializer
@@ -22,3 +22,9 @@ class AdministradorList(generics.ListCreateAPIView):
 class AdministradorDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Administrador.objects.all()
     serializer_class = AdministradorSerializer
+class PedidoList(generics.ListCreateAPIView):
+    queryset = Pedido.objects.all()
+    serializer_class = PedidoSerializer
+class PedidoDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Pedido.objects.all()
+    serializer_class = PedidoSerializer

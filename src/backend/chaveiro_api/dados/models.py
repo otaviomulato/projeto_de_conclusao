@@ -26,6 +26,17 @@ class Administrador(models.Model):
     email_adm = models.EmailField(max_length=100)
     servidor = models.BooleanField()
     credito_add = models.IntegerField()
+    #FK_user_adm = models.ForeignKey(Usuario, related_name='dados',on_delete=models.CASCADE)
+    def __str__(self):
+        return self.nome_adm
+class Pedido(models.Model):
+    data_criacao = models.DateTimeField(auto_now_add=True)
+    data_entrega = models.DateTimeField(blank=True, null=True)
+    status = models.IntegerField()
+    persona = models.TextField(blank=True)
+    avaliacao = models.TextField()
+    estrelas = models.IntegerField()
     FK_user = models.ForeignKey(Usuario, related_name='dados',on_delete=models.CASCADE)
+    FK_produto = models.ForeignKey(Produto, related_name='dados',on_delete=models.CASCADE)
     def __str__(self):
         return self.nome_adm
