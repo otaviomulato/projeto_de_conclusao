@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from rest_framework import generics
+<<<<<<< HEAD
 from .models import Usuario , Produto , Administrador , Pedido
 from .serializers import UsuarioSerializer , ProdutoSerializer , AdministradorSerializer , PedidoSerializer
 
@@ -14,6 +15,11 @@ def about_us(request):
 
 
 #serializers do usuario, produto e admin (por enquanto)
+=======
+from .models import Usuario , Produto , Servidor , Pedido , Imagem
+from .serializers import UsuarioSerializer , ProdutoSerializer , ServidorSerializer , PedidoSerializer , ImagemSerializer
+
+>>>>>>> f629aba7c3f2ea3f565ec497dca257ab70431404
 class UsuarioList(generics.ListCreateAPIView):
     queryset = Usuario.objects.all()
     serializer_class = UsuarioSerializer
@@ -30,6 +36,7 @@ class ProdutoDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Produto.objects.all()
     serializer_class = ProdutoSerializer
 
+<<<<<<< HEAD
 class AdministradorList(generics.ListCreateAPIView):
     queryset = Administrador.objects.all()
     serializer_class = AdministradorSerializer
@@ -37,6 +44,15 @@ class AdministradorList(generics.ListCreateAPIView):
 class AdministradorDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Administrador.objects.all()
     serializer_class = AdministradorSerializer
+=======
+class ServidorList(generics.ListCreateAPIView):
+    queryset = Servidor.objects.all()
+    serializer_class = ServidorSerializer
+
+class ServidorDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Servidor.objects.all()
+    serializer_class = ServidorSerializer
+>>>>>>> f629aba7c3f2ea3f565ec497dca257ab70431404
 
 class PedidoList(generics.ListCreateAPIView):
     queryset = Pedido.objects.all()
@@ -45,3 +61,11 @@ class PedidoList(generics.ListCreateAPIView):
 class PedidoDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Pedido.objects.all()
     serializer_class = PedidoSerializer
+
+class ImagemList(generics.ListCreateAPIView):
+    queryset = Imagem.objects.all()
+    serializer_class = ImagemSerializer
+
+class ImagemDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Imagem.objects.all()
+    serializer_class = ImagemSerializer
