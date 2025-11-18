@@ -7,9 +7,39 @@
 </head>
 <body>
     <main>
-        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.92/build/spline-viewer.js"></script>
-        <spline-viewer url="https://prod.spline.design/tWwZUMWhGJpIUoI3/scene.splinecode"></spline-viewer>
+        <div id="hero">
+
+        </div>
+      
     </main>
+    <script>
+        document.addEventListener("DOMContentLoaded",()=>{
+            fetchprodutos()
+        });
+        function fetchprodutos() {
+            fetch("http://127.0.0.1:8000/api/produtos/2/")
+            .then (res => res.json())
+            .then (data => renderchave(data))
+            .catch (err => console.error("erro ao buscar", err))
+        }
+        function renderchave(produtos){
+            const container = document.getElementById("hero");
+            container.innerHTML = "";
+            const card = document.createElement("div");
+            card.innerHTML = `
+                <p>${produtos.nome_produto}</p>
+                <p>${produtos.descricao}</p>
+                <p>${produtos.preco}</p>
+                <p>${produtos.tipo_persona}</p>
+                ${produtos.link3D}
+            `;
+            container.appendChild(card)
+        }
+    </script>
+    <!--Isso ae faz a vizualização 3D funfar, 
+    logo só o splineviewer é necessario no banco 
+    (eu acho, espero que esse script não seja unico para cada modelo)-->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.11.6/build/spline-viewer.js"></script>
 </body>
 </html>
 <!--Colocar campo no DB para spline-viewer ----- mexer no js-->
