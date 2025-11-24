@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho - SENAI 4.0</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        senai: {
+                            red: '#E30613',
+                            dark: '#1A1A1A',
+                            gray: '#F3F4F6'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        oswald: ['Oswald', 'sans-serif'],
+                    },
+                    animation: {
+                        'pop-in': 'popIn 0.3s ease-out forwards',
+                    },
+                    keyframes: {
+                        popIn: {
+                            '0%': { transform: 'scale(0.9)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Input Number Customizado */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; margin: 0; 
+        }
+    </style>
+</head>
+
+<body class="bg-white flex flex-col min-h-screen text-gray-800">
+
+<header class="bg-black sticky top-0 z-50 shadow-md border-b border-gray-900">
+    <nav class="relative max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 py-4">
+        <a href="index.html" class="flex items-center group">
+            <img src="img/logo_footer.png" alt="Logo SENAI SP" class="h-10 w-auto brightness-0 invert transition-opacity group-hover:opacity-80"> 
+        </a>
+        
+        <ul class="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-8">
+            <li><a href="index.html" class="font-medium text-gray-300 hover:text-white transition-colors tracking-wide uppercase text-sm">Início</a></li>
+            <li><a href="produtos.html" class="font-medium text-gray-300 hover:text-white transition-colors tracking-wide uppercase text-sm">Catálogo</a></li>
+            <li><a href="#" class="font-medium text-gray-300 hover:text-white transition-colors tracking-wide uppercase text-sm">Sobre</a></li>
+        </ul>
+        
+        <div class="hidden lg:flex items-center gap-6">
+            <a href="login.html" class="text-white hover:text-senai-red transition-colors"><i class="fa-regular fa-user text-xl"></i></a>
+            <a href="#" class="relative text-senai-red transition-colors">
+                <i class="fa-solid fa-cart-shopping text-xl"></i>
+                <span class="absolute -top-2 -right-2 bg-white text-senai-red text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center border border-senai-red">1</span>
+            </a>
+        </div>
+        
+        <button class="lg:hidden p-2 text-white hover:text-senai-red"><i class="fas fa-bars text-2xl"></i></button>
+    </nav>
+</header>
+
+<main class="flex-grow bg-gray-50 py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="mb-8 border-b border-gray-200 pb-4">
+            <h1 class="text-4xl md:text-5xl font-bold font-oswald uppercase text-gray-900">SEU CARRINHO</h1>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <div class="lg:col-span-8 space-y-6">
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 flex flex-col sm:flex-row gap-6 transition-all hover:shadow-md">
+                    <div class="w-full sm:w-32 h-32 bg-gray-100 rounded-md flex-shrink-0 overflow-hidden relative group">
+                        <img src="https://prod.spline.design/tWwZUMWhGJpIUoI3/thumbnail.png" alt="Chaveiro Personalizado" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex-grow flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start">
+                                <h3 class="text-xl font-bold font-oswald text-gray-900 uppercase">Chaveiro SENAI 4.0</h3>
+                                <button class="text-gray-400 hover:text-red-600 transition-colors"><i class="fa-regular fa-trash-can text-lg"></i></button>
+                            </div>
+                            <p class="text-xs text-gray-500 mb-3">Ref: KEY-2025-CUST</p>
+                            <div class="flex flex-wrap gap-2 mt-2">
+                                <span class="inline-flex items-center gap-1 px-2 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded border border-gray-200"><i class="fa-solid fa-signature text-[10px]"></i> Nome: Diana</span>
+                                <span class="inline-flex items-center gap-1 px-2 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded border border-gray-200"><i class="fa-solid fa-palette text-[10px]"></i> Cor: Vermelho</span>
+                                <span class="inline-flex items-center gap-1 px-2 py-1 bg-gray-100 text-gray-600 text-xs font-medium rounded border border-gray-200"><i class="fa-solid fa-ruler-combined text-[10px]"></i> 40x30mm</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-end mt-4 sm:mt-0">
+                            <div class="flex items-center border border-gray-300 rounded overflow-hidden h-9">
+                                <button onclick="updateQty(-1)" class="px-3 bg-gray-50 hover:bg-gray-100 text-gray-600 transition-colors">-</button>
+                                <input type="number" id="qty" value="1" readonly class="w-12 text-center text-sm font-bold border-x border-gray-300 h-full focus:outline-none">
+                                <button onclick="updateQty(1)" class="px-3 bg-gray-50 hover:bg-gray-100 text-gray-600 transition-colors">+</button>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xs text-gray-400 line-through">R$ 59,90</p>
+                                <p class="text-2xl font-bold text-senai-red" id="item-price">R$ 49,90</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="produtos.html" class="inline-flex items-center gap-2 text-gray-500 hover:text-senai-red font-medium text-sm transition-colors mt-4">
+                    <i class="fa-solid fa-arrow-left"></i> Continuar Comprando
+                </a>
+            </div>
+
+            <div class="lg:col-span-4">
+                <div class="bg-white rounded-lg shadow-lg border-t-4 border-senai-red p-6 sticky top-24">
+                    <h2 class="text-xl font-bold font-oswald uppercase text-gray-900 mb-6 border-b border-gray-100 pb-4">
+                        Resumo do Pedido
+                    </h2>
+                    <div class="space-y-3 text-sm text-gray-600 mb-6">
+                        <div class="flex justify-between"><span>Subtotal</span><span id="subtotal">R$ 49,90</span></div>
+                        <div class="flex justify-between"><span>Descontos</span><span class="text-green-600">- R$ 0,00</span></div>
+                        <div class="flex justify-between items-center"><span>Retirada na Unidade</span><span class="text-xs font-bold bg-green-100 text-green-700 px-2 py-1 rounded">GRÁTIS</span></div>
+                    </div>
+                    <div class="flex justify-between items-center border-t border-gray-200 pt-4 mb-6">
+                        <span class="font-bold text-lg text-gray-900">Total</span>
+                        <span class="font-black text-3xl text-gray-900" id="total">R$ 49,90</span>
+                    </div>
+
+                    <button onclick="finishPurchase()" class="w-full bg-senai-red text-white font-bold py-4 rounded shadow-md hover:bg-red-700 hover:shadow-lg transition-all transform active:scale-95 uppercase tracking-wide flex justify-center items-center gap-2 group">
+                        Finalizar Compra
+                        <i class="fa-solid fa-check group-hover:scale-110 transition-transform"></i>
+                    </button>
+
+                    <div class="mt-4 flex items-center justify-center gap-2 text-gray-400 text-[10px] uppercase font-bold tracking-widest">
+                        <i class="fa-solid fa-lock"></i> Compra Segura SENAI
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<div id="success-modal" class="fixed inset-0 z-[60] hidden items-center justify-center">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
+    
+    <div class="relative bg-white rounded-lg shadow-2xl p-8 max-w-sm w-full mx-4 text-center animate-pop-in border-t-8 border-senai-red">
+        
+        <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fa-solid fa-check text-4xl text-green-600"></i>
+        </div>
+
+        <h2 class="text-3xl font-bold font-oswald text-gray-900 mb-2 uppercase">Pedido Confirmado!</h2>
+        <p class="text-gray-500 mb-8 leading-relaxed">
+            Deu tudo certo! Seu pedido foi enviado para a produção. Você receberá os detalhes por e-mail.
+        </p>
+
+        <button onclick="window.location.href='index.html'" class="w-full bg-black text-white font-bold py-3 rounded hover:bg-gray-800 transition-colors uppercase tracking-wide">
+            Voltar ao Início
+        </button>
+    </div>
+</div>
+
+<footer class="bg-senai-dark text-gray-300 relative mt-auto border-t-4 border-senai-red">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div class="space-y-6">
+                <img src="img/logo_footer.png" alt="Logo SENAI" class="h-12 w-auto opacity-90 brightness-0 invert">
+                <p class="text-sm text-gray-400 leading-relaxed">Sistema de recompensas para alunos e visitantes.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="text-2xl hover:text-[#25D366]"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="text-2xl hover:text-[#E1306C]"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="text-2xl hover:text-[#1877F2]"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-white font-bold uppercase text-sm mb-6 pl-3 border-l-4 border-senai-red">Links Rápidos</h4>
+                <ul class="space-y-3 text-sm">
+                    <li><a href="#" class="hover:text-senai-red">Início</a></li>
+                    <li><a href="#" class="hover:text-senai-red">FAQ</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold uppercase text-sm mb-6 pl-3 border-l-4 border-senai-red">Institucional</h4>
+                <ul class="space-y-3 text-sm">
+                    <li><a href="#" class="hover:text-senai-red">Portal SENAI</a></li>
+                    <li><a href="#" class="hover:text-senai-red">Cursos</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold uppercase text-sm mb-6 pl-3 border-l-4 border-senai-red">Contato</h4>
+                <ul class="space-y-4 text-sm">
+                    <li><i class="fa-solid fa-location-dot text-senai-red mr-2"></i> Sorocaba - SP</li>
+                    <li><i class="fa-solid fa-phone text-senai-red mr-2"></i> 0800-055-1000</li>
+                    <li><i class="fa-solid fa-envelope text-senai-red mr-2"></i> senai@sp.senai.br</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="bg-black border-t border-gray-800 p-4 text-center">
+        <p class="text-xs text-gray-500">© 2025 SENAI-SP Sorocaba - Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+<script>
+    const unitPrice = 49.90;
+    
+    function updateQty(change) {
+        const qtyInput = document.getElementById('qty');
+        let newQty = parseInt(qtyInput.value) + change;
+        if (newQty < 1) newQty = 1;
+        if (newQty > 10) newQty = 10;
+        qtyInput.value = newQty;
+        updateTotals(newQty);
+    }
+
+    function updateTotals(qty) {
+        const totalValue = (unitPrice * qty).toFixed(2).replace('.', ',');
+        document.getElementById('item-price').innerText = 'R$ ' + totalValue;
+        document.getElementById('subtotal').innerText = 'R$ ' + totalValue;
+        document.getElementById('total').innerText = 'R$ ' + totalValue;
+    }
+
+    // --- FUNÇÃO PARA FINALIZAR COMPRA E MOSTRAR CONFETES ---
+    function finishPurchase() {
+        const modal = document.getElementById('success-modal');
+        
+        // Mostra o Modal (usando Flex para centralizar)
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+
+        // Dispara os Confetes
+        var duration = 3 * 1000;
+        var animationEnd = Date.now() + duration;
+        var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 70 }; // zIndex maior que o modal
+
+        function random(min, max) {
+          return Math.random() * (max - min) + min;
+        }
+
+        var interval = setInterval(function() {
+          var timeLeft = animationEnd - Date.now();
+
+          if (timeLeft <= 0) {
+            return clearInterval(interval);
+          }
+
+          var particleCount = 50 * (timeLeft / duration);
+          
+          // Confetes saindo de dois pontos aleatórios
+          confetti(Object.assign({}, defaults, { particleCount, origin: { x: random(0.1, 0.3), y: Math.random() - 0.2 } }));
+          confetti(Object.assign({}, defaults, { particleCount, origin: { x: random(0.7, 0.9), y: Math.random() - 0.2 } }));
+        }, 250);
+    }
+
+    // Fecha modal se clicar fora (opcional)
+    function closeModal() {
+        // Se quiser permitir fechar clicando fora, descomente:
+        // document.getElementById('success-modal').classList.add('hidden');
+        // document.getElementById('success-modal').classList.remove('flex');
+    }
+</script>
+
+</body>
+</html>

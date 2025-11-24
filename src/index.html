@@ -3,448 +3,395 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage - SENAI 4.0</title>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link href="./output.css" rel="stylesheet">
-    <title>Homepage - SENAI 4.0.2</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        senai: {
+                            red: '#E30613',
+                            dark: '#1A1A1A',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        garage: ['GarageGothic', 'Oswald', 'Impact', 'sans-serif'], 
+                    },
+                    animation: {
+                        'spin-slow': 'spin 20s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="js/index.js"></script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* === HERO DARK === */
+        .titulo-principal {
+            font-family: 'GarageGothic', 'Oswald', sans-serif;
+            font-size: 5rem; /* Mobile */
+            color: #ffffff; /* Texto Branco */
+            line-height: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            position: relative;
+            z-index: 10;
+        }
+
+        @media (min-width: 768px) {
+            .titulo-principal { font-size: 8rem; } /* Desktop */
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 0.8em;
+            background-color: #E30613; /* Cursor Vermelho */
+            animation: blink 1s step-end infinite;
+            vertical-align: baseline;
+            margin-left: 5px;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Swipers e Cards (Mantidos) */
+        .review-card {
+            background: white; border: 1px solid #e5e7eb; border-radius: 12px; padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            display: flex; flex-direction: column; align-items: center; text-align: center;
+        }
+        .swiper-slide-active .review-card { border-color: #E30613; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+        .gallery-slide img { width: 100%; height: 350px; object-fit: cover; border-radius: 8px; }
+        
+        /* Timeline */
+        .timeline-line { position: absolute; left: 24px; top: 0; bottom: 0; width: 4px; background-color: #E5E7EB; z-index: 0; }
+        .timeline-step { position: relative; z-index: 10; }
+    </style>
 </head>
 
-<style>
-.cta-container {
-  text-align: center; /* centraliza horizontalmente */
-  margin: 0; /* sem margem extra */
-  min-height: 120px; /* fixa altura para 2 linhas */
-}
+<body class="bg-white flex flex-col min-h-screen">
 
-.titulo-principal {
-  font-family: 'Garagegothic', monospace;
-  font-size: 90px;
-  color: #ffefc7;
-  line-height: 1em;
-  white-space: pre-line;
-  display: inline-block;
-  margin: -50px 0 50px 0; /* remove margem padrão do h1 */
-}
-
-.cursor {
-  display: inline;
-  color: #ffefc7;
-  animation: blink 0.7s steps(1) infinite;
-}
-
-@keyframes blink {
-  50% { opacity: 0; }
-}
-.gradient-hover-shake {
-  font-size: 1.8rem;
-  background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  transition: transform 0.3s ease;
-}
-
-/* ativa o shake apenas no hover */
-.gradient-hover-shake:hover {
-  animation: fa-bounce 1.5s infinite;
-}
-.whatsapp-bounce{
-    font-size: 1.5rem;
-    background: #3ce159;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    transition: transform 0.3s ease;
-}
-.whatsapp-bounce:hover{
-    animation: fa-bounce 1.5s infinite;
-}
-.facebook-bounce{
-    font-size: 1.5rem;
-    background: #0865ff;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    transition: transform 0.3s ease;
-}
-.facebook-bounce:hover{
-    animation: fa-bounce 1.5s infinite;
-}
-
-/* CSS ADICIONADO PARA O CARROSSEL DE AVALIAÇÕES
-*/
-.review-swiper .swiper-slide {
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-@media (min-width: 768px) {
-  .review-swiper .swiper-slide:not(.swiper-slide-active) {
-    transform: scale(0.9);
-    opacity: 0.6;
-  }
-}
-
-.review-swiper .swiper-slide-active {
-  transform: scale(1);
-  opacity: 1;
-}
-</style>
-
-<body class="bg-white">
-
-<header class=" bg-black sticky top-0 z-40">
-    <nav class="relative max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 py-3">
-        <a href="index.html" class="flex items-center">
-            <img src="img/logo_footer.png" alt="Logo SENAI SP" class="h-10 w-auto"> 
+<header class="bg-black sticky top-0 z-50 shadow-md border-b border-gray-900">
+    <nav class="relative max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 py-4">
+        <a href="index.html" class="flex items-center group">
+            <img src="img/logo_footer.png" alt="Logo SENAI SP" class="h-10 w-auto brightness-0 invert transition-opacity group-hover:opacity-80"> 
         </a>
         
         <ul class="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-8">
-            <li><a href="#" class="font-medium text-white border-b-2 border-white pb-1">Início</a></li>
-            <li><a href="#" class="font-medium text-white hover:text-gray-200 transition-colors">Catálogo</a></li>
-            <li><a href="#" class="font-medium text-white hover:text-gray-200 transition-colors">Sobre</a></li>
-            <li><a href="#" class="font-medium text-white hover:text-gray-200 transition-colors">FAQ</a></li>
+            <li><a href="#" class="font-medium text-white border-b-2 border-senai-red pb-1 tracking-wide uppercase text-sm">Início</a></li>
+            <li><a href="produtos.html" class="font-medium text-gray-300 hover:text-white transition-colors tracking-wide uppercase text-sm">Catálogo</a></li>
+            <li><a href="#" class="font-medium text-gray-300 hover:text-white transition-colors tracking-wide uppercase text-sm">Sobre</a></li>
         </ul>
         
         <div class="hidden lg:flex items-center gap-6">
-            <a href="#" class="text-white hover:text-gray-200 transition-colors" aria-label="Perfil">
-                <i class="fa-regular fa-user text-xl"></i>
-            </a>
-            
-            <a href="#" class="relative text-white hover:text-gray-200 transition-colors" aria-label="Carrinho">
+            <a href="login.html" class="text-white hover:text-senai-red transition-colors"><i class="fa-regular fa-user text-xl"></i></a>
+            <a href="#" class="relative text-white hover:text-senai-red transition-colors">
                 <i class="fa-solid fa-cart-shopping text-xl"></i>
-                <span class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 
-                             bg-red-600 text-white text-xs font-bold 
-                             rounded-full h-5 w-5 
-                             flex items-center justify-center">
-                    1
-                </span>
+                <span class="absolute -top-2 -right-2 bg-senai-red text-white text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center border-2 border-black">0</span>
             </a>
         </div>
         
-        <button id="menu-toggle" class="lg:hidden p-2" aria-label="Abrir menu" aria-expanded="false">
-             <i class="fas fa-bars text-2xl text-white"></i>
+        <button id="menu-toggle" class="lg:hidden p-2 text-white hover:text-senai-red">
+             <i class="fas fa-bars text-2xl"></i>
         </button>
-
     </nav>
     
-    <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-red-600 shadow-lg z-50">
+    <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-zinc-900 border-t border-gray-800 shadow-xl z-50">
         <ul class="flex flex-col items-center gap-6 py-8">
-            <li><a href="#" class="font-medium text-white text-lg">Início</a></li>
-            <li><a href="#" class="font-medium text-white text-lg hover:text-gray-200 transition-colors">Catálogo</a></li>
-            <li><a href="#" class="font-medium text-white text-lg hover:text-gray-200 transition-colors">Sobre</a></li>
-            <li><a href="#" class="font-medium text-white text-lg hover:text-gray-200 transition-colors">FAQ</a></li>
-            
-            <li class="flex items-center gap-8 mt-4">
-                <a href="#" class="text-white hover:text-gray-200 transition-colors" aria-label="Perfil">
-                    <i class="fa-regular fa-user text-2xl"></i>
-                </a>
-                
-                <a href="#" class="relative text-white hover:text-gray-200 transition-colors" aria-label="Carrinho">
-                    <i class="fa-solid fa-cart-shopping text-2xl"></i>
-                    <span class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 
-                                 bg-red-600 text-white text-xs font-bold 
-                                 rounded-full h-5 w-5 
-                                 flex items-center justify-center">
-                        1
-                    </span>
-                </a>
-            </li>
+            <li><a href="#" class="font-bold text-white text-lg">INÍCIO</a></li>
+            <li><a href="produtos.html" class="font-bold text-gray-300 text-lg">CATÁLOGO</a></li>
         </ul>
     </div>
 </header>
+
+<main class="flex-grow">
     
-    
-    <main>
+    <section class="relative bg-black h-[600px] flex items-center justify-center overflow-hidden text-center px-4">
         
-        <section class="bg-white text-center py-20 px-4">
-            <div class="code-embed w-embed w-script"><div class="cta-container">
-  <h1 class="titulo-principal">
-    <span class="texto"></span><span class="cursor">|</span>
-  </h1>
-</div>
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <i class="fa-solid fa-gear absolute -bottom-20 -left-20 text-[20rem] text-white opacity-5 animate-spin-slow"></i>
+            
+            <i class="fa-solid fa-microchip absolute top-20 -right-10 text-[15rem] text-white opacity-5 animate-float rotate-12"></i>
+            
+            <i class="fa-solid fa-network-wired absolute top-10 left-10 text-[8rem] text-senai-red opacity-10 animate-pulse"></i>
+        </div>
 
-        </section>
-        <section class="bg-white py-16 px-4">
-            <div class="max-w-7xl mx-auto">
-                <div class="flex items-center justify-center gap-4 md:gap-6 mb-12">
-                    <div class="space-y-1 w-16 md:w-24"><div class="h-0.5 bg-red-600"></div><div class="h-0.5 bg-red-600"></div><div class="h-0.5 bg-red-600"></div></div>
-                    <a href="produtos.html"><h2 class="text-3xl md:text-4xl font-bold text-red-600 uppercase text-center">Produtos</h2></a>
-                    <div class="space-y-1 w-16 md:w-24"><div class="h-0.5 bg-red-600"></div><div class="h-0.5 bg-red-600"></div><div class="h-0.5 bg-red-600"></div></div>
-                </div>
-
-                <div class="swiper product-swiper relative max-w-6xl mx-auto">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide"><img src="img/teste-carrossel-1.jpg" alt="Produto 1" class="w-full h-auto object-cover rounded-lg"></div>
-                        <div class="swiper-slide"><img src="img/teste-carrossel-2.jpg" alt="Produto 2" class="w-full h-auto object-cover rounded-lg"></div>
-                        <div class="swiper-slide"><img src="img/teste-carrossel-3.jpg" alt="Produto 3" class="w-full h-auto object-cover rounded-lg"></div>
-                        <div class="swiper-slide"><img src="img/teste-carrossel-4.jpg" alt="Produto 4" class="w-full h-auto object-cover rounded-lg"></div>
-                        <div class="swiper-slide"><img src="img/teste-carrossel-5.jpg" alt="Produto 5" class="w-full h-auto object-cover rounded-lg"></div>
-                    </div>
-                    <div class="swiper-pagination mt-8 relative"></div>
-                    <div class="swiper-button-prev text-red-600 -left-2 md:-left-10 hidden md:flex"></div>
-                    <div class="swiper-button-next text-red-600 -right-2 md:-right-10 hidden md:flex"></div>
-                </div>
+        <div class="relative z-10 max-w-5xl mx-auto">
+            <div class="inline-block mb-6 px-4 py-1 border border-senai-red/50 text-senai-red text-xs font-bold uppercase tracking-[0.2em] rounded-full">
+                Indústria 4.0 • Sorocaba
             </div>
-        </section>
+            
+            <h1 class="titulo-principal">
+                <span class="texto"></span><span class="cursor"></span>
+            </h1>
+            
+            <div class="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
+                 <a href="produtos.html" class="bg-senai-red hover:bg-red-700 text-white font-bold py-4 px-10 rounded-sm transition-all transform hover:-translate-y-1 shadow-lg uppercase tracking-wider">
+                    Ver Catálogo
+                </a>
+            </div>
+        </div>
+    </section>
 
-        <section class="bg-red-600 text-white py-20 px-4">
-            <div class="max-w-5xl mx-auto">
-                <h2 class="text-3xl md:text-4xl font-bold text-center uppercase mb-16">Como Funciona</h2>
+    <section class="py-20 px-4 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center justify-center gap-4 mb-12">
+                <div class="h-0.5 w-12 bg-senai-red"></div>
+                <h2 class="text-3xl font-bold text-gray-900 uppercase tracking-wide font-[Oswald]">Galeria de Projetos</h2>
+                <div class="h-0.5 w-12 bg-senai-red"></div>
+            </div>
 
-                <div class="relative">
-                    
-                    <div class="absolute left-1/2 -translate-x-1/2 top-4 bottom-4 w-1.5 bg-white rounded-full hidden md:block" aria-hidden="true"></div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
-                        
-                        <div class="flex items-start gap-5 md:flex-row-reverse md:text-right">
-                            <div class="flex-shrink-0 w-14 h-14 border-4 border-white rounded-full flex items-center justify-center text-xl font-bold bg-red-600 z-10">1.</div>
-                            <div>
-                                <h3 class="text-2xl font-bold mb-1">Criação do pedido</h3>
-                                <p class="text-base opacity-90">Nesta parte você irá criar o seu produto e customizá-lo!</p>
-                            </div>
+            <div class="swiper gallery-swiper pb-10">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide gallery-slide">
+                        <img src="https://prod.spline.design/tWwZUMWhGJpIUoI3/thumbnail.png" alt="Projeto 1">
+                    </div>
+                    <div class="swiper-slide gallery-slide">
+                        <div class="w-full h-[350px] bg-white border border-gray-200 rounded-lg flex items-center justify-center text-gray-300">
+                            <i class="fa-solid fa-cube text-6xl"></i>
                         </div>
-
-                        <div class="flex items-start gap-5">
-                            <div class="flex-shrink-0 w-14 h-14 border-4 border-white rounded-full flex items-center justify-center text-xl font-bold bg-red-600 z-10">2.</div>
-                            <div>
-                                <h3 class="text-2xl font-bold mb-1">Montagem</h3>
-                                <p class="text-base opacity-90">Aqui as máquinas irão recriar o seu pedido, de acordo com a customização.</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-5 md:flex-row-reverse md:text-right">
-                            <div class="flex-shrink-0 w-14 h-14 border-4 border-white rounded-full flex items-center justify-center text-xl font-bold bg-red-600 z-10">3.</div>
-                            <div>
-                                <h3 class="text-2xl font-bold mb-1">Coleta</h3>
-                                <p class="text-base opacity-90">Você poderá resgatar seu produto assim que estiver disponibilizado.</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-5">
-                            <div class="flex-shrink-0 w-14 h-14 border-4 border-white rounded-full flex items-center justify-center text-xl font-bold bg-red-600 z-10">4.</div>
-                            <div>
-                                <h3 class="text-2xl font-bold mb-1">Tudo pronto!</h3>
-                                <p class="text-base opacity-90">Aproveite seu chaveiro SENAI!</p>
-                            </div>
+                    </div>
+                    <div class="swiper-slide gallery-slide">
+                         <div class="w-full h-[350px] bg-white border border-gray-200 rounded-lg flex items-center justify-center text-gray-300">
+                            <i class="fa-solid fa-layer-group text-6xl"></i>
                         </div>
                     </div>
                 </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
 
-                <div class="text-center mt-16">
-                    <a href="#" class="border-2 border-white text-white font-medium px-8 py-3 rounded-md hover:bg-white hover:text-red-600 transition-colors duration-300">
-                        Customizar agora
+    <section class="bg-white py-24 px-4">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold text-center text-gray-900 uppercase mb-16 font-[Oswald]">
+                Processo
+            </h2>
+
+            <div class="relative pl-4 md:pl-0">
+                <div class="timeline-line md:left-1/2 md:-ml-[2px] bg-gray-300"></div>
+
+                <div class="timeline-step relative flex flex-col md:flex-row items-center justify-between mb-16 group">
+                    <div class="md:w-5/12 text-left md:text-right order-2 md:order-1 pl-16 md:pl-0 md:pr-12">
+                        <h3 class="text-2xl font-bold text-senai-red mb-2 font-[Oswald]">1. PERSONALIZAÇÃO</h3>
+                        <p class="text-gray-600">Acesse a página do produto, configure seu chaveiro exclusivo e adicione seu nome.</p>
+                    </div>
+                    <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-12 h-12 bg-senai-red rounded-full border-4 border-white shadow-lg flex items-center justify-center text-white font-bold z-10 order-1 md:order-2">1</div>
+                    <div class="md:w-5/12 order-3"></div>
+                </div>
+
+                <div class="timeline-step relative flex flex-col md:flex-row items-center justify-between mb-16 group">
+                    <div class="md:w-5/12 order-3 md:order-1"></div>
+                    <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-12 h-12 bg-white border-4 border-senai-red rounded-full shadow-lg flex items-center justify-center text-senai-red font-bold z-10 order-1 md:order-2">2</div>
+                    <div class="md:w-5/12 text-left order-2 md:order-3 pl-16 md:pl-12">
+                        <h3 class="text-2xl font-bold text-senai-red mb-2 font-[Oswald]">2. FABRICAÇÃO</h3>
+                        <p class="text-gray-600">Nossas máquinas automatizadas recebem o código e produzem sua peça em tempo real.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-step relative flex flex-col md:flex-row items-center justify-between mb-16 group">
+                     <div class="md:w-5/12 text-left md:text-right order-2 md:order-1 pl-16 md:pl-0 md:pr-12">
+                        <h3 class="text-2xl font-bold text-senai-red mb-2 font-[Oswald]">3. RETIRADA</h3>
+                        <p class="text-gray-600">Assim que finalizado, retire seu brinde exclusivo no balcão de entrega.</p>
+                    </div>
+                    <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-12 h-12 bg-black text-white rounded-full border-4 border-white shadow-lg flex items-center justify-center font-bold z-10 order-1 md:order-2">3</div>
+                    <div class="md:w-5/12 order-3"></div>
+                </div>
+
+                <div class="relative text-center pt-8 z-20 pl-4 md:pl-0">
+                    <a href="produto.html" class="inline-flex items-center gap-3 bg-senai-red hover:bg-red-700 text-white text-xl font-bold py-5 px-12 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 uppercase tracking-wide font-[Oswald]">
+                        Customizar Chaveiro
                     </a>
                 </div>
             </div>
-        </section>
-        
-        <section class="bg-white py-16 px-4">
-            <div class="max-w-7xl mx-auto">
-                <div class="flex items-center justify-center gap-4 md:gap-6 mb-12">
-                    <div class="space-y-1 w-16 md:w-24"><div class="h-0.5 bg-red-600"></div><div class="h-0.5 bg-red-600"></div><div class="h-0.5 bg-red-600"></div></div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-red-600 uppercase text-center">Avaliações</h2>
-                    <div class="space-y-1 w-16 md:w-24"><div class="h-0.5 bg-red-600"></div><div class="h-0.5 bg-red-600"></div><div class="h-0.5 bg-red-600"></div></div>
-                </div>
-                
-                <div class="swiper review-swiper max-w-6xl mx-auto">
-                    <div class="swiper-wrapper pb-12">
-                        
-                        <div class="swiper-slide h-auto">
-                            <div class="border border-gray-200 rounded-lg p-6 text-center shadow-sm h-full flex flex-col">
-                                <div class="flex justify-center text-yellow-500 text-xl mb-4">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="italic text-gray-700 flex-grow">"Algo algo bla bla bla"</p>
-                                <p class="font-bold text-gray-900 mt-4">- Alguém</p>
-                            </div>
-                        </div>
-                        
-                        <div class="swiper-slide h-auto">
-                            <div class="border border-gray-200 rounded-lg p-6 text-center shadow-sm h-full flex flex-col">
-                                <div class="flex justify-center text-yellow-500 text-xl mb-4">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="italic text-gray-700 flex-grow">"A aquisição dos micro-ondas e geladeiras mantém a minha marmita agradável!"</p>
-                                <p class="font-bold text-gray-900 mt-4">- Outro Alguém</p>
-                            </div>
-                        </div>
+        </div>
+    </section>
 
-                        <div class="swiper-slide h-auto">
-                            <div class="border border-gray-200 rounded-lg p-6 text-center shadow-sm h-full flex flex-col">
-                                <div class="flex justify-center text-yellow-500 text-xl mb-4">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="italic text-gray-700 flex-grow">"Algo algo bla bla bla"</p>
-                                <p class="font-bold text-gray-900 mt-4">- Mais Um</p>
+    <section class="bg-gray-50 py-20 px-4 overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-gray-900 uppercase text-center mb-12 font-[Oswald]">
+                Avaliações
+            </h2>
+            
+            <div class="swiper review-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="review-card">
+                            <div class="flex text-yellow-400 text-lg mb-4">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                             </div>
+                            <p class="italic text-gray-600 mb-4">"A qualidade da impressão 3D surpreendeu. O sistema é muito intuitivo."</p>
+                            <p class="font-bold text-gray-900 mt-auto">- João Paulo</p>
                         </div>
-                        
-                        <div class="swiper-slide h-auto">
-                            <div class="border border-gray-200 rounded-lg p-6 text-center shadow-sm h-full flex flex-col">
-                                <div class="flex justify-center text-yellow-500 text-xl mb-4">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
-                                </div>
-                                <p class="italic text-gray-700 flex-grow">"Gostei, mas podia ter mais bla bla."</p>
-                                <p class="font-bold text-gray-900 mt-4">- Usuário</p>
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide h-auto">
-                            <div class="border border-gray-200 rounded-lg p-6 text-center shadow-sm h-full flex flex-col">
-                                <div class="flex justify-center text-yellow-500 text-xl mb-4">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="italic text-gray-700 flex-grow">"Algo algo bla bla bla"</p>
-                                <p class="font-bold text-gray-900 mt-4">- Alguém</p>
-                            </div>
-                        </div>
-                        
-                        <div class="swiper-slide h-auto">
-                            <div class="border border-gray-200 rounded-lg p-6 text-center shadow-sm h-full flex flex-col">
-                                <div class="flex justify-center text-yellow-500 text-xl mb-4">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="italic text-gray-700 flex-grow">"A aquisição dos micro-ondas e geladeiras mantém a minha marmita agradável!"</p>
-                                <p class="font-bold text-gray-900 mt-4">- Outro Alguém</p>
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide h-auto">
-                            <div class="border border-gray-200 rounded-lg p-6 text-center shadow-sm h-full flex flex-col">
-                                <div class="flex justify-center text-yellow-500 text-xl mb-4">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="italic text-gray-700 flex-grow">"Algo algo bla bla bla"</p>
-                                <p class="font-bold text-gray-900 mt-4">- Mais Um</p>
-                            </div>
-                        </div>
-                        
-                        <div class="swiper-slide h-auto">
-                            <div class="border border-gray-200 rounded-lg p-6 text-center shadow-sm h-full flex flex-col">
-                                <div class="flex justify-center text-yellow-500 text-xl mb-4">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
-                                </div>
-                                <p class="italic text-gray-700 flex-grow">"Gostei, mas podia ter mais bla bla."</p>
-                                <p class="font-bold text-gray-900 mt-4">- Usuário</p>
-                            </div>
-                        </div>
-
                     </div>
-                    <div class="swiper-pagination"></div> 
+                    <div class="swiper-slide">
+                        <div class="review-card">
+                            <div class="flex text-yellow-400 text-lg mb-4">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="italic text-gray-600 mb-4">"Adorei poder personalizar com meu nome. Ficou incrível!"</p>
+                            <p class="font-bold text-gray-900 mt-auto">- Maria Alice</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="review-card">
+                            <div class="flex text-yellow-400 text-lg mb-4">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+                            </div>
+                            <p class="italic text-gray-600 mb-4">"Muito rápido e prático. Mostra a tecnologia do SENAI na prática."</p>
+                            <p class="font-bold text-gray-900 mt-auto">- Carlos Silva</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="review-card">
+                            <div class="flex text-yellow-400 text-lg mb-4">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="italic text-gray-600 mb-4">"O melhor brinde que já recebi em um evento."</p>
+                            <p class="font-bold text-gray-900 mt-auto">- Ana Clara</p>
+                        </div>
+                    </div>
                 </div>
-
+                <div class="swiper-pagination"></div>
             </div>
-        </section>
+        </div>
+    </section>
 
-    </main>
+</main>
 
-<footer class="bg-black text-gray-200 relative overflow-hidden">
-
-    <div class="max-w-7xl mx-auto pt-8 pb-6 px-4 sm:px-6 lg:px-8 w-full">
-        
-        <div class="flex flex-row justify-center space-x-6 pb-8">
-             <a href="https://api.whatsapp.com/send?phone=551133220050" target="_blank" aria-label="WhatsApp">
-                 <i class="fab fa-whatsapp whatsapp-bounce"></i>
-             </a>
-             <a href="https://www.instagram.com/senaisorocaba/" target="_blank" aria-label="Instagram" >
-                 <i class="fa-brands fa-instagram gradient-hover-shake"></i>
-             </a>
-             <a href="https://www.facebook.com/senaisp.sorocabarosalia/" target="_blank" aria-label="Facebook">
-                 <i class="fab fa-facebook facebook-bounce"></i>
-             </a>
-         </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-6 text-center md:text-left">
-
-            <div class="md:col-span-2">
-                <a href="https://www.sp.senai.br/" target="_blank" class="inline-block">
-                    <img src="img/logo_footer.png" alt="Logo SENAI SP" class="h-12 md:h-16 w-auto">
-                </a>
-                <p class="mt-4 text-gray-400 max-w-md">
-                    Sistema de recompensas para alunos e visitantes durante datas importantes no SENAI Sorocaba
+<footer class="bg-senai-dark text-gray-300 relative mt-auto border-t-4 border-senai-red">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+            
+            <div class="space-y-6">
+                <img src="img/logo_footer.png" alt="Logo SENAI" class="h-12 w-auto opacity-90 brightness-0 invert">
+                <p class="text-sm text-gray-400 leading-relaxed">
+                    Sistema de recompensas para alunos e visitantes.
                 </p>
+                <div class="flex gap-4">
+                    <a href="#" class="text-2xl hover:text-[#25D366]"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="text-2xl hover:text-[#E1306C]"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="text-2xl hover:text-[#1877F2]"><i class="fab fa-facebook"></i></a>
+                </div>
             </div>
 
             <div>
-                <h3 class="text-lg font-bold text-white mb-2">Links rápidos</h3>
-                <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-red-500 transition-colors">Início</a></li>
-                    <li><a href="#" class="hover:text-red-500 transition-colors">FAQ</a></li>
-                    <li><a href="#" class="hover:text-red-500 transition-colors">Sobre</a></li>
-                    <li><a href="#" class="hover:text-red-500 transition-colors">Mais Página</a></li>
+                <h4 class="text-white font-bold uppercase text-sm mb-6 pl-3 border-l-4 border-senai-red">Links Rápidos</h4>
+                <ul class="space-y-3 text-sm">
+                    <li><a href="#" class="hover:text-senai-red">Início</a></li>
+                    <li><a href="#" class="hover:text-senai-red">FAQ</a></li>
+                    <li><a href="#" class="hover:text-senai-red">Sobre</a></li>
                 </ul>
             </div>
 
             <div>
-                <h3 class="text-lg font-bold text-white mb-2">Endereço</h3>
-                <address class="not-italic text-gray-400">
-                    <a href="https://www.google.com/maps/place/SENAI+Gaspar+Ricardo+J%C3%BAnior/@-23.4867124,-47.4492286,17z/data=!3m1!4b1!4m6!3m5!1s0x94c58a9f61b55945:0x4ead928c70b1e690!8m2!3d-23.4867124!4d-47.4492286!16s%2Fg%2F1tcxf9gy?entry=ttu&g_ep=EgoyMDI1MTAyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="hover:text-red-500 transition-colors">
-                        SENAI Santa Rosália<br>
-                        Praça Roberto Mange,<br>
-                        R. Santa Rosália, 30<br>
-                        Sorocaba - SP
-                    </a>
-                </address>
-                </div>
+                <h4 class="text-white font-bold uppercase text-sm mb-6 pl-3 border-l-4 border-senai-red">Institucional</h4>
+                <ul class="space-y-3 text-sm">
+                    <li><a href="#" class="hover:text-senai-red">Portal SENAI</a></li>
+                    <li><a href="#" class="hover:text-senai-red">Cursos</a></li>
+                </ul>
+            </div>
 
-            <div class="text-gray-400 space-y-1 break-words">
-                <h3 class="text-lg font-bold text-white mb-2">Telefone</h3>
-                <p>
-                    <a href="tel:08000551000" class="hover:text-red-500 transition-colors">0800-055-1000 (telefone fixo)</a>
-                </p>
-                <h3 class="text-lg font-bold text-white mb-1 mt-4">Email</h3>
-                <p>
-                    <a href="mailto:senai@gmail.com" class="hover:text-red-500 transition-colors">senaisorocaba@sp.senai.br</a>
-                </p>
+            <div>
+                <h4 class="text-white font-bold uppercase text-sm mb-6 pl-3 border-l-4 border-senai-red">Contato</h4>
+                <ul class="space-y-4 text-sm">
+                    <li><i class="fa-solid fa-location-dot text-senai-red mr-2"></i> Sorocaba - SP</li>
+                    <li><i class="fa-solid fa-phone text-senai-red mr-2"></i> 0800-055-1000</li>
+                    <li><i class="fa-solid fa-envelope text-senai-red mr-2"></i> senai@sp.senai.br</li>
+                </ul>
             </div>
         </div>
     </div>
-
-    <div class="mt-6 border-t border-gray-600"> 
-        <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center gap-2">
-            <p class="text-sm text-gray-500">
-                © 2025 SENAI-SP Sorocaba - Todos os direitos reservados.
-            </p>
-            <img src="img/ophidiana.png" alt="Selo de Segurança Ophidiana" class="h-8 w-auto">
-        </div>
+    <div class="bg-black border-t border-gray-800 p-4 text-center">
+        <p class="text-xs text-gray-500">© 2025 SENAI-SP Sorocaba - Todos os direitos reservados.</p>
     </div>
 </footer>
 
 <script>
-const frases = [
-  "WAIT FOR ME,\nI'M COMING.",
-  "VOU ATÉ O FIM,\nME ESPERA."
-];
+    // --- Lógica de Digitação ---
+    const frases = [
+      "WAIT FOR ME,\nI'M COMING.",
+      "VOU ATÉ O FIM,\nME ESPERA."
+    ];
 
-let i = 0;
-let j = 0;
-let apagando = false;
+    let i = 0;
+    let j = 0;
+    let apagando = false;
+    const textoSpan = document.querySelector('.titulo-principal .texto');
 
-const textoSpan = document.querySelector('.titulo-principal .texto');
-
-function typeLoop() {
-  let textoAtual = frases[i];
-  
-  if (!apagando) {
-    textoSpan.textContent = textoAtual.slice(0, j++);
-    if (j > textoAtual.length) {
-      apagando = true;
-      setTimeout(typeLoop, 1500);
-      return;
+    function typeLoop() {
+      let textoAtual = frases[i];
+      if (!apagando) {
+        textoSpan.innerText = textoAtual.slice(0, j++);
+        if (j > textoAtual.length) {
+          apagando = true;
+          setTimeout(typeLoop, 2000); 
+          return;
+        }
+      } else {
+        textoSpan.innerText = textoAtual.slice(0, j--);
+        if (j < 0) {
+          apagando = false;
+          i = (i + 1) % frases.length;
+          j = 0;
+        }
+      }
+      setTimeout(typeLoop, apagando ? 50 : 100);
     }
-  } else {
-    textoSpan.textContent = textoAtual.slice(0, j--);
-    if (j < 0) {
-      apagando = false;
-      i = (i + 1) % frases.length;
-      j = 0;
-    }
-  }
-  
-  setTimeout(typeLoop, apagando ? 50 : 100);
-}
+    typeLoop();
 
-typeLoop();
+    // --- Galeria Simples ---
+    new Swiper(".gallery-swiper", {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        autoplay: { delay: 3000 },
+        pagination: { el: ".swiper-pagination", clickable: true },
+        breakpoints: {
+            640: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+        },
+    });
+
+    // --- Avaliações (Destaque Central) ---
+    new Swiper(".review-swiper", {
+        slidesPerView: 1, 
+        centeredSlides: true, 
+        spaceBetween: 30,
+        loop: true,
+        autoplay: { delay: 2500, disableOnInteraction: false },
+        pagination: { el: ".swiper-pagination", clickable: true },
+        breakpoints: {
+            768: { slidesPerView: 3, spaceBetween: 20 }, 
+        },
+    });
+
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
 </script>
 
 </body>

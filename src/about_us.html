@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre o Projeto - SENAI 4.0</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        senai: {
+                            red: '#E30613',
+                            dark: '#1A1A1A',
+                            gray: '#F3F4F6'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        oswald: ['Oswald', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Estilos da Timeline */
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #E5E7EB;
+            z-index: 0;
+        }
+        
+        /* Ajuste Timeline Mobile */
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: 20px;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-white flex flex-col min-h-screen text-gray-800">
+
+<header class="bg-black sticky top-0 z-50 shadow-md border-b border-gray-900">
+    <nav class="relative max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 py-4">
+        <a href="index.html" class="flex items-center group">
+            <img src="img/logo_footer.png" alt="Logo SENAI SP" class="h-10 w-auto brightness-0 invert transition-opacity group-hover:opacity-80"> 
+        </a>
+        
+        <ul class="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-8">
+            <li><a href="index.html" class="font-medium text-gray-300 hover:text-white transition-colors tracking-wide uppercase text-sm">Início</a></li>
+            <li><a href="produtos.html" class="font-medium text-gray-300 hover:text-white transition-colors tracking-wide uppercase text-sm">Catálogo</a></li>
+            <li><a href="#" class="font-medium text-white border-b-2 border-senai-red pb-1 tracking-wide uppercase text-sm">Sobre</a></li>
+        </ul>
+        
+        <div class="hidden lg:flex items-center gap-6">
+            <a href="login.html" class="text-white hover:text-senai-red transition-colors"><i class="fa-regular fa-user text-xl"></i></a>
+            <a href="#" class="relative text-white hover:text-senai-red transition-colors">
+                <i class="fa-solid fa-cart-shopping text-xl"></i>
+            </a>
+        </div>
+        
+        <button id="menu-toggle" class="lg:hidden p-2 text-white hover:text-senai-red"><i class="fas fa-bars text-2xl"></i></button>
+    </nav>
+    
+    <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-zinc-900 border-t border-gray-800 shadow-xl z-50">
+        <ul class="flex flex-col items-center gap-6 py-8">
+            <li><a href="index.html" class="font-bold text-gray-300 text-lg">INÍCIO</a></li>
+            <li><a href="produtos.html" class="font-bold text-gray-300 text-lg">CATÁLOGO</a></li>
+            <li><a href="#" class="font-bold text-white text-lg">SOBRE</a></li>
+        </ul>
+    </div>
+</header>
+
+<main class="flex-grow">
+    
+    <section class="bg-black py-20 px-4 text-center">
+        <h1 class="text-5xl md:text-6xl font-bold font-oswald text-white uppercase mb-2">
+            A Jornada
+        </h1>
+        <p class="text-gray-400 tracking-widest uppercase text-sm font-bold">Histórico do Projeto SENAI 4.0</p>
+    </section>
+
+    <section class="py-24 px-4 bg-white relative overflow-hidden">
+        <div class="max-w-5xl mx-auto relative">
+            
+            <div class="timeline-line"></div>
+
+            <div class="relative flex flex-col md:flex-row items-center justify-between mb-20 group">
+                <div class="md:w-5/12 text-left md:text-right order-2 md:order-1 pl-12 md:pl-0 md:pr-12">
+                    <span class="inline-block px-3 py-1 bg-gray-100 text-gray-500 text-xs font-bold uppercase rounded mb-2">Janeiro 2025</span>
+                    <h3 class="text-2xl font-bold font-oswald text-senai-red uppercase mb-2">Ideação & Planejamento</h3>
+                    <p class="text-gray-600">Definição do escopo do sistema de recompensas e estudo das tecnologias da Indústria 4.0 para integração.</p>
+                </div>
+                <div class="absolute left-[20px] md:left-1/2 md:-translate-x-1/2 w-10 h-10 bg-black text-white rounded-full border-4 border-white shadow-lg flex items-center justify-center z-10 order-1 md:order-2">
+                    <i class="fa-regular fa-lightbulb text-sm"></i>
+                </div>
+                <div class="md:w-5/12 order-3"></div>
+            </div>
+
+            <div class="relative flex flex-col md:flex-row items-center justify-between mb-20 group">
+                <div class="md:w-5/12 order-3 md:order-1"></div>
+                <div class="absolute left-[20px] md:left-1/2 md:-translate-x-1/2 w-10 h-10 bg-white text-senai-red border-4 border-senai-red rounded-full shadow-lg flex items-center justify-center z-10 order-1 md:order-2">
+                    <i class="fa-solid fa-pen-ruler text-sm"></i>
+                </div>
+                <div class="md:w-5/12 text-left order-2 md:order-3 pl-12 md:pl-12">
+                    <span class="inline-block px-3 py-1 bg-gray-100 text-gray-500 text-xs font-bold uppercase rounded mb-2">Fevereiro 2025</span>
+                    <h3 class="text-2xl font-bold font-oswald text-senai-red uppercase mb-2">Prototipagem & Design</h3>
+                    <p class="text-gray-600">Criação da identidade visual industrial e desenvolvimento dos layouts no Figma, focando em UX/UI.</p>
+                </div>
+            </div>
+
+            <div class="relative flex flex-col md:flex-row items-center justify-between mb-20 group">
+                <div class="md:w-5/12 text-left md:text-right order-2 md:order-1 pl-12 md:pl-0 md:pr-12">
+                    <span class="inline-block px-3 py-1 bg-gray-100 text-gray-500 text-xs font-bold uppercase rounded mb-2">Março 2025</span>
+                    <h3 class="text-2xl font-bold font-oswald text-senai-red uppercase mb-2">Desenvolvimento Web</h3>
+                    <p class="text-gray-600">Programação Front-end utilizando tecnologias modernas para criar uma experiência fluida e responsiva.</p>
+                </div>
+                <div class="absolute left-[20px] md:left-1/2 md:-translate-x-1/2 w-10 h-10 bg-black text-white rounded-full border-4 border-white shadow-lg flex items-center justify-center z-10 order-1 md:order-2">
+                    <i class="fa-solid fa-code text-sm"></i>
+                </div>
+                <div class="md:w-5/12 order-3"></div>
+            </div>
+
+            <div class="relative flex flex-col md:flex-row items-center justify-between mb-20 group">
+                <div class="md:w-5/12 order-3 md:order-1"></div>
+                <div class="absolute left-[20px] md:left-1/2 md:-translate-x-1/2 w-10 h-10 bg-white text-senai-red border-4 border-senai-red rounded-full shadow-lg flex items-center justify-center z-10 order-1 md:order-2">
+                    <i class="fa-solid fa-network-wired text-sm"></i>
+                </div>
+                <div class="md:w-5/12 text-left order-2 md:order-3 pl-12 md:pl-12">
+                    <span class="inline-block px-3 py-1 bg-gray-100 text-gray-500 text-xs font-bold uppercase rounded mb-2">Abril 2025</span>
+                    <h3 class="text-2xl font-bold font-oswald text-senai-red uppercase mb-2">Integração IOT</h3>
+                    <p class="text-gray-600">Conexão do sistema web com as máquinas de manufatura aditiva para produção automatizada.</p>
+                </div>
+            </div>
+
+             <div class="relative flex flex-col md:flex-row items-center justify-between group">
+                <div class="md:w-5/12 text-left md:text-right order-2 md:order-1 pl-12 md:pl-0 md:pr-12">
+                    <span class="inline-block px-3 py-1 bg-senai-red text-white text-xs font-bold uppercase rounded mb-2">Hoje</span>
+                    <h3 class="text-2xl font-bold font-oswald text-senai-red uppercase mb-2">Lançamento Oficial</h3>
+                    <p class="text-gray-600">Apresentação do sistema SENAI 4.0 completo e funcional para alunos e visitantes.</p>
+                </div>
+                <div class="absolute left-[20px] md:left-1/2 md:-translate-x-1/2 w-10 h-10 bg-senai-red text-white rounded-full border-4 border-white shadow-lg flex items-center justify-center z-10 order-1 md:order-2">
+                    <i class="fa-solid fa-rocket text-sm"></i>
+                </div>
+                <div class="md:w-5/12 order-3"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="bg-gray-50 py-0 border-t border-gray-200">
+        <div class="grid grid-cols-1 lg:grid-cols-2">
+            <div class="p-12 lg:p-24 flex flex-col justify-center">
+                <h2 class="text-3xl font-bold font-oswald text-gray-900 uppercase mb-8">Venha nos conhecer</h2>
+                
+                <div class="space-y-6">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 bg-white shadow-sm rounded flex items-center justify-center text-senai-red flex-shrink-0">
+                            <i class="fa-solid fa-location-dot text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 uppercase text-sm mb-1">Endereço</h4>
+                            <p class="text-gray-600">Praça Roberto Mange, R. Santa Rosália, 30<br>Jardim Santa Rosália, Sorocaba - SP</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 bg-white shadow-sm rounded flex items-center justify-center text-senai-red flex-shrink-0">
+                            <i class="fa-solid fa-clock text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 uppercase text-sm mb-1">Horário de Atendimento</h4>
+                            <p class="text-gray-600">Segunda a Sexta: 08:00 - 21:00<br>Sábado: 08:00 - 16:00</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 bg-white shadow-sm rounded flex items-center justify-center text-senai-red flex-shrink-0">
+                            <i class="fa-solid fa-envelope text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 uppercase text-sm mb-1">Contato</h4>
+                            <p class="text-gray-600">senaisorocaba@sp.senai.br<br>(15) 3220-0500</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="h-[400px] lg:h-auto bg-gray-200 relative">
+                <iframe src="https://www.google.com/maps/place/SENAI+Gaspar+Ricardo+J%C3%BAnior/@-23.4867124,-47.4492286,17z/data=!3m1!4b1!4m6!3m5!1s0x94c58a9f61b55945:0x4ead928c70b1e690!8m2!3d-23.4867124!4d-47.4492286!16s%2Fg%2F1tcxf9gy?entry=ttu&g_ep=EgoyMDI1MTAyMi4wIKXMDSoASAFQAw%3D%3D" 
+                        width="100%" height="100%" style="border:0; filter: grayscale(100%);" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="bg-senai-dark text-gray-300 relative mt-auto border-t-4 border-senai-red">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+            
+            <div class="space-y-6">
+                <img src="img/logo_footer.png" alt="Logo SENAI" class="h-12 w-auto opacity-90 brightness-0 invert">
+                <p class="text-sm text-gray-400 leading-relaxed">
+                    Sistema de recompensas para alunos e visitantes.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="text-2xl hover:text-[#25D366]"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="text-2xl hover:text-[#E1306C]"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="text-2xl hover:text-[#1877F2]"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold uppercase text-sm mb-6 pl-3 border-l-4 border-senai-red">Links Rápidos</h4>
+                <ul class="space-y-3 text-sm">
+                    <li><a href="index.html" class="hover:text-senai-red">Início</a></li>
+                    <li><a href="#" class="hover:text-senai-red">FAQ</a></li>
+                    <li><a href="#" class="hover:text-senai-red">Sobre</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold uppercase text-sm mb-6 pl-3 border-l-4 border-senai-red">Institucional</h4>
+                <ul class="space-y-3 text-sm">
+                    <li><a href="#" class="hover:text-senai-red">Portal SENAI</a></li>
+                    <li><a href="#" class="hover:text-senai-red">Cursos</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold uppercase text-sm mb-6 pl-3 border-l-4 border-senai-red">Contato</h4>
+                <ul class="space-y-4 text-sm">
+                    <li><i class="fa-solid fa-location-dot text-senai-red mr-2"></i> Sorocaba - SP</li>
+                    <li><i class="fa-solid fa-phone text-senai-red mr-2"></i> 0800-055-1000</li>
+                    <li><i class="fa-solid fa-envelope text-senai-red mr-2"></i> senai@sp.senai.br</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="bg-black border-t border-gray-800 p-4 text-center">
+        <p class="text-xs text-gray-500">© 2025 SENAI-SP Sorocaba - Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+<script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+</script>
+
+</body>
+</html>
