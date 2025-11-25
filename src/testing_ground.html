@@ -10,6 +10,9 @@
         <div id="hero">
 
         </div>
+        <div id="something">
+
+        </div>
       
     </main>
     <script>
@@ -24,13 +27,14 @@
             .catch (err => console.error("erro ao buscar", err))
         }
         function fetchimagens() {
-            fetch("http://127.0.0.1:8000/api/imagens/2/")
+            fetch("http://127.0.0.1:8000/api/imagens/")
             .then (res => res.json())
-            .then (imgs => renderchave(imgs))
+            .then (imgs => renderchave_img(imgs))
             .catch (err => console.error("erro ao buscar", err))
         }
         //como resolver sapoxa
-        //
+        // tenta puxar só os que quer
+        // ou puxa tudo e organiza certinho depois
         function renderchave(produtos){
             const container = document.getElementById("hero");
             container.innerHTML = "";
@@ -45,6 +49,27 @@
             `;
             container.appendChild(card)
         }
+        function renderchave_img(imagens){
+            const container = document.getElementById("something");
+            container.innerHTML = "";
+            imagens.forEach(imagem => {
+                if (imagem.FK_produto.id == 2) {
+                    const card = document.createElement("div");
+                    card.innerHTML = `
+                        <p>bla bla</p>
+                        <p>${imagem.id}</p>
+                        <p>${imagem.FK_produto.nome_produto}</p>
+                        <img src="${imagem.img_produto}" alt="">
+                        
+                    `;
+                    container.appendChild(card)
+                    
+                } else {
+                    
+                }
+
+            });
+        };
     </script>
     <!--Isso ae faz a vizualização 3D funfar, 
     logo só o splineviewer é necessario no banco 
