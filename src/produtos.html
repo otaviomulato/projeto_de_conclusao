@@ -115,7 +115,7 @@
                     </div>
                 </div>
 
-                <div class="hidden md:flex flex-col gap-3 w-24 shrink-0">
+                <div id="imagens" class="hidden md:flex flex-col gap-3 w-24 shrink-0">
                     <button class="text-gray-400 hover:text-senai-red transition-colors text-center pb-1"><i class="fa-solid fa-chevron-up"></i></button>
                     <div class="thumb-item h-20 w-full bg-gray-100 cursor-pointer flex items-center justify-center rounded-sm"><span class="text-xs text-gray-400 font-bold rotate-45">IMG 1</span></div>
                     <div class="thumb-item h-20 w-full bg-gray-100 cursor-pointer flex items-center justify-center rounded-sm"><span class="text-xs text-gray-400 font-bold rotate-45">IMG 2</span></div>
@@ -192,15 +192,17 @@
 
                         <!-- vamos prender isto por enquanto
                         <div>
-                            <label for="dimensoes" class="block text-gray-700 font-semibold text-sm mb-2 uppercase tracking-wide">Dimensões:</label>
-                            <input type="text" id="dimensoes" name="dimensoes" placeholder="Ex.: L 40mm, A 30mm e C 35mm" 
-                                class="input-pro w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm p-3.5 outline-none transition-all">
+                                <label for="dimensoes" class="block text-gray-700 font-semibold text-sm mb-2 uppercase tracking-wide">Dimensões:</label>
+                                <select class=" border-gray-300 border w-full bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900" name="dimensoes" id="dimensoes">
+                                    <option class="bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900" value="cor" selected>L 40mm, A 30mm e C 35mm</option>
+                                </select>
                         </div>
 
                         <div>
                             <label for="cor" class="block text-gray-700 font-semibold text-sm mb-2 uppercase tracking-wide">Cor:</label>
-                            <input type="text" id="cor" name="cor" placeholder="Ex.: Vermelho sangue" 
-                                class="input-pro w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm p-3.5 outline-none transition-all">
+                                <select class="border-gray-300 border w-full bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900" name="cor" id="cor">
+                                    <option class="bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900" value="cor" slected>Azul</option>
+                                </select>
                         </div>
                         -->
                     </div>
@@ -310,12 +312,19 @@
                 });
             }
             fetchprodutos()
+            fetchimagens()
         });
         function fetchprodutos() {
                 fetch("http://127.0.0.1:8000/api/produtos/2/")
                 .then (res => res.json())
                 .then (data => renderchave(data))
                 .catch (err => console.error("erro ao buscar", err))
+        }
+        function fetchimagens() {
+            fetch("http://127.0.0.1:8000/api/imagens/")
+            .then (res => res.json())
+            .then (imgs => renderchave_img(imgs))
+            .catch (err => console.error("erro ao buscar", err))
         }
         function renderchave(produtos){
             const nome_produto_pag = document.getElementById("nome_produto");
@@ -341,18 +350,28 @@
                 <input type="text" id="nome" name="nome" placeholder="Ex.: Diana" class="input-pro w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm p-3.5 outline-none transition-all">
             `;
             // tem que zoiar aqui, pois pode ser diferente caso a personalização mude
-
-            //const card = document.createElement("div");
-            //card.innerHTML = `
-            //    <p>${produtos.nome_produto}</p>
-            //    <p>${produtos.descricao}</p>
-            //    <p>${produtos.preco}</p>
-            //    <p>${produtos.tipo_persona}</p>
-            //    ${produtos.link3D}
-            //`;
-            //container.appendChild(card)
         }
+        function renderchave_img(imagens){
+            const container = document.getElementById("imagens");
+            container.innerHTML = `<button class="text-gray-400 hover:text-senai-red transition-colors text-center pb-1"><i class="fa-solid fa-chevron-up"></i></button>`;
+            imagens.forEach(imagem => {
+                if (imagem.FK_produto.id == 2) {
+                    const card = document.createElement("div");
+                    card.innerHTML = `
+                        <div class="thumb-item h-20 w-full bg-gray-100 cursor-pointer flex items-center justify-center rounded-sm"><img class="w-full h-full" src="${imagem.img_produto}" alt=""></div>
+                    `;
+                    container.appendChild(card)
+                    
+                } else {
+                }
+            });
+            const carde = document.createElement("button");
+                carde.className = "text-gray-400 hover:text-senai-red transition-colors text-center pt-1"
+                carde.innerHTML = `
+                    <i class="fa-solid fa-chevron-down"></i>
+                `;
+                container.appendChild(carde)
+        };
     </script>
-
 </body>
 </html>
