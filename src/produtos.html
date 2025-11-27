@@ -105,8 +105,8 @@
         <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20">
             
             <div class="lg:col-span-7 flex gap-4">
-                <div id="viewer_3D" class="spline-wrapper w-full h-[500px] shadow-sm border border-gray-100 relative group">
-                    <spline-viewer url="https://prod.spline.design/tWwZUMWhGJpIUoI3/scene.splinecode"></spline-viewer>
+                <div id="viewer_3D" class="flex spline-wrapper w-full h-[500px] shadow-sm border border-gray-100 relative group">
+                    <!--<spline-viewer url="https://prod.spline.design/tWwZUMWhGJpIUoI3/scene.splinecode"></spline-viewer>-->
                     <div class="absolute inset-0 flex items-center justify-center bg-gray-50 -z-10">
                          <i class="fa-solid fa-cube text-gray-200 text-6xl animate-pulse"></i>
                     </div>
@@ -311,7 +311,7 @@
         });
         const nome_produto_pag = document.getElementById("nome_produto");
         const viewer = document.getElementById("viewer_3D");
-        const viewer_salvo = viewer.innerHTML;
+        var viewer_salvo = "";
         const prego = document.getElementById("preco");
         const especificacoes = document.getElementById("especifica")
         const desc = document.getElementById("decricao");
@@ -334,10 +334,13 @@
             nome_produto_pag.innerHTML = `${produto.nome_produto}`;
             viewer.innerHTML = `
                 ${produto.link3D}
+                <div id="viewer_img" style="position: absolute; background-color: gray; height: 100%; width: 100%; z-index: -1;"></div>
                 <div class="absolute inset-0 flex items-center justify-center bg-gray-50 -z-10">
                     <i class="fa-solid fa-cube text-gray-200 text-6xl animate-pulse"></i>
                 </div>
             `;
+            //aqui tem que fazer tailwind
+            viewer_salvo = viewer.innerHTML
             prego.innerHTML = `$ ${produto.preco}`;
             especificacoes.innerHTML = `
                 <li class="flex justify-between border-b border-gray-200 pb-2 border-dashed">
@@ -376,6 +379,7 @@
             `;
             // tem que zoiar aqui, pois pode ser diferente caso a personalização mude
         }
+        
         function renderchave_img(imagens){
             const container = document.getElementById("imagens");
             var ides = 0
@@ -401,10 +405,14 @@
         };
         function destaque(ide) {
             const clicado = document.getElementById(ide);
-            if (viewer.innerHTML == clicado.innerHTML) {
-                viewer.innerHTML = viewer_salvo
+            const view_img = document.getElementById("viewer_img");
+
+            if (view_img.innerHTML == clicado.innerHTML) {
+                view_img.style.zIndex = "-1"
+                view_img.innerHTML = ""
             } else {
-                viewer.innerHTML = clicado.innerHTML
+                view_img.innerHTML = clicado.innerHTML
+                view_img.style.zIndex = "2"
             }
         }
     </script>
