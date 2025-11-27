@@ -106,9 +106,7 @@
             
             <div class="lg:col-span-7 flex gap-4">
                 <div id="viewer_3D" class="spline-wrapper w-full h-[500px] shadow-sm border border-gray-100 relative group">
-                    <div>
-                        <spline-viewer url="https://prod.spline.design/tWwZUMWhGJpIUoI3/scene.splinecode"></spline-viewer>
-                    </div>
+                    <spline-viewer url="https://prod.spline.design/tWwZUMWhGJpIUoI3/scene.splinecode"></spline-viewer>
                     <div class="absolute inset-0 flex items-center justify-center bg-gray-50 -z-10">
                          <i class="fa-solid fa-cube text-gray-200 text-6xl animate-pulse"></i>
                     </div>
@@ -311,6 +309,15 @@
             fetchprodutos()
             fetchimagens()
         });
+        const nome_produto_pag = document.getElementById("nome_produto");
+        const viewer = document.getElementById("viewer_3D");
+        const viewer_salvo = viewer.innerHTML;
+        const prego = document.getElementById("preco");
+        const especificacoes = document.getElementById("especifica")
+        const desc = document.getElementById("decricao");
+        const persona = document.getElementById("tipo_personalizacao");
+        const personadimen = document.getElementById("persona_dimen");
+        const personacor = document.getElementById("persona_cor");
         function fetchprodutos() {
                 fetch("http://127.0.0.1:8000/api/produtos/1/")
                 .then (res => res.json())
@@ -324,14 +331,6 @@
             .catch (err => console.error("erro ao buscar", err))
         }
         function renderchave(produto){
-            const nome_produto_pag = document.getElementById("nome_produto");
-            const viewer = document.getElementById("viewer_3D");
-            const prego = document.getElementById("preco");
-            const especificacoes = document.getElementById("especifica")
-            const desc = document.getElementById("decricao");
-            const persona = document.getElementById("tipo_personalizacao");
-            const personadimen = document.getElementById("persona_dimen");
-            const personacor = document.getElementById("persona_cor");
             nome_produto_pag.innerHTML = `${produto.nome_produto}`;
             viewer.innerHTML = `
                 ${produto.link3D}
@@ -379,15 +378,17 @@
         }
         function renderchave_img(imagens){
             const container = document.getElementById("imagens");
+            var ides = 0
             container.innerHTML = `<button class="text-gray-400 hover:text-senai-red transition-colors text-center pb-1"><i class="fa-solid fa-chevron-up"></i></button>`;
             imagens.forEach(imagem => {
                 if (imagem.FK_produto.id == 1) {
+                    console.log(ides);
                     const card = document.createElement("div");
                     card.innerHTML = `
-                        <div class="thumb-item h-20 w-full bg-gray-100 cursor-pointer flex items-center justify-center rounded-sm"><img class="w-full h-full" src="${imagem.img_produto}" alt=""></div>
+                        <div onclick="destaque(this.id)" id="image_${ides}" class="thumb-item h-20 w-full bg-gray-100 cursor-pointer flex items-center justify-center rounded-sm"><img class="w-full h-full" src="${imagem.img_produto}" alt=""></div>
                     `;
                     container.appendChild(card)
-                    
+                    ides = ides + 1
                 } else {
                 }
             });
@@ -398,6 +399,14 @@
                 `;
                 container.appendChild(carde)
         };
+        function destaque(ide) {
+            const clicado = document.getElementById(ide);
+            if (viewer.innerHTML == clicado.innerHTML) {
+                viewer.innerHTML = viewer_salvo
+            } else {
+                viewer.innerHTML = clicado.innerHTML
+            }
+        }
     </script>
 </body>
 </html>
