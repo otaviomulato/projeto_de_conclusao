@@ -16,6 +16,9 @@ class Usuario(models.Model):
 class Produto(models.Model):
     nome_produto = models.CharField(max_length=50)
     descricao = models.TextField(blank=True, null=True)
+    material = models.CharField(max_length=50)
+    dimensoes = models.CharField(max_length=50)
+    cor = models.CharField(max_length=50)
     preco = models.IntegerField()
     tipo_persona = models.CharField(max_length=50)
     link3D = models.TextField(blank=True, null=True)
