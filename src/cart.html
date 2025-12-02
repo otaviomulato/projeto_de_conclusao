@@ -76,22 +76,39 @@
         </a>
         
         <ul class="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-8">
-            <li><a href="index.html" class="font-medium text-gray-300 hover:text-white transition-colors tracking-wide uppercase text-sm">Início</a></li>
+            <li><a href="index.html" class="font-medium text-white tracking-wide uppercase text-sm">Início</a></li>
             <li><a href="produtos.html" class="font-medium text-gray-300 hover:text-white transition-colors tracking-wide uppercase text-sm">Catálogo</a></li>
             <li><a href="about_us.html" class="font-medium text-gray-300 hover:text-white transition-colors tracking-wide uppercase text-sm">Sobre</a></li>
         </ul>
         
         <div class="hidden lg:flex items-center gap-6">
-                        <div class="absolute md:right-12 md:-translate-x-12 w-20 h-2 bg-yellow-400 rounded-full border-2 border-white shadow-lg flex items-center justify-left p-3.5 z-10 mr-2"><a href="login.html" class="text-black transition-colors"><i class="fa-solid fa-dollar-sign mr-2"></i>--</a></div>
-            <a href="login.html" class="text-white hover:text-senai-red transition-colors"><i class="fa-regular fa-user text-xl"></i></a>
-            <a href="cart.html" class="relative text-senai-red transition-colors">
+            <a class="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-400 text-black rounded-full px-4 py-1.5 font-bold shadow-lg shadow-yellow-500/20 transition-all transform hover:-translate-y-0.5">
+                <i class="fa-solid fa-wallet"></i>
+                <span class="text-sm font-mono">$ --</span>
+            </a>
+
+            <a href="sign_in.html" class="text-white hover:text-senai-red transition-colors">
+                <i class="fa-regular fa-user text-xl"></i>
+            </a>
+
+            <a href="cart.html" class="relative text-white hover:text-senai-red transition-colors">
                 <i class="fa-solid fa-cart-shopping text-xl"></i>
-                <span class="absolute -top-2 -right-2 bg-white text-senai-red text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center border border-senai-red">1</span>
+                <span class="absolute -top-2 -right-2 bg-senai-red text-white text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center border-2 border-black">1</span>
             </a>
         </div>
         
-        <button class="lg:hidden p-2 text-white hover:text-senai-red"><i class="fas fa-bars text-2xl"></i></button>
+        <button id="menu-toggle" class="lg:hidden p-2 text-white hover:text-senai-red">
+             <i class="fas fa-bars text-2xl"></i>
+        </button>
     </nav>
+    
+    <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-zinc-900 border-t border-gray-800 shadow-xl z-50">
+        <ul class="flex flex-col items-center gap-6 py-8">
+            <li><a href="index.html" class="font-bold text-white text-lg">INÍCIO</a></li>
+            <li><a href="produtos.html" class="font-bold text-gray-300 text-lg">CATÁLOGO</a></li>
+            <li><a href="about_us.html" class="font-bold text-gray-300 text-lg">SOBRE</a></li>
+        </ul>
+    </div>
 </header>
 
 <main class="flex-grow bg-gray-50 py-10">
@@ -106,7 +123,7 @@
             <div class="lg:col-span-8 space-y-6">
                 <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 flex flex-col sm:flex-row gap-6 transition-all hover:shadow-md">
                     <div class="w-full sm:w-32 h-32 bg-gray-100 rounded-md flex-shrink-0 overflow-hidden relative group">
-                        <img src="https://prod.spline.design/tWwZUMWhGJpIUoI3/thumbnail.png" alt="Chaveiro Personalizado" class="w-full h-full object-cover">
+                        <img src="img/image.png" alt="Chaveiro Personalizado" class="w-full h-full object-cover">
                     </div>
                     <div class="flex-grow flex flex-col justify-between">
                         <div>
@@ -128,8 +145,8 @@
                                 <button onclick="updateQty(1)" class="px-3 bg-gray-50 hover:bg-gray-100 text-gray-600 transition-colors">+</button>
                             </div>
                             <div class="text-right">
-                                <p class="text-xs text-gray-400 line-through">R$ 59,90</p>
-                                <p class="text-2xl font-bold text-senai-red" id="item-price">R$ 49,90</p>
+                                <p class="text-xs text-gray-400 line-through">$ 25</p>
+                                <p class="text-2xl font-bold text-senai-red" id="item-price">$ 10</p>
                             </div>
                         </div>
                     </div>
@@ -145,13 +162,13 @@
                         Resumo do Pedido
                     </h2>
                     <div class="space-y-3 text-sm text-gray-600 mb-6">
-                        <div class="flex justify-between"><span>Subtotal</span><span id="subtotal">R$ 49,90</span></div>
-                        <div class="flex justify-between"><span>Descontos</span><span class="text-green-600">- R$ 0,00</span></div>
+                        <div class="flex justify-between"><span>Subtotal</span><span id="subtotal">$ 10</span></div>
+                        <div class="flex justify-between"><span>Descontos</span><span class="text-green-600">- $ 0</span></div>
                         <div class="flex justify-between items-center"><span>Retirada na Unidade</span><span class="text-xs font-bold bg-green-100 text-green-700 px-2 py-1 rounded">GRÁTIS</span></div>
                     </div>
                     <div class="flex justify-between items-center border-t border-gray-200 pt-4 mb-6">
                         <span class="font-bold text-lg text-gray-900">Total</span>
-                        <span class="font-black text-3xl text-gray-900" id="total">R$ 49,90</span>
+                        <span class="font-black text-3xl text-gray-900" id="total">$ 10</span>
                     </div>
 
                     <button onclick="finishPurchase()" class="w-full bg-senai-red text-white font-bold py-4 rounded shadow-md hover:bg-red-700 hover:shadow-lg transition-all transform active:scale-95 uppercase tracking-wide flex justify-center items-center gap-2 group">

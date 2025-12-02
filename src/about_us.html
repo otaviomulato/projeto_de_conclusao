@@ -85,14 +85,24 @@
         </ul>
         
         <div class="hidden lg:flex items-center gap-6">
-                        <div class="absolute md:right-12 md:-translate-x-12 w-20 h-2 bg-yellow-400 rounded-full border-2 border-white shadow-lg flex items-center justify-left p-3.5 z-10 mr-2"><a href="login.html" class="text-black transition-colors"><i class="fa-solid fa-dollar-sign mr-2"></i>--</a></div>
-            <a href="login.html" class="text-white hover:text-senai-red transition-colors"><i class="fa-regular fa-user text-xl"></i></a>
+            <a class="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-400 text-black rounded-full px-4 py-1.5 font-bold shadow-lg shadow-yellow-500/20 transition-all transform hover:-translate-y-0.5">
+                <i class="fa-solid fa-wallet"></i>
+                <span class="text-sm font-mono">$ --</span>
+            </a>
+
+            <a href="sign_in.html" class="text-white hover:text-senai-red transition-colors">
+                <i class="fa-regular fa-user text-xl"></i>
+            </a>
+
             <a href="cart.html" class="relative text-white hover:text-senai-red transition-colors">
                 <i class="fa-solid fa-cart-shopping text-xl"></i>
+                <span class="absolute -top-2 -right-2 bg-senai-red text-white text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center border-2 border-black">0</span>
             </a>
         </div>
         
-        <button id="menu-toggle" class="lg:hidden p-2 text-white hover:text-senai-red"><i class="fas fa-bars text-2xl"></i></button>
+        <button id="menu-toggle" class="lg:hidden p-2 text-white hover:text-senai-red">
+             <i class="fas fa-bars text-2xl"></i>
+        </button>
     </nav>
     
     <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-zinc-900 border-t border-gray-800 shadow-xl z-50">
