@@ -321,6 +321,7 @@
             }
             fetchprodutos()
             fetchimagens()
+            fetchusuarios()
             document.getElementById('enviar').addEventListener('click', criarPedido);
 
         });
@@ -334,6 +335,16 @@
         const personadimen = document.getElementById("persona_dimen");
         const personacor = document.getElementById("persona_cor");
         var dados = null
+        var cara = null
+        function fetchusuarios() {
+            fetch("http://127.0.0.1:8000/api/usuarios/1/")
+            .then (res => res.json())
+            .then (data => {
+                renderchave(data)
+                cara = data
+            })
+            .catch (err => console.error("erro ao buscar", err))
+        }
         function fetchprodutos() {
             fetch("http://127.0.0.1:8000/api/produtos/1/")
             .then (res => res.json())
@@ -433,16 +444,22 @@
                 view_img.style.zIndex = "2"
             }
         }
+        /* fazer funfar
         async function criarPedido(event) {
             event.preventDefault();
 
-                       
+            
             const persona = document.getElementById('nome').value;
             
             
+            
             const fd = new FormData();
-            //fd.append('FK_user', nome); descubra como
-            //fd.append('FK_produto', email); descubra como
+            fd.append('FK_user', cara);
+            console.log(cara);
+            
+            fd.append('FK_produto', dados);
+            console.log(dados);
+            
             fd.append('status', 0);
             fd.append('persona', persona);
             fd.append('estrelas', 5);
@@ -467,7 +484,7 @@
                 console.error('Erro ao fazer o pedido:', error);
                 alert('Ocorreu um erro ao fazer o pedido. Detalhes: ' + error.message);
             }
-        }
+        }*/
     </script>
 </body>
 </html>
