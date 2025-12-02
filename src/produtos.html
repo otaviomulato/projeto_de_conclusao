@@ -213,9 +213,12 @@
                     
 
                     <div class="pt-8">
-                        <a href="cart.html"><button type="submit" class="w-full bg-zinc-900 text-white font-bold text-lg py-4 hover:bg-black transition-all duration-300 uppercase tracking-widest shadow-lg flex justify-center items-center gap-3">
+                    <!--<a href="cart.html">
+                        por enquanto farei o pedido aqui-->
+                        <button id="enviar" type="submit" class="w-full bg-zinc-900 text-white font-bold text-lg py-4 hover:bg-black transition-all duration-300 uppercase tracking-widest shadow-lg flex justify-center items-center gap-3">
                             <i class="fa-solid fa-cart-plus"></i> Adicionar ao Carrinho
-                        </button></a>
+                        </button>
+                    <!--</a>-->
                     </div>
                 </form>
             </div>
@@ -318,6 +321,8 @@
             }
             fetchprodutos()
             fetchimagens()
+            document.getElementById('enviar').addEventListener('click', criarPedido);
+
         });
         const nome_produto_pag = document.getElementById("nome_produto");
         const viewer = document.getElementById("viewer_3D");
@@ -328,10 +333,14 @@
         const persona = document.getElementById("tipo_personalizacao");
         const personadimen = document.getElementById("persona_dimen");
         const personacor = document.getElementById("persona_cor");
+        var dados = null
         function fetchprodutos() {
             fetch("http://127.0.0.1:8000/api/produtos/1/")
             .then (res => res.json())
-            .then (data => renderchave(data))
+            .then (data => {
+                renderchave(data)
+                dados = data
+            })
             .catch (err => console.error("erro ao buscar", err))
         }
         function fetchimagens() {
@@ -396,7 +405,6 @@
             container.innerHTML = `<button class="text-gray-400 hover:text-senai-red transition-colors text-center pb-1"><i class="fa-solid fa-chevron-up"></i></button>`;
             imagens.forEach(imagem => {
                 if (imagem.FK_produto.id == 1) {
-                    console.log(ides);
                     const card = document.createElement("div");
                     card.innerHTML = `
                         <div onclick="destaque(this.id)" id="image_${ides}" class="thumb-item h-20 w-full bg-gray-100 cursor-pointer flex items-center justify-center rounded-sm"><img class="w-full h-full" src="${imagem.img_produto}" alt=""></div>
@@ -423,6 +431,41 @@
             } else {
                 view_img.innerHTML = clicado.innerHTML
                 view_img.style.zIndex = "2"
+            }
+        }
+        async function criarPedido(event) {
+            event.preventDefault();
+
+                       
+            const persona = document.getElementById('nome').value;
+            
+            
+            const fd = new FormData();
+            //fd.append('FK_user', nome); descubra como
+            //fd.append('FK_produto', email); descubra como
+            fd.append('status', 0);
+            fd.append('persona', persona);
+            fd.append('estrelas', 5);
+            // deixar blank
+            
+
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/pedidos/', {
+                    method: 'POST',
+                    body: fd
+                });
+
+                if (!response.ok) {
+                    throw new Error('Erro ao enviar o pedido');
+                }
+
+                const pedido_res = await response.json();
+               console.log('Pedido feito com sucesso:', pedido_res);
+
+                // Limpar o campo
+            } catch (error) {
+                console.error('Erro ao fazer o pedido:', error);
+                alert('Ocorreu um erro ao fazer o pedido. Detalhes: ' + error.message);
             }
         }
     </script>
