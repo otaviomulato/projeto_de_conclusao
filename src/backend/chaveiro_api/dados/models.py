@@ -40,7 +40,7 @@ class Pedido(models.Model):
     status = models.IntegerField()
     persona = models.TextField(blank=True, null=True)
     avaliacao = models.TextField(blank=True, null=True)
-    estrelas = models.IntegerField()
+    estrelas = models.IntegerField(blank=True, null=True)
     FK_user = models.ForeignKey(Usuario, related_name='dados',on_delete=models.CASCADE)
     FK_produto = models.ForeignKey(Produto, related_name='dados_pedi',on_delete=models.CASCADE)
     def __str__(self):

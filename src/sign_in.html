@@ -280,11 +280,7 @@
                 .then (res => res.json())
                 .then (data => {
                     
-                    console.log(data.credito_add + '1');
-                    
                     cred = data.credito_add
-                    console.log(cred + '2');
-                    
                 })
                 .catch (err => console.error("erro ao buscar o servidor", err))
         }
