@@ -1,52 +1,30 @@
 from django.shortcuts import render
-from rest_framework import generics
-from .models import Usuario , Produto , Servidor , Pedido , Imagem
-from .serializers import UsuarioSerializer , ProdutoSerializer , ServidorSerializer , PedidoSerializer , ImagemSerializer
+from rest_framework import viewsets
+from .models import Produto, Servidor, Pedido, Imagem
+from usuarios.models import Usuario
+from .serializers import ProdutoSerializer, ServidorSerializer, PedidoSerializer, ImagemSerializer, UsuarioSerializer
+# CORREÇÃO: Importa do app 'cart', não da pasta atual
+from cart.cart import Cart
 
-def home_view(request):
+def index(request):
     return render(request, 'index.html')
 
-def about_us(request):
-    return render(request, 'about_us.html')
-
-#serializers do usuario, produto e admin (por enquanto)
-
-class UsuarioList(generics.ListCreateAPIView):
-    queryset = Usuario.objects.all()
-    serializer_class = UsuarioSerializer
-
-class UsuarioDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Usuario.objects.all()
-    serializer_class = UsuarioSerializer
-
-class ProdutoList(generics.ListCreateAPIView):
+class ProdutoViewSet(viewsets.ModelViewSet):
     queryset = Produto.objects.all()
     serializer_class = ProdutoSerializer
 
-class ProdutoDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Produto.objects.all()
-    serializer_class = ProdutoSerializer
-
-class ServidorList(generics.ListCreateAPIView):
+class ServidorViewSet(viewsets.ModelViewSet):
     queryset = Servidor.objects.all()
     serializer_class = ServidorSerializer
 
-class ServidorDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Servidor.objects.all()
-    serializer_class = ServidorSerializer
-
-class PedidoList(generics.ListCreateAPIView):
+class PedidoViewSet(viewsets.ModelViewSet):
     queryset = Pedido.objects.all()
     serializer_class = PedidoSerializer
 
-class PedidoDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Pedido.objects.all()
-    serializer_class = PedidoSerializer
-
-class ImagemList(generics.ListCreateAPIView):
+class ImagemViewSet(viewsets.ModelViewSet):
     queryset = Imagem.objects.all()
     serializer_class = ImagemSerializer
 
-class ImagemDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Imagem.objects.all()
-    serializer_class = ImagemSerializer
+class UsuarioViewSet(viewsets.ModelViewSet):
+    queryset = Usuario.objects.all()
+    serializer_class = UsuarioSerializer
