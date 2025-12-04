@@ -128,6 +128,7 @@
                 </a>
             </div>
 
+<<<<<<< HEAD
             <button id="menu-toggle" class="lg:hidden p-2 text-white hover:text-senai-red">
                 <i class="fas fa-bars text-2xl"></i>
             </button>
@@ -170,6 +171,14 @@
                         <div class="absolute inset-0 flex items-center justify-center bg-gray-50 -z-10">
                             <i class="fa-solid fa-cube text-gray-200 text-6xl animate-pulse"></i>
                         </div>
+=======
+            <div class="lg:col-span-5 flex flex-col h-full">
+                
+                <div class="bg-white mb-8">
+                    <p class="text-sm text-gray-500 mb-1 font-medium uppercase tracking-wider">Valor Unitário</p>
+                    <div class="flex items-end gap-4 mb-6 border-b border-gray-200 pb-6">
+                        <div id="preco" class="text-4xl font-black text-gray-900 tracking-tight">$10</div>
+>>>>>>> 5f41f0708e7e7da6f2c3320b4d79e43a69ba6fe8
                     </div>
 
                     <div id="imagens" class="hidden md:flex flex-col gap-3 w-24 shrink-0">
@@ -191,6 +200,7 @@
                                 class="fa-solid fa-chevron-down"></i></button>
                     </div>
                 </div>
+<<<<<<< HEAD
 
                 <div class="lg:col-span-5 flex flex-col h-full">
 
@@ -226,6 +236,29 @@
                                     <option
                                         class="bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-right text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                                         value="cor" selected>L 40mm, A 30mm e C 35mm</option>
+=======
+                
+                <div class="bg-gray-50 p-6 rounded-sm border border-gray-100">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-list-check text-senai-red"></i> Especificações
+                    </h3>
+                    
+                    <ul class="space-y-4 text-sm" id="especifica">
+                        <li class="flex justify-between border-b border-gray-200 pb-2 border-dashed">
+                            <span class="text-gray-500">Material</span>
+                            <span class="font-semibold text-gray-800">Alumínio</span>
+                        </li>
+                        <li class="flex gap-4 items-center border-b border-gray-200 pb-2 border-dashed">
+                            <span class="text-gray-500">Dimensões</span>
+                            <select class="border-gray-300 border w-full bg-gray-50 text-sm p-4 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900" name="dimensoes" id="dimensoes">
+                                <option class="bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-right text-gray-700 hover:bg-gray-100 hover:text-gray-900" value="cor" selected>L 40mm, A 30mm e C 35mm</option>
+                            </select>
+                        </li>
+                        <li class="flex gap-12 items-center border-b border-gray-200 pb-2 border-dashed">
+                            <span class="text-gray-500">Cor</span>
+                            <select class=" border-gray-300 border w-full bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900" name="dimensoes" id="dimensoes">
+                                    <option class="option-vermelha bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900" value="cor" selected>Prata</option>
+>>>>>>> 5f41f0708e7e7da6f2c3320b4d79e43a69ba6fe8
                                 </select>
                             </li>
                             <li class="flex gap-12 items-center border-b border-gray-200 pb-2 border-dashed">
@@ -390,15 +423,78 @@
                         </li>
                     </ul>
                 </div>
+<<<<<<< HEAD
+=======
+                
+                <div class="mt-6 border-t border-gray-200 pt-4">
+                    <h3 class="font-bold text-gray-900 mb-2">Descrição</h3>
+                    <p id="decricao" class="mt-2 text-gray-600 text-sm leading-relaxed">
+                        Um produto inovador desenvolvido para atender às suas necessidades. Personalize ao máximo para que ele se torne único e reflita a sua criatividade com a qualidade SENAI.
+                    </p>
+                </div>
+>>>>>>> 5f41f0708e7e7da6f2c3320b4d79e43a69ba6fe8
 
             </div>
         </div>
 
+<<<<<<< HEAD
         <div class="bg-black border-t border-gray-800">
             <div
                 class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
                 <p class="text-xs text-gray-500">
                     © 2025 SENAI-SP Sorocaba - Todos os direitos reservados.
+=======
+                <h2 class="text-3xl font-bold text-gray-900 text-center mb-10 mt-2">Configure seu Produto</h2>
+                
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 gap-6">
+                        
+                        <div id="tipo_personalizacao">
+                            <label for="nome" class="block text-gray-700 font-semibold text-sm mb-2 uppercase tracking-wide">Nome:</label>
+                            <input type="text" id="nome" name="nome" maxlength="8" placeholder="Ex.: Diana" class="input-pro w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm p-3.5 outline-none transition-all">
+                        </div>
+                        
+                        <div id="persona_dimen">
+                            <label for="dimensoes" class="block text-gray-700 font-semibold text-sm mb-2 uppercase tracking-wide">Dimensões:</label>
+                            <select class=" border-gray-300 border w-full bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900" name="dimensoes" id="dimensoes">
+                                <option class="bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900" value="cor" selected>L 40mm, A 30mm e C 35mm</option>
+                            </select>
+                        </div>
+
+                        <div id="persona_cor">
+                            <label for="cor" class="block text-gray-700 font-semibold text-sm mb-2 uppercase tracking-wide">Cor:</label>
+                            <select class="border-gray-300 border w-full bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900" name="cor" id="cor">
+                                <option class="bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900" value="cor" slected>Prata</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+
+                    <div class="pt-8">
+                    <!--<a href="cart.html">
+                        por enquanto farei o pedido aqui-->
+                        <button id="enviar" type="submit" class="w-full bg-zinc-900 text-white font-bold text-lg py-4 hover:bg-black transition-all duration-300 uppercase tracking-widest shadow-lg flex justify-center items-center gap-3">
+                            <i class="fa-solid fa-cart-plus"></i> Adicionar ao Carrinho
+                        </button>
+                    <!--</a>-->
+                    </div>
+                </form>
+            </div>
+        </section>
+        
+    </div>
+</main>
+
+<footer class="bg-neutral-900 text-gray-300 relative mt-auto border-t-4 border-senai-red">
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            
+            <div class="space-y-6">
+                <img src="img/logo_footer.png" alt="Logo SENAI" class="h-12 w-auto opacity-90">
+                <p class="text-sm text-gray-400 leading-relaxed">
+                    Sistema de recompensas para alunos e visitantes durante datas importantes no SENAI Sorocaba.
+>>>>>>> 5f41f0708e7e7da6f2c3320b4d79e43a69ba6fe8
                 </p>
                 <div class="flex items-center gap-2">
                     <a href="https://github.com/otaviomulato/projeto_de_conclusao" target="_blank">
@@ -422,6 +518,9 @@
             }
             fetchprodutos()
             fetchimagens()
+            fetchusuarios()
+            document.getElementById('enviar').addEventListener('click', criarPedido);
+
         });
         const nome_produto_pag = document.getElementById("nome_produto");
         const viewer = document.getElementById("viewer_3D");
@@ -432,11 +531,31 @@
         const persona = document.getElementById("tipo_personalizacao");
         const personadimen = document.getElementById("persona_dimen");
         const personacor = document.getElementById("persona_cor");
+        var dados = null
+        var cara = null
+        function fetchusuarios() {
+            fetch("http://127.0.0.1:8000/api/usuarios/1/")
+            .then (res => res.json())
+            .then (data => {
+                cara = data
+            })
+            .catch (err => console.error("erro ao buscar", err))
+        }
         function fetchprodutos() {
             fetch("http://127.0.0.1:8000/api/produtos/1/")
+<<<<<<< HEAD
                 .then(res => res.json())
                 .then(data => renderchave(data))
                 .catch(err => console.error("erro ao buscar", err))
+=======
+            .then (res => res.json())
+            .then (data => {
+                
+                renderchave(data)
+                dados = data
+            })
+            .catch (err => console.error("erro ao buscar", err))
+>>>>>>> 5f41f0708e7e7da6f2c3320b4d79e43a69ba6fe8
         }
         function fetchimagens() {
             fetch("http://127.0.0.1:8000/api/imagens/")
@@ -446,9 +565,9 @@
         }
         function renderchave(produto) {
             nome_produto_pag.innerHTML = `${produto.nome_produto}`;
+            //${produto.link3D} coloque isto ali embaixo depois
             viewer.innerHTML = `
-                ${produto.link3D}
-                <div id="viewer_img" style="position: absolute; background-color: gray; height: 100%; width: 100%; z-index: -1;"></div>
+                <div id="viewer_img" class="absolute h-full w-full -z-1"></div>
                 <div class="absolute inset-0 flex items-center justify-center bg-gray-50 -z-10">
                     <i class="fa-solid fa-cube text-gray-200 text-6xl animate-pulse"></i>
                 </div>
@@ -500,7 +619,6 @@
             container.innerHTML = `<button class="text-gray-400 hover:text-senai-red transition-colors text-center pb-1"><i class="fa-solid fa-chevron-up"></i></button>`;
             imagens.forEach(imagem => {
                 if (imagem.FK_produto.id == 1) {
-                    console.log(ides);
                     const card = document.createElement("div");
                     card.innerHTML = `
                         <div onclick="destaque(this.id)" id="image_${ides}" class="thumb-item h-20 w-full bg-gray-100 cursor-pointer flex items-center justify-center rounded-sm"><img class="w-full h-full" src="${imagem.img_produto}" alt=""></div>
@@ -529,6 +647,7 @@
                 view_img.style.zIndex = "2"
             }
         }
+<<<<<<< HEAD
 
         function addToCart(event) {
             event.preventDefault();
@@ -574,6 +693,43 @@
                     console.error('Error adding to cart:', error);
                     alert('Erro detalhado: ' + error.message);
                 });
+=======
+        
+        async function criarPedido(event) {
+            event.preventDefault();
+
+            
+            const persona = document.getElementById('nome').value;
+            
+            
+            
+            const fd = new FormData();
+            fd.append('usuario_id', cara.id);
+            fd.append('produto_id', dados.id);
+            fd.append('status', 0);
+            fd.append('persona', persona);
+            
+            // deixar blank
+            
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/pedidos/', {
+                    method: 'POST',
+                    body: fd
+                });
+
+                if (!response.ok) {
+                    throw new Error('Erro ao enviar o pedido');
+                }
+
+                const pedido_res = await response.json();
+               console.log('Pedido feito com sucesso:', pedido_res);
+
+                // Limpar o campo
+            } catch (error) {
+                console.error('Erro ao fazer o pedido:', error);
+                alert('Ocorreu um erro ao fazer o pedido. Detalhes: ' + error.message);
+            }
+>>>>>>> 5f41f0708e7e7da6f2c3320b4d79e43a69ba6fe8
         }
     </script>
 </body>
