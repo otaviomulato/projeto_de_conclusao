@@ -202,7 +202,7 @@
                             <span class="font-black text-3xl text-gray-900" id="total">$ 0</span>
                         </div>
 
-                        <button onclick="finishPurchase()"
+                        <button id="btn-enviar"
                             class="w-full bg-senai-red text-white font-bold py-4 rounded shadow-md hover:bg-red-700 hover:shadow-lg transition-all transform active:scale-95 uppercase tracking-wide flex justify-center items-center gap-2 group">
                             Finalizar Compra
                             <i class="fa-solid fa-check group-hover:scale-110 transition-transform"></i>
@@ -342,7 +342,8 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            fetchCart();
+            //fetchCart();
+            document.getElementById('btn-enviar').addEventListener('click', criarPedido);
         });
 
         function fetchCart() {
@@ -482,8 +483,38 @@
             document.getElementById('success-modal').classList.add('hidden');
             document.getElementById('success-modal').classList.remove('flex');
         }
+        async function criarPedido(event) {
+            event.preventDefault();
+            
+            const fd = new FormData();
+            fd.append('usuario_id', 1);
+            // colocar variavel do ID do usuario
+            fd.append('produto_id', 1);
+            // colocar variavel do ID do produto
+            fd.append('status', 0);
+            fd.append('persona', "sen");
+            // colocar variavel da personalização la escrita
+            
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/pedidos/', {
+                    method: 'POST',
+                    body: fd
+                });
+
+                if (!response.ok) {
+                    throw new Error('Erro ao enviar o pedido');
+                }
+
+                const pedido_res = await response.json();
+               console.log('Pedido feito com sucesso:', pedido_res);
+
+                // Limpar o campo
+            } catch (error) {
+                console.error('Erro ao fazer o pedido:', error);
+                alert('Ocorreu um erro ao fazer o pedido. Detalhes: ' + error.message);
+            }
+            //finishPurchase() faça funcionar, mas primeiro impeça que aconteça refresh na pagina depois do envio de pedido
+        }
     </script>
-
 </body>
-
 </html>

@@ -166,7 +166,6 @@
                 <div class="lg:col-span-7 flex gap-4">
                     <div id="viewer_3D"
                         class="flex spline-wrapper w-full h-[500px] shadow-sm border border-gray-100 relative group">
-                        <!--<spline-viewer url="https://prod.spline.design/tWwZUMWhGJpIUoI3/scene.splinecode"></spline-viewer>-->
                         <div class="absolute inset-0 flex items-center justify-center bg-gray-50 -z-10">
                             <i class="fa-solid fa-cube text-gray-200 text-6xl animate-pulse"></i>
                         </div>
@@ -422,8 +421,6 @@
             }
             fetchprodutos()
             fetchimagens()
-            fetchusuarios()
-            document.getElementById('enviar').addEventListener('click', criarPedido);
 
         });
         const nome_produto_pag = document.getElementById("nome_produto");
@@ -436,15 +433,7 @@
         const personadimen = document.getElementById("persona_dimen");
         const personacor = document.getElementById("persona_cor");
         var dados = null
-        var cara = null
-        function fetchusuarios() {
-            fetch("http://127.0.0.1:8000/api/usuarios/1/")
-                .then(res => res.json())
-                .then(data => {
-                    cara = data
-                })
-                .catch(err => console.error("erro ao buscar", err))
-        }
+
         function fetchprodutos() {
             fetch("http://127.0.0.1:8000/api/produtos/1/")
                 .then(res => res.json())
@@ -459,14 +448,13 @@
         }
         function renderchave(produto) {
             nome_produto_pag.innerHTML = `${produto.nome_produto}`;
-            //${produto.link3D} coloque isto ali embaixo depois
             viewer.innerHTML = `
+                ${produto.link3D}
                 <div id="viewer_img" class="absolute h-full w-full -z-1"></div>
                 <div class="absolute inset-0 flex items-center justify-center bg-gray-50 -z-10">
                     <i class="fa-solid fa-cube text-gray-200 text-6xl animate-pulse"></i>
                 </div>
             `;
-            //aqui tem que fazer tailwind
             viewer_salvo = viewer.innerHTML
             prego.innerHTML = `$ ${produto.preco}`;
             especificacoes.innerHTML = `

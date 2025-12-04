@@ -13,25 +13,22 @@
         <div id="somethin">
 
         </div>
-        <div style="border: solid 5px; display: flex; max-width: max-content;">
-            <img src="backend/chaveiro_api/media/produtos/chavesenai_1.png" alt="">
-            <img id="apresadinho" src="backend/chaveiro_api/media/produtos/chavesenai_2.png" alt="">
-        </div>
-        <div style="position: absolute; background-color: gray; height: 100%; width: 100%; z-index: -1;">
-
-        </div>
-        <button onclick="ficaacima()">crica</button>
+        <button onclick="crick() , funfa()">
+            clica aqui ó doido
+        </button>
       
     </main>
     <script>
-        function ficaacima() {
-            document.getElementById("apresadinho").style.position = "absolute"
-            
-        }
         document.addEventListener("DOMContentLoaded",()=>{
             fetchprodutos()
             fetchimagens()
         });
+        function crick() {
+            console.log("clicado");
+        }
+        function funfa() {
+            console.log("funfa");
+        }
         function fetchprodutos() {
             fetch("http://127.0.0.1:8000/api/produtos/2/")
             .then (res => res.json())
