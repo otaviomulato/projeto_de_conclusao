@@ -200,7 +200,7 @@
 
                     <form class="space-y-6">
                         <div class="grid grid-cols-1 gap-6">
-                            <div>
+                            <div id="persona">
                                 <label
                                     class="block text-gray-700 font-bold font-oswald text-sm mb-2 uppercase">Nome/Texto:</label>
                                 <input type="text" id="custom_nome" maxlength="8"
@@ -326,7 +326,8 @@
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             const urlId = urlParams.get('id') || 1;
-            fetchprodutos(urlId);
+            fetchprodutos(1);
+            // mude quando o user funfar
             fetchimagens();
         });
 
@@ -348,13 +349,77 @@
         function renderchave(produto) {
             // Preenche apenas os campos básicos, preservando seu HTML
             document.getElementById("nome_produto").innerHTML = `${produto.nome_produto}`;
+            document.getElementById("viewer_3D").innerHTML = `
+                <div id="viewer_img" class="absolute h-full w-full -z-1"></div>
+                ${produto.link3D}
+                <div class="absolute inset-0 flex items-center justify-center bg-gray-50 -z-10">
+                    <i class="fa-solid fa-cube text-gray-200 text-6xl animate-pulse"></i>
+                </div>
+            `;
             document.getElementById("preco").innerHTML = `R$ ${produto.preco}`;
-
-            // Se quiser que a descrição venha do banco, descomente abaixo:
-            // document.getElementById("decricao").innerHTML = `${produto.descricao}`;
+            document.getElementById("especifica").innerHTML = `
+                <li class="flex justify-between border-b border-gray-200 pb-2 border-dashed">
+                    <span class="text-gray-500">Material</span>
+                    <span class="font-semibold text-gray-800">${produto.material}</span>
+                </li>
+                <li class="flex gap-4 items-center border-b border-gray-200 pb-2 border-dashed">
+                    <span class="text-gray-500">Dimensões</span>
+                    <select class="border-gray-300 border w-full bg-gray-50 text-sm p-4 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900" name="dimensoes" id="dimensoes">
+                        <option class="bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-right text-gray-700 hover:bg-gray-100 hover:text-gray-900" value="cor" selected>${produto.dimensoes}</option>
+                    </select>
+                </li>
+                <li class="flex gap-12 items-center border-b border-gray-200 pb-2 border-dashed">
+                    <span class="text-gray-500">Cor</span>
+                    <select class=" border-gray-300 border w-full bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900" name="dimensoes" id="dimensoes">
+                            <option class="option-vermelha bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900" value="cor" selected>${produto.cor}</option>
+                    </select>
+                </li>
+            `;
+            document.getElementById("decricao").innerHTML = `${produto.descricao}`;
+            document.getElementById("persona").innerHTML = `
+                <label
+                    class="block text-gray-700 font-bold font-oswald text-sm mb-2 uppercase">Nome/Texto:</label>
+                <input type="text" id="custom_nome" maxlength="8"
+                    class="w-full bg-gray-50 border border-gray-300 p-3.5 focus:border-senai-red focus:outline-none"
+                    placeholder="Ex: Otavio">
+            `;
         }
 
-        function renderchave_img(imagens) { /* lógica de imagem simplificada */ }
+        function renderchave_img(imagens) { 
+            const container = document.getElementById("imagens");
+            var ides = 0
+            container.innerHTML = `<button class="text-gray-400 hover:text-senai-red transition-colors text-center pb-1"><i class="fa-solid fa-chevron-up"></i></button>`;
+            imagens.forEach(imagem => {
+                if (imagem.FK_produto.id == 1) {
+                    const card = document.createElement("div");
+                    card.innerHTML = `
+                        <div onclick="destaque(this.id)" id="image_${ides}" class="thumb-item h-20 w-full bg-gray-100 cursor-pointer flex items-center justify-center rounded-sm"><img class="w-full h-full" src="${imagem.img_produto}" alt=""></div>
+                    `;
+                    container.appendChild(card)
+                    ides = ides + 1
+                } else {
+                }
+            });
+            const carde = document.createElement("button");
+                carde.className = "text-gray-400 hover:text-senai-red transition-colors text-center pt-1"
+                carde.innerHTML = `
+                    <i class="fa-solid fa-chevron-down"></i>
+                `;
+                container.appendChild(carde)
+
+        }
+        function destaque(ide) {
+            const clicado = document.getElementById(ide);
+            const view_img = document.getElementById("viewer_img");
+
+            if (view_img.innerHTML == clicado.innerHTML) {
+                view_img.style.zIndex = "-1"
+                view_img.innerHTML = ""
+            } else {
+                view_img.innerHTML = clicado.innerHTML
+                view_img.style.zIndex = "2"
+            }
+        }
 
         // --- ADDTOCART COM VERIFICAÇÃO DE LIMITE ---
         async function addToCart(event) {

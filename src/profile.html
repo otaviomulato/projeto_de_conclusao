@@ -372,12 +372,11 @@
             
             if (!senhaReal || senhaReal === "••••••••") {
                 console.warn("Aguardando carregamento da senha da API...");
-                return; // Impede a execução se a senha não estiver pronta
+                return;
             }
 
             isSenhaVisivel = !isSenhaVisivel;
             
-
             if (isSenhaVisivel) {
                 textoSenhaEl.innerText = senhaReal;
                 iconeOlhoEl.innerHTML = svgOlhoFechado;
