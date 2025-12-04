@@ -176,7 +176,7 @@
                                 class="block text-[10px] uppercase font-bold text-gray-400 mb-1 flex items-center gap-2">
                                 <i class="fa-regular fa-user"></i> Nome Completo
                             </label>
-                            <p class="text-gray-900 font-medium">Diana Mulato</p>
+                            <p class="text-gray-900 font-medium" id="nome"></p>
                         </div>
 
                         <div class="info-group pb-2">
@@ -184,7 +184,7 @@
                                 class="block text-[10px] uppercase font-bold text-gray-400 mb-1 flex items-center gap-2">
                                 <i class="fa-regular fa-envelope"></i> E-mail Corporativo
                             </label>
-                            <p class="text-gray-900 font-medium">diana.mulato@senai.br</p>
+                            <p class="text-gray-900 font-medium" id="email"></p>
                         </div>
 
                         <div class="info-group pb-2">
@@ -192,7 +192,7 @@
                                 class="block text-[10px] uppercase font-bold text-gray-400 mb-1 flex items-center gap-2">
                                 <i class="fa-solid fa-mobile-screen"></i> Celular / Whatsapp
                             </label>
-                            <p class="text-gray-900 font-medium">(15) 99999-8888</p>
+                            <p class="text-gray-900 font-medium" id="telefone"></p>
                         </div>
 
                         <div class="info-group pb-2">
@@ -200,7 +200,7 @@
                                 class="block text-[10px] uppercase font-bold text-gray-400 mb-1 flex items-center gap-2">
                                 <i class="fa-solid fa-briefcase"></i> Cargo / Função
                             </label>
-                            <p class="text-gray-900 font-medium">Computer Scientist</p>
+                            <p class="text-gray-900 font-medium" id="profissao"></p>
                         </div>
 
                         <div class="info-group pb-2">
@@ -208,7 +208,7 @@
                                 class="block text-[10px] uppercase font-bold text-gray-400 mb-1 flex items-center gap-2">
                                 <i class="fa-solid fa-cake-candles"></i> Idade
                             </label>
-                            <p class="text-gray-900 font-medium">18" anos</p>
+                            <p class="text-gray-900 font-medium" id="idade"></p>
                         </div>
 
                         <div class="info-group pb-2">
@@ -217,7 +217,7 @@
                                 <i class="fa-solid fa-lock"></i> Senha
                             </label>
                             <div class="flex justify-between items-center">
-                                <p class="text-gray-900 font-medium tracking-widest">••••••••</p>
+                                <p class="text-gray-900 font-medium tracking-widest" id="senha"></p>
                                 <button
                                     class="text-xs text-gray-400 hover:text-senai-red transition-colors">Alterar</button>
                             </div>
@@ -339,13 +339,38 @@
     </footer>
 
     <script>
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (menuToggle && mobileMenu) {
-            menuToggle.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
+
+        // const fd = new FormData();
+        // fd.append('nome_user', nome);
+        // fd.append('email_user', email);
+        // fd.append('telefone', telefone);
+        // fd.append('profissao', profissao);
+        // fd.append('idade', idade);
+        // fd.append('senha_user', senha);
+        // fd.append('credito', credi);
+        // console.log("Nome user: ", nome_user)
+
+        function fetchusuarios() {
+            fetch("http://127.0.0.1:8000/api/usuarios/1/")
+                .then(res => res.json())
+                .then(data => preencheruser(data))
+                .catch(err => console.error("erro ao buscar", err))               
         }
+
+        function preencheruser(data){
+                 document.getElementById("nome").textContent = data.nome_user;
+                 document.getElementById("email").textContent = data.email_user;
+                 document.getElementById("telefone").textContent = data.telefone;
+                 document.getElementById("profissao").textContent = data.profissao;
+                 document.getElementById("idade").textContent = data.idade;
+                 document.getElementById("senha").textContent = data.senha_user;
+                 document.getElementById("idade").textContent = data.idade;
+        }
+
+          document.addEventListener("DOMContentLoaded", function (event) {
+            fetchusuarios(); // Carregar categorias existentes
+
+             });
     </script>
 
 </body>
