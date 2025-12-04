@@ -337,13 +337,15 @@
                 .then(data => {
                     currentProductId = data.id;
                     renderchave(data);
-                });
+                })
+                .catch (err => console.error("erro ao buscar", err))
         }
 
         function fetchimagens() {
             fetch("http://127.0.0.1:8000/api/imagens/")
                 .then(res => res.json())
-                .then(imgs => renderchave_img(imgs));
+                .then(imgs => renderchave_img(imgs))
+                .catch (err => console.error("erro ao buscar", err))
         }
 
         function renderchave(produto) {
@@ -390,7 +392,7 @@
             var ides = 0
             container.innerHTML = `<button class="text-gray-400 hover:text-senai-red transition-colors text-center pb-1"><i class="fa-solid fa-chevron-up"></i></button>`;
             imagens.forEach(imagem => {
-                if (imagem.FK_produto.id == 1) {
+                if (imagem.FK_produto.id == currentProductId) {
                     const card = document.createElement("div");
                     card.innerHTML = `
                         <div onclick="destaque(this.id)" id="image_${ides}" class="thumb-item h-20 w-full bg-gray-100 cursor-pointer flex items-center justify-center rounded-sm"><img class="w-full h-full" src="${imagem.img_produto}" alt=""></div>
