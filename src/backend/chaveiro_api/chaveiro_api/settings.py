@@ -130,8 +130,10 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_CREDENTIALS = True
+CART_SESSION_ID = 'cart'
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5500", # Exemplo para um servidor dedesenvolvimento HTML
-    "http://seu-dominio-frontend.com", # Adicione outras origens conforme necessário
+    "http://127.0.0.1:5500",
+    "http://localhost:5500",
 ]

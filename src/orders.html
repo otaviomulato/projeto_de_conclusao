@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Pedidos - SENAI 4.0</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        senai: {
+                            red: '#E30613',
+                            dark: '#1A1A1A',
+                            gray: '#F3F4F6'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        oswald: ['Oswald', 'sans-serif'],
+                    },
+                    animation: {
+                        'spin-slow': 'spin 3s linear infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .order-details {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transform: translateY(-10px);
+        }
+
+        .order-details.open {
+            max-height: 1200px;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .rotate-icon {
+            transition: transform 0.4s ease;
+        }
+
+        .open .rotate-icon {
+            transform: rotate(180deg);
+        }
+
+        .timeline-progress {
+            background-size: 200% 100%;
+            animation: gradientMove 2s linear infinite;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 100% 0;
+            }
+
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        .footer-link {
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-link:hover {
+            color: #fff;
+            transform: translateX(5px);
+        }
+
+        .whatsapp-bounce:hover {
+            animation: fa-bounce 1.5s infinite;
+            color: #25D366;
+        }
+
+        .facebook-bounce:hover {
+            animation: fa-bounce 1.5s infinite;
+            color: #1877F2;
+        }
+
+        .instagram-bounce:hover {
+            animation: fa-bounce 1.5s infinite;
+            color: #E1306C;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 flex flex-col min-h-screen text-gray-800 font-sans">
+
+    <header class="bg-black sticky top-0 z-50 shadow-md border-b border-gray-900">
+        <nav class="relative max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 py-4">
+            <a href="index.html" class="flex items-center group">
+                <img src="img/logo_footer.png" alt="Logo SENAI SP"
+                    class="h-10 w-auto transition-opacity group-hover:opacity-80">
+            </a>
+
+            <ul class="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-8">
+                <li><a href="index.html"
+                        class="font-medium text-white border-b-2 border-senai-red pb-1 tracking-wide uppercase text-sm">Início</a>
+                </li>
+                <li><a href="produtos.html"
+                        class="font-medium text-gray-300 hover:text-white transition-colors tracking-wide uppercase text-sm">Catálogo</a>
+                </li>
+                <li><a href="about_us.html"
+                        class="font-medium text-gray-300 hover:text-white transition-colors tracking-wide uppercase text-sm">Sobre</a>
+                </li>
+            </ul>
+
+            <div class="hidden lg:flex items-center gap-6">
+                <a href="wallet.html"
+                    class="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-400 text-black rounded-full px-4 py-1.5 font-bold shadow-lg shadow-yellow-500/20 transition-all transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-wallet"></i>
+                    <span class="text-sm font-mono">$ --</span>
+                </a>
+
+                <a href="login.html" class="text-white hover:text-senai-red transition-colors">
+                    <i class="fa-regular fa-user text-xl"></i>
+                </a>
+
+                <a href="cart.html" class="relative text-white hover:text-senai-red transition-colors">
+                    <i class="fa-solid fa-cart-shopping text-xl"></i>
+                    <span
+                        class="absolute -top-2 -right-2 bg-senai-red text-white text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center border-2 border-black">0</span>
+                </a>
+            </div>
+
+            <button id="menu-toggle" class="lg:hidden p-2 text-white hover:text-senai-red">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </nav>
+
+        <div id="mobile-menu"
+            class="hidden lg:hidden absolute top-full left-0 w-full bg-zinc-900 border-t border-gray-800 shadow-xl z-50">
+            <ul class="flex flex-col items-center gap-6 py-8">
+                <li><a href="index.html" class="font-bold text-white text-lg">INÍCIO</a></li>
+                <li><a href="produtos.html" class="font-bold text-gray-300 text-lg">CATÁLOGO</a></li>
+                <li><a href="about_us.html" class="font-bold text-gray-300 text-lg">SOBRE</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="flex-grow py-12 px-4 md:px-8">
+        <div class="max-w-5xl mx-auto">
+
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-6">
+                <div class="flex items-center gap-4">
+                    <div class="h-12 w-1.5 bg-senai-red rounded-full shadow-sm"></div>
+                    <div>
+                        <h1 class="text-4xl font-bold font-oswald uppercase text-gray-900 leading-none tracking-tight">
+                            Meus Pedidos</h1>
+                        <p class="text-gray-500 text-sm mt-1 font-medium">Gerencie suas compras e acompanhe a produção
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex bg-white rounded-xl p-1.5 shadow-sm border border-gray-200 gap-1">
+                    <button
+                        class="px-5 py-2 rounded-lg bg-black text-white font-bold text-xs uppercase shadow-md transition-all">Todos</button>
+                    <button
+                        class="px-5 py-2 rounded-lg text-gray-500 hover:text-gray-900 hover:bg-gray-50 font-bold text-xs uppercase transition-all">Em
+                        Aberto</button>
+                    <button
+                        class="px-5 py-2 rounded-lg text-gray-500 hover:text-gray-900 hover:bg-gray-50 font-bold text-xs uppercase transition-all">Finalizados</button>
+                </div>
+            </div>
+
+            <div class="space-y-8">
+
+                <div
+                    class="bg-white rounded-2xl shadow-sm hover:shadow-lg border border-gray-100 overflow-hidden transition-all duration-300 group">
+
+                    <div class="p-5 sm:p-6 cursor-pointer border-l-4 border-yellow-500 flex flex-col md:flex-row gap-6 md:items-center justify-between relative bg-white z-20"
+                        onclick="toggleDetails(this)">
+
+                        <div class="flex items-center gap-5 flex-grow">
+                            <div
+                                class="w-16 h-16 rounded-xl bg-gray-100 border border-gray-200 overflow-hidden shadow-sm flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
+                                <img src="https://prod.spline.design/tWwZUMWhGJpIUoI3/thumbnail.png"
+                                    class="w-full h-full object-cover">
+                            </div>
+
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-8 w-full">
+                                <div>
+                                    <span
+                                        class="text-[10px] text-gray-400 uppercase font-bold tracking-widest block mb-0.5">Pedido</span>
+                                    <p class="text-xl font-bold text-gray-900 font-oswald tracking-wide">#ORD-2025-001
+                                    </p>
+                                </div>
+
+                                <div class="hidden sm:block w-px h-8 bg-gray-200"></div>
+
+                                <div>
+                                    <span
+                                        class="text-[10px] text-gray-400 uppercase font-bold tracking-widest block mb-0.5">Previsão</span>
+                                    <p class="text-sm font-semibold text-gray-700">05 Dez 2025</p>
+                                </div>
+
+                                <div class="hidden sm:block w-px h-8 bg-gray-200"></div>
+
+                                <div>
+                                    <span
+                                        class="text-[10px] text-gray-400 uppercase font-bold tracking-widest block mb-0.5">Total</span>
+                                    <p class="text-sm font-bold text-senai-red">R$ 49,90</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex items-center justify-between md:justify-end gap-6 w-full md:w-auto border-t md:border-t-0 pt-4 md:pt-0 border-gray-100">
+                            <span
+                                class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-yellow-50 text-yellow-700 text-xs font-bold uppercase border border-yellow-100 shadow-sm">
+                                <span class="relative flex h-2 w-2">
+                                    <span
+                                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
+                                </span>
+                                Em Produção
+                            </span>
+                            <div
+                                class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-senai-red group-hover:text-white transition-all duration-300 rotate-icon shadow-sm">
+                                <i class="fa-solid fa-chevron-down text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order-details bg-gray-50/80 border-t border-gray-100">
+                        <div class="p-6 lg:p-10">
+
+                            <div class="mb-20 px-2 sm:px-8 mt-10">
+                                <div class="relative">
+                                    <div
+                                        class="absolute top-1/2 left-0 w-full h-1 bg-gray-200 -translate-y-1/2 z-0 rounded-full">
+                                    </div>
+
+                                    <div
+                                        class="absolute top-1/2 left-0 w-1/2 h-1.5 bg-gradient-to-r from-zinc-700 via-yellow-400 to-yellow-500 -translate-y-1/2 z-0 shadow-lg shadow-yellow-500/30 rounded-full timeline-progress">
+                                    </div>
+
+                                    <div class="relative z-10 flex justify-between w-full">
+
+                                        <div class="flex flex-col items-center group/step w-1/4">
+                                            <div
+                                                class="w-10 h-10 rounded-full bg-zinc-800 text-white flex items-center justify-center border-4 border-white shadow-md z-10">
+                                                <i class="fa-solid fa-check text-sm"></i>
+                                            </div>
+                                            <div class="mt-12 text-center w-full">
+                                                <p
+                                                    class="text-[10px] sm:text-xs font-bold text-gray-900 uppercase tracking-wide">
+                                                    Confirmado</p>
+                                                <p class="text-[9px] sm:text-[10px] text-gray-500 font-medium mt-1">
+                                                    03/12 - 10:00</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex flex-col items-center group/step relative w-1/4">
+                                            <div
+                                                class="absolute -inset-2 bg-yellow-100 rounded-full blur opacity-50 animate-pulse-slow">
+                                            </div>
+                                            <div
+                                                class="w-14 h-14 rounded-full bg-yellow-500 text-white flex items-center justify-center shadow-xl shadow-yellow-500/40 z-10 transform scale-110 border-4 border-white">
+                                                <i class="fa-solid fa-gears fa-spin-slow text-lg"></i>
+                                            </div>
+                                            <div class="mt-12 text-center relative z-20 w-full">
+                                                <p
+                                                    class="text-xs sm:text-sm font-bold text-yellow-700 uppercase tracking-wide">
+                                                    Produção</p>
+                                                <span
+                                                    class="inline-block mt-2 px-3 py-1 bg-yellow-100 text-yellow-700 text-[9px] font-bold rounded uppercase shadow-sm">Atual</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex flex-col items-center group/step opacity-40 grayscale w-1/4">
+                                            <div
+                                                class="w-10 h-10 rounded-full bg-white border-2 border-gray-300 text-gray-400 flex items-center justify-center shadow-sm z-10">
+                                                <i class="fa-solid fa-box-open text-sm"></i>
+                                            </div>
+                                            <div class="mt-12 text-center w-full">
+                                                <p
+                                                    class="text-[10px] sm:text-xs font-bold text-gray-600 uppercase tracking-wide">
+                                                    Disponível</p>
+                                                <p class="text-[9px] sm:text-[10px] text-gray-400 font-medium mt-1">
+                                                    Aguardando</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex flex-col items-center group/step opacity-40 grayscale w-1/4">
+                                            <div
+                                                class="w-10 h-10 rounded-full bg-white border-2 border-gray-300 text-gray-400 flex items-center justify-center shadow-sm z-10">
+                                                <i class="fa-solid fa-flag-checkered text-sm"></i>
+                                            </div>
+                                            <div class="mt-12 text-center w-full">
+                                                <p
+                                                    class="text-[10px] sm:text-xs font-bold text-gray-600 uppercase tracking-wide">
+                                                    Entregue</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div
+                                    class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm flex gap-5 hover:border-yellow-200 transition-colors">
+                                    <div
+                                        class="w-20 h-20 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0 border border-gray-100">
+                                        <img src="https://prod.spline.design/tWwZUMWhGJpIUoI3/thumbnail.png"
+                                            class="w-full h-full object-cover">
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-900 text-sm uppercase font-oswald mb-1">Chaveiro
+                                            SENAI 4.0</h4>
+                                        <p class="text-xs text-gray-500 mb-3">Item personalizado exclusivo.</p>
+                                        <div class="flex gap-2">
+                                            <span
+                                                class="px-2 py-1 bg-gray-100 text-gray-600 text-[10px] font-bold uppercase rounded">Vermelho</span>
+                                            <span
+                                                class="px-2 py-1 bg-gray-100 text-gray-600 text-[10px] font-bold uppercase rounded">Qtd:
+                                                1</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm">
+                                    <h4
+                                        class="font-bold text-gray-900 text-xs uppercase mb-4 pb-2 border-b border-gray-100">
+                                        Resumo Financeiro</h4>
+                                    <div class="space-y-2 text-xs">
+                                        <div class="flex justify-between text-gray-500">
+                                            <span>Subtotal</span>
+                                            <span>R$ 49,90</span>
+                                        </div>
+                                        <div class="flex justify-between text-gray-500">
+                                            <span>Descontos</span>
+                                            <span>-</span>
+                                        </div>
+                                        <div
+                                            class="flex justify-between text-gray-900 font-bold text-sm pt-2 border-t border-gray-100 mt-2">
+                                            <span>Total Pago</span>
+                                            <span class="text-senai-red">R$ 49,90</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white rounded-2xl shadow-sm hover:shadow-lg border border-gray-100 overflow-hidden transition-all duration-300 group opacity-75 hover:opacity-100">
+
+                    <div class="p-5 sm:p-6 cursor-pointer flex flex-col md:flex-row gap-6 md:items-center justify-between relative bg-white z-20"
+                        onclick="toggleDetails(this)">
+
+                        <div class="flex items-center gap-5 flex-grow">
+                            <div
+                                class="w-16 h-16 rounded-xl bg-gray-100 border border-gray-200 overflow-hidden shadow-sm flex-shrink-0 grayscale group-hover:grayscale-0 transition-all">
+                                <img src="https://prod.spline.design/tWwZUMWhGJpIUoI3/thumbnail.png"
+                                    class="w-full h-full object-cover">
+                            </div>
+
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-8 w-full">
+                                <div>
+                                    <span
+                                        class="text-[10px] text-gray-400 uppercase font-bold tracking-widest block mb-0.5">Pedido</span>
+                                    <p class="text-xl font-bold text-gray-900 font-oswald tracking-wide">#ORD-2024-852
+                                    </p>
+                                </div>
+
+                                <div class="hidden sm:block w-px h-8 bg-gray-200"></div>
+
+                                <div>
+                                    <span
+                                        class="text-[10px] text-gray-400 uppercase font-bold tracking-widest block mb-0.5">Data</span>
+                                    <p class="text-sm font-semibold text-gray-700">15 Nov 2024</p>
+                                </div>
+
+                                <div class="hidden sm:block w-px h-8 bg-gray-200"></div>
+
+                                <div>
+                                    <span
+                                        class="text-[10px] text-gray-400 uppercase font-bold tracking-widest block mb-0.5">Total</span>
+                                    <p class="text-sm font-bold text-gray-600">R$ 99,80</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex items-center justify-between md:justify-end gap-6 w-full md:w-auto border-t md:border-t-0 pt-4 md:pt-0 border-gray-100">
+                            <span
+                                class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-50 text-green-700 text-xs font-bold uppercase border border-green-100">
+                                <i class="fa-solid fa-check-circle"></i>
+                                Concluído
+                            </span>
+                            <div
+                                class="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-gray-200 transition-all duration-300 rotate-icon">
+                                <i class="fa-solid fa-chevron-down text-gray-400 text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order-details bg-gray-50/50 border-t border-gray-100">
+                        <div class="p-6 lg:p-10">
+                            <div class="mb-16 px-2 sm:px-8 mt-10">
+                                <div class="relative">
+                                    <div
+                                        class="absolute top-1/2 left-0 w-full h-1 bg-green-500 -translate-y-1/2 z-0 rounded-full">
+                                    </div>
+                                    <div class="relative z-10 flex justify-between w-full">
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-green-500 border-2 border-white shadow flex items-center justify-center text-white">
+                                            <i class="fa-solid fa-check text-xs"></i></div>
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-green-500 border-2 border-white shadow flex items-center justify-center text-white">
+                                            <i class="fa-solid fa-check text-xs"></i></div>
+                                        <div
+                                            class="w-10 h-10 rounded-full bg-green-500 border-2 border-white shadow flex items-center justify-center text-white">
+                                            <i class="fa-solid fa-check text-xs"></i></div>
+                                        <div
+                                            class="w-12 h-12 rounded-full bg-green-600 border-4 border-white shadow-lg flex items-center justify-center text-white transform scale-110">
+                                            <i class="fa-solid fa-hand-holding-heart text-lg"></i></div>
+                                    </div>
+                                </div>
+                                <p class="text-center text-xs font-bold text-green-700 uppercase mt-12">Entregue em
+                                    18/11/2024</p>
+                            </div>
+
+                            <div class="flex justify-end pt-4 border-t border-gray-200">
+                                <button
+                                    class="text-xs font-bold text-senai-red hover:text-red-800 uppercase tracking-wide flex items-center gap-2 transition-colors">
+                                    <i class="fa-solid fa-download"></i> Baixar Recibo Fiscal
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-senai-dark text-gray-300 relative mt-auto border-t-4 border-senai-red">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+
+                <div class="space-y-6">
+                    <img src="img/logo_footer.png" alt="Logo SENAI" class="h-12 w-auto opacity-90 brightness-0 invert">
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        Sistema de recompensas para alunos e visitantes durante datas importantes no SENAI Sorocaba.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://api.whatsapp.com/send?phone=55113220050" target="_blank"
+                            class="text-2xl text-gray-400 whatsapp-bounce transition-colors">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://www.instagram.com/senaisorocaba/" target="_blank"
+                            class="text-2xl text-gray-400 instagram-bounce transition-colors">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/senaisp.sorocabarosalia/" target="_blank"
+                            class="text-2xl text-gray-400 facebook-bounce transition-colors">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4
+                        class="text-white font-bold uppercase tracking-widest text-sm mb-6 border-l-4 border-senai-red pl-3">
+                        Institucional</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="https://sp.senai.br/unidade/sorocaba/" class="footer-link hover:text-senai-red"
+                                target="_blank">Portal SENAI</a></li>
+                        <li><a href="https://sp.senai.br/noticias" class="footer-link hover:text-senai-red"
+                                target="_blank">Notícias</a></li>
+                        <li><a href="https://sp.senai.br/cursos/0/0?cidadeint=sorocaba&pag=1"
+                                class="footer-link hover:text-senai-red" target="_blank">Cursos</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4
+                        class="text-white font-bold uppercase tracking-widest text-sm mb-6 border-l-4 border-senai-red pl-3">
+                        Links Rápidos</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="index.html" class="footer-link hover:text-senai-red">Início</a></li>
+                        <li><a href="#" class="footer-link hover:text-senai-red">Perfil</a></li>
+                        <li><a href="about_us.html" class="footer-link hover:text-senai-red">Sobre</a></li>
+                        <li><a href="produtos.html" class="footer-link hover:text-senai-red">Catálogo</a></li>
+                        <li><a href="cart.html" class="footer-link hover:text-senai-red">Carrinho</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4
+                        class="text-white font-bold uppercase tracking-widest text-sm mb-6 border-l-4 border-senai-red pl-3">
+                        Endereço & Contato</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot text-senai-red mt-1"></i>
+                            <address class="not-italic text-gray-400">
+                                SENAI Santa Rosália<br>
+                                Praça Roberto Mange,<br>
+                                R. Santa Rosália, 30<br>
+                                Sorocaba - SP
+                            </address>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-senai-red"></i>
+                            <a href="tel:08000551000" class="hover:text-white transition-colors">0800-055-1000
+                                (fixo)</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-senai-red"></i>
+                            <a href="mailto:senaisorocaba@sp.senai.br"
+                                class="hover:text-white transition-colors">senaisorocaba@sp.senai.br</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="bg-black border-t border-gray-800">
+            <div
+                class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-xs text-gray-500">
+                    © 2025 SENAI-SP Sorocaba - Todos os direitos reservados.
+                </p>
+                <div class="flex items-center gap-2">
+                    <a href="https://github.com/otaviomulato/projeto_de_conclusao" target="_blank">
+                        <img src="img/ophidiana.png" alt="Selo Ophidiana"
+                            class="h-6 w-auto grayscale opacity-80 hover:opacity-100 transition-opacity">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        function toggleDetails(header) {
+            const details = header.nextElementSibling;
+            const parent = header.parentElement;
+            const isOpen = details.classList.contains('open');
+
+            document.querySelectorAll('.order-details.open').forEach(el => {
+                el.classList.remove('open');
+                el.parentElement.classList.remove('open');
+            });
+
+            if (!isOpen) {
+                details.classList.add('open');
+                parent.classList.add('open');
+            } else {
+                parent.classList.remove('open');
+            }
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,68 +1,64 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login as login_django, logout
-from django.contrib.auth.decorators import login_required
-from django.contrib import messages
+from django.shortcuts import render
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+from .models import Usuario
+import json
 
-# --- Views de Cadastro e Login ---
-
-def cadastro(request):
-    if request.method == 'GET':
-        return render(request, 'cadastro.html')
-    else:
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        senha = request.POST.get('password')
-
-        error_found = False
-        if User.objects.filter(username=username).exists():
-            messages.error(request, 'Nome de usuário já cadastrado.')
-            error_found = True
+@csrf_exempt
+@require_POST
+def register_api(request):
+    try:
+        data = json.loads(request.body)
         
-        if User.objects.filter(email=email).exists():
-            messages.error(request, 'Email já cadastrado.')
-            error_found = True
+        # Check if email already exists
+        if Usuario.objects.filter(email_user=data.get('email')).exists():
+            return JsonResponse({'status': 'error', 'message': 'Email já cadastrado.'}, status=400)
+
+        usuario = Usuario.objects.create(
+            nome_user=data.get('nome'),
+            email_user=data.get('email'),
+            senha_user=data.get('senha'), # Note: In production, hash this password!
+            telefone=data.get('telefone'),
+            profissao=data.get('profissao'),
+            idade=int(data.get('idade')),
+            credito=0
+        )
         
-        if error_found:
-            return render(request, 'cadastro.html')
-
-        user = User.objects.create_user(username=username, email=email, password=senha)
-        user.save()
+        # Set session
+        request.session['user_id'] = usuario.id
+        request.session['user_name'] = usuario.nome_user
         
-        messages.success(request, 'Conta criada com sucesso! Faça o login.')
+        return JsonResponse({'status': 'success', 'message': 'Usuário cadastrado com sucesso!'})
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+
+@csrf_exempt
+@require_POST
+def login_api(request):
+    try:
+        data = json.loads(request.body)
+        email = data.get('email')
+        senha = data.get('senha')
         
-        return redirect('/auth/login/') # redireciona para o login
-
-def login(request):
-    if request.method == 'GET':
-        return render(request, 'login.html')
-    else:
-        username = request.POST.get('username')
-        senha = request.POST.get('password')
-
-        user = authenticate(request, username=username, password=senha)
-
-        if user:
-            login_django(request, user)
-            return redirect('home')
-        else:
-            messages.error(request, 'Nome de usuário ou senha incorretos, tente novamente.')
-            return render(request, 'login.html')
-
-# --- Views de Perfil e Logout (NOVO E NO LUGAR CERTO) ---
-
-@login_required
-def profile_view(request):
-    """
-    Exibe a página de perfil do usuário logado.
-    """
-    user = request.user
-    context = {'user': user}
-    return render(request, 'perfil.html', context)
-
-def logout_view(request):
-    """
-    Faz o logout do usuário e redireciona para a página de login.
-    """
-    logout(request)
-    return redirect('/auth/login/')
+        try:
+            usuario = Usuario.objects.get(email_user=email, senha_user=senha)
+            
+            # Set session
+            request.session['user_id'] = usuario.id
+            request.session['user_name'] = usuario.nome_user
+            
+            return JsonResponse({
+                'status': 'success', 
+                'message': 'Login realizado com sucesso!',
+                'user': {
+                    'nome': usuario.nome_user,
+                    'email': usuario.email_user,
+                    'credito': usuario.credito
+                }
+            })
+        except Usuario.DoesNotExist:
+            return JsonResponse({'status': 'error', 'message': 'Email ou senha inválidos.'}, status=401)
+            
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)}, status=500)

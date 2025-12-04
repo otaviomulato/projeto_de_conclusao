@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Página de produto SENAI - Personalização exclusiva">
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <script>
         tailwind.config = {
             theme: {
@@ -29,294 +30,385 @@
     </script>
 
     <title>Produto Tal - SENAI</title>
-    
+
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.92/build/spline-viewer.js"></script>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        
-        .spline-wrapper { background-color: #f8fafc; border-radius: 4px; position: relative; overflow: hidden; }
-        
-        .thumb-item { transition: all 0.2s ease-in-out; border: 1px solid #e5e7eb; }
-        .thumb-item:hover { border-color: #E30613; transform: translateY(-2px); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
-        
-        .input-pro:focus { box-shadow: 0 0 0 2px rgba(227, 6, 19, 0.1); }
-        
-        .footer-link { transition: all 0.3s ease; display: inline-block; }
-        .footer-link:hover { color: #fff; transform: translateX(5px); }
-        
-        .whatsapp-bounce:hover{ animation: fa-bounce 1.5s infinite; color: #25D366; }
-        .facebook-bounce:hover{ animation: fa-bounce 1.5s infinite; color: #1877F2; }
-        .instagram-bounce:hover{ animation: fa-bounce 1.5s infinite; color: #E1306C; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .spline-wrapper {
+            background-color: #f8fafc;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .thumb-item {
+            transition: all 0.2s ease-in-out;
+            border: 1px solid #e5e7eb;
+        }
+
+        .thumb-item:hover {
+            border-color: #E30613;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-pro:focus {
+            box-shadow: 0 0 0 2px rgba(227, 6, 19, 0.1);
+        }
+
+        .footer-link {
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-link:hover {
+            color: #fff;
+            transform: translateX(5px);
+        }
+
+        .whatsapp-bounce:hover {
+            animation: fa-bounce 1.5s infinite;
+            color: #25D366;
+        }
+
+        .facebook-bounce:hover {
+            animation: fa-bounce 1.5s infinite;
+            color: #1877F2;
+        }
+
+        .instagram-bounce:hover {
+            animation: fa-bounce 1.5s infinite;
+            color: #E1306C;
+        }
     </style>
 </head>
 
 <body class="bg-white flex flex-col min-h-screen text-gray-800">
 
-<header class="bg-black sticky top-0 z-50 shadow-md border-b border-gray-900">
-    <nav class="relative max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 py-4">
-        <a href="index.html" class="flex items-center group">
-            <img src="img/logo_footer.png" alt="Logo SENAI SP" class="h-10 w-auto transition-opacity group-hover:opacity-80"> 
-        </a>
-        
-        <ul class="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-8">
-            <li><a href="index.html" class="font-medium text-gray-300 hover:text-white transition-colors tracking-wide uppercase text-sm">Início</a></li>
-            <li><a href="produtos.html" class="font-medium text-white border-b-2 border-senai-red pb-1 tracking-wide uppercase text-sm">Catálogo</a></li>
-            <li><a href="about_us.html" class="font-medium text-gray-300 hover:text-white transition-colors tracking-wide uppercase text-sm">Sobre</a></li>
-        </ul>
-        
-        <div class="hidden lg:flex items-center gap-6">
-            <a class="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-400 text-black rounded-full px-4 py-1.5 font-bold shadow-lg shadow-yellow-500/20 transition-all transform hover:-translate-y-0.5">
-                <i class="fa-solid fa-wallet"></i>
-                <span class="text-sm font-mono">$ --</span>
+    <header class="bg-black sticky top-0 z-50 shadow-md border-b border-gray-900">
+        <nav class="relative max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 py-4">
+            <a href="index.html" class="flex items-center group">
+                <img src="img/logo_footer.png" alt="Logo SENAI SP"
+                    class="h-10 w-auto transition-opacity group-hover:opacity-80">
             </a>
 
-            <a href="sign_in.html" class="text-white hover:text-senai-red transition-colors">
-                <i class="fa-regular fa-user text-xl"></i>
-            </a>
+            <ul class="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-8">
+                <li><a href="index.html"
+                        class="font-medium text-gray-300 hover:text-white transition-colors tracking-wide uppercase text-sm">Início</a>
+                </li>
+                <li><a href="produtos.html"
+                        class="font-medium text-white border-b-2 border-senai-red pb-1 tracking-wide uppercase text-sm">Catálogo</a>
+                </li>
+                <li><a href="about_us.html"
+                        class="font-medium text-gray-300 hover:text-white transition-colors tracking-wide uppercase text-sm">Sobre</a>
+                </li>
+            </ul>
 
-            <a href="cart.html" class="relative text-white hover:text-senai-red transition-colors">
-                <i class="fa-solid fa-cart-shopping text-xl"></i>
-                <span class="absolute -top-2 -right-2 bg-senai-red text-white text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center border-2 border-black">0</span>
-            </a>
-        </div>
-        
-        <button id="menu-toggle" class="lg:hidden p-2 text-white hover:text-senai-red">
-             <i class="fas fa-bars text-2xl"></i>
-        </button>
-    </nav>
-    
-    <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-zinc-900 border-t border-gray-800 shadow-xl z-50">
-        <ul class="flex flex-col items-center gap-6 py-8">
-            <li><a href="index.html" class="font-bold text-white text-lg">INÍCIO</a></li>
-            <li><a href="produtos.html" class="font-bold text-gray-300 text-lg">CATÁLOGO</a></li>
-            <li><a href="about_us.html" class="font-bold text-gray-300 text-lg">SOBRE</a></li>
-        </ul>
-    </div>
-</header>
+            <div class="hidden lg:flex items-center gap-6">
+                <a
+                    class="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-400 text-black rounded-full px-4 py-1.5 font-bold shadow-lg shadow-yellow-500/20 transition-all transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-wallet"></i>
+                    <span class="text-sm font-mono">$ --</span>
+                </a>
 
-<main class="flex-grow py-8 md:py-12 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        
-        <nav class="text-sm text-gray-500 mb-6 flex items-center gap-2">
-            <a href="index.html" class="hover:text-senai-red transition-colors">Início</a> <span class="text-gray-300">/</span>
-            <a href="produtos.html" class="hover:text-senai-red transition-colors">Catálogo</a> <span class="text-gray-300">/</span>
-            <span class="text-gray-900 font-semibold">Produto</span>
-        </nav>
+                <a href="sign_in.html" class="text-white hover:text-senai-red transition-colors">
+                    <i class="fa-regular fa-user text-xl"></i>
+                </a>
 
-        <div class="border-b border-gray-100 pb-6 mb-10 text-center lg:text-left">
-             <h1 id="nome_produto" class="text-4xl md:text-5xl font-extrabold text-senai-red uppercase tracking-tight leading-none">
-                Chaveiro Personalizado
-            </h1>
-        </div>
-
-        <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20">
-            
-            <div class="lg:col-span-7 flex gap-4">
-                <div id="viewer_3D" class="flex spline-wrapper w-full h-[500px] shadow-sm border border-gray-100 relative group">
-                    <!--<spline-viewer url="https://prod.spline.design/tWwZUMWhGJpIUoI3/scene.splinecode"></spline-viewer>-->
-                    <div class="absolute inset-0 flex items-center justify-center bg-gray-50 -z-10">
-                         <i class="fa-solid fa-cube text-gray-200 text-6xl animate-pulse"></i>
-                    </div>
-                </div>
-
-                <div id="imagens" class="hidden md:flex flex-col gap-3 w-24 shrink-0">
-                    <button class="text-gray-400 hover:text-senai-red transition-colors text-center pb-1"><i class="fa-solid fa-chevron-up"></i></button>
-                    <div class="thumb-item h-20 w-full bg-gray-100 cursor-pointer flex items-center justify-center rounded-sm"><span class="text-xs text-gray-400 font-bold rotate-45">IMG 1</span></div>
-                    <div class="thumb-item h-20 w-full bg-gray-100 cursor-pointer flex items-center justify-center rounded-sm"><span class="text-xs text-gray-400 font-bold rotate-45">IMG 2</span></div>
-                    <div class="thumb-item h-20 w-full bg-gray-100 cursor-pointer flex items-center justify-center rounded-sm"><span class="text-xs text-gray-400 font-bold rotate-45">IMG 3</span></div>
-                    <button class="text-gray-400 hover:text-senai-red transition-colors text-center pt-1"><i class="fa-solid fa-chevron-down"></i></button>
-                </div>
+                <a href="cart.html" class="relative text-white hover:text-senai-red transition-colors">
+                    <i class="fa-solid fa-cart-shopping text-xl"></i>
+                    <span
+                        class="absolute -top-2 -right-2 bg-senai-red text-white text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center border-2 border-black">0</span>
+                </a>
             </div>
 
-            <div class="lg:col-span-5 flex flex-col h-full">
-                
-                <div class="bg-white mb-8">
-                    <p class="text-sm text-gray-500 mb-1 font-medium uppercase tracking-wider">Valor Unitário</p>
-                    <div class="flex items-end gap-4 mb-6 border-b border-gray-200 pb-6">
-<<<<<<< HEAD
-                        <div id="preco" class="text-4xl font-black text-gray-900 tracking-tight">$10</div>
-                        <!--preco-->
-=======
-                        <div id="preco" class="text-4xl font-black text-gray-900 tracking-tight">R$00,00</div>
->>>>>>> 85c5f6208d15322c0029ee0f4202fd61417bd80c
+            <button id="menu-toggle" class="lg:hidden p-2 text-white hover:text-senai-red">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </nav>
+
+        <div id="mobile-menu"
+            class="hidden lg:hidden absolute top-full left-0 w-full bg-zinc-900 border-t border-gray-800 shadow-xl z-50">
+            <ul class="flex flex-col items-center gap-6 py-8">
+                <li><a href="index.html" class="font-bold text-white text-lg">INÍCIO</a></li>
+                <li><a href="produtos.html" class="font-bold text-gray-300 text-lg">CATÁLOGO</a></li>
+                <li><a href="about_us.html" class="font-bold text-gray-300 text-lg">SOBRE</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="flex-grow py-8 md:py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+
+            <nav class="text-sm text-gray-500 mb-6 flex items-center gap-2">
+                <a href="index.html" class="hover:text-senai-red transition-colors">Início</a> <span
+                    class="text-gray-300">/</span>
+                <a href="produtos.html" class="hover:text-senai-red transition-colors">Catálogo</a> <span
+                    class="text-gray-300">/</span>
+                <span class="text-gray-900 font-semibold">Produto</span>
+            </nav>
+
+            <div class="border-b border-gray-100 pb-6 mb-10 text-center lg:text-left">
+                <h1 id="nome_produto"
+                    class="text-4xl md:text-5xl font-extrabold text-senai-red uppercase tracking-tight leading-none">
+                    Chaveiro Personalizado
+                </h1>
+            </div>
+
+            <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20">
+
+                <div class="lg:col-span-7 flex gap-4">
+                    <div id="viewer_3D"
+                        class="flex spline-wrapper w-full h-[500px] shadow-sm border border-gray-100 relative group">
+                        <!--<spline-viewer url="https://prod.spline.design/tWwZUMWhGJpIUoI3/scene.splinecode"></spline-viewer>-->
+                        <div class="absolute inset-0 flex items-center justify-center bg-gray-50 -z-10">
+                            <i class="fa-solid fa-cube text-gray-200 text-6xl animate-pulse"></i>
+                        </div>
                     </div>
 
-                    <a href="#personalizacao" class="group w-full flex items-center justify-center gap-3 bg-senai-red text-white text-lg font-bold py-4 px-6 rounded-sm shadow-sm hover:bg-red-700 hover:shadow-md transition-all duration-300 uppercase tracking-wide">
-                        <span>Personalizar</span>
-                        <i class="fa-solid fa-arrow-down group-hover:translate-y-1 transition-transform"></i>
-                    </a>
+                    <div id="imagens" class="hidden md:flex flex-col gap-3 w-24 shrink-0">
+                        <button class="text-gray-400 hover:text-senai-red transition-colors text-center pb-1"><i
+                                class="fa-solid fa-chevron-up"></i></button>
+                        <div
+                            class="thumb-item h-20 w-full bg-gray-100 cursor-pointer flex items-center justify-center rounded-sm">
+                            <span class="text-xs text-gray-400 font-bold rotate-45">IMG 1</span>
+                        </div>
+                        <div
+                            class="thumb-item h-20 w-full bg-gray-100 cursor-pointer flex items-center justify-center rounded-sm">
+                            <span class="text-xs text-gray-400 font-bold rotate-45">IMG 2</span>
+                        </div>
+                        <div
+                            class="thumb-item h-20 w-full bg-gray-100 cursor-pointer flex items-center justify-center rounded-sm">
+                            <span class="text-xs text-gray-400 font-bold rotate-45">IMG 3</span>
+                        </div>
+                        <button class="text-gray-400 hover:text-senai-red transition-colors text-center pt-1"><i
+                                class="fa-solid fa-chevron-down"></i></button>
+                    </div>
                 </div>
-                
-                <div class="bg-gray-50 p-6 rounded-sm border border-gray-100">
-                    <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                        <i class="fa-solid fa-list-check text-senai-red"></i> Especificações
-                    </h3>
-                    
-                    <ul class="space-y-4 text-sm" id="especifica">
-                        <li class="flex justify-between border-b border-gray-200 pb-2 border-dashed">
-                            <span class="text-gray-500">Material</span>
-                            <span class="font-semibold text-gray-800">Alumínio</span>
-                        </li>
-                        <li class="flex gap-4 items-center border-b border-gray-200 pb-2 border-dashed">
-                            <span class="text-gray-500">Dimensões</span>
-                            <select class="border-gray-300 border w-full bg-gray-50 text-sm p-4 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900" name="dimensoes" id="dimensoes">
-                                <option class="bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-right text-gray-700 hover:bg-gray-100 hover:text-gray-900" value="cor" selected>L 40mm, A 30mm e C 35mm</option>
-                            </select>
-                        </li>
-                        <li class="flex gap-12 items-center border-b border-gray-200 pb-2 border-dashed">
-                            <span class="text-gray-500">Cor</span>
-                            <select class=" border-gray-300 border w-full bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900" name="dimensoes" id="dimensoes">
-<<<<<<< HEAD
-                                    <option class="option-vermelha bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900" value="cor" selected>Cinza</option>
-=======
-                                    <option class="option-vermelha bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900" value="cor" selected>Prata</option>
->>>>>>> 85c5f6208d15322c0029ee0f4202fd61417bd80c
+
+                <div class="lg:col-span-5 flex flex-col h-full">
+
+                    <div class="bg-white mb-8">
+                        <p class="text-sm text-gray-500 mb-1 font-medium uppercase tracking-wider">Valor Unitário</p>
+                        <div class="flex items-end gap-4 mb-6 border-b border-gray-200 pb-6">
+                            <div id="preco" class="text-4xl font-black text-gray-900 tracking-tight">$10</div>
+                            <!--preco-->
+                        </div>
+
+                        <a href="#personalizacao"
+                            class="group w-full flex items-center justify-center gap-3 bg-senai-red text-white text-lg font-bold py-4 px-6 rounded-sm shadow-sm hover:bg-red-700 hover:shadow-md transition-all duration-300 uppercase tracking-wide">
+                            <span>Personalizar</span>
+                            <i class="fa-solid fa-arrow-down group-hover:translate-y-1 transition-transform"></i>
+                        </a>
+                    </div>
+
+                    <div class="bg-gray-50 p-6 rounded-sm border border-gray-100">
+                        <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-list-check text-senai-red"></i> Especificações
+                        </h3>
+
+                        <ul class="space-y-4 text-sm" id="especifica">
+                            <li class="flex justify-between border-b border-gray-200 pb-2 border-dashed">
+                                <span class="text-gray-500">Material</span>
+                                <span class="font-semibold text-gray-800">Alumínio</span>
+                            </li>
+                            <li class="flex gap-4 items-center border-b border-gray-200 pb-2 border-dashed">
+                                <span class="text-gray-500">Dimensões</span>
+                                <select
+                                    class="border-gray-300 border w-full bg-gray-50 text-sm p-4 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                    name="dimensoes" id="dimensoes">
+                                    <option
+                                        class="bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-right text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                        value="cor" selected>L 40mm, A 30mm e C 35mm</option>
                                 </select>
+                            </li>
+                            <li class="flex gap-12 items-center border-b border-gray-200 pb-2 border-dashed">
+                                <span class="text-gray-500">Cor</span>
+                                <select
+                                    class=" border-gray-300 border w-full bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                    name="dimensoes" id="dimensoes">
+                                    <option
+                                        class="option-vermelha bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                        value="cor" selected>Cinza</option>
+                                </select>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-6 border-t border-gray-200 pt-4">
+                        <h3 class="font-bold text-gray-900 mb-2">Descrição</h3>
+                        <p id="decricao" class="mt-2 text-gray-600 text-sm leading-relaxed">
+                            Um produto inovador desenvolvido para atender às suas necessidades. Personalize ao máximo
+                            para que ele se torne único e reflita a sua criatividade com a qualidade SENAI.
+                        </p>
+                        <!--almost forgot-->
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="personalizacao" class="max-w-3xl mx-auto scroll-mt-24">
+                <div class="bg-white border-2 border-senai-red shadow-xl relative p-8 md:p-12">
+                    <div
+                        class="absolute -top-5 left-1/2 -translate-x-1/2 bg-senai-red text-white px-8 py-2 font-bold uppercase tracking-widest text-sm shadow-md">
+                        Personalização
+                    </div>
+
+                    <h2 class="text-3xl font-bold text-gray-900 text-center mb-10 mt-2">Configure seu Produto</h2>
+
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 gap-6">
+
+                            <div id="tipo_personalizacao">
+                                <label for="nome"
+                                    class="block text-gray-700 font-semibold text-sm mb-2 uppercase tracking-wide">Nome:</label>
+                                <input type="text" id="nome" name="nome" maxlength="8" placeholder="Ex.: Diana"
+                                    class="input-pro w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm p-3.5 outline-none transition-all">
+                            </div>
+
+                            <div id="persona_dimen">
+                                <label for="dimensoes"
+                                    class="block text-gray-700 font-semibold text-sm mb-2 uppercase tracking-wide">Dimensões:</label>
+                                <select
+                                    class=" border-gray-300 border w-full bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                    name="dimensoes" id="dimensoes">
+                                    <option
+                                        class="bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                        value="cor" selected>L 40mm, A 30mm e C 35mm</option>
+                                </select>
+                            </div>
+
+                            <div id="persona_cor">
+                                <label for="cor"
+                                    class="block text-gray-700 font-semibold text-sm mb-2 uppercase tracking-wide">Cor:</label>
+                                <select
+                                    class="border-gray-300 border w-full bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                    name="cor" id="cor">
+                                    <option
+                                        class="bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                        value="cor" slected>Prata</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="pt-8">
+                            <button type="button" onclick="addToCart(event)"
+                                class="w-full bg-zinc-900 text-white font-bold text-lg py-4 hover:bg-black transition-all duration-300 uppercase tracking-widest shadow-lg flex justify-center items-center gap-3">
+                                <i class="fa-solid fa-cart-plus"></i> Adicionar ao Carrinho
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="bg-neutral-900 text-gray-300 relative mt-auto border-t-4 border-senai-red">
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+
+                <div class="space-y-6">
+                    <img src="img/logo_footer.png" alt="Logo SENAI" class="h-12 w-auto opacity-90">
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        Sistema de recompensas para alunos e visitantes durante datas importantes no SENAI Sorocaba.
+                    </p>
+
+                    <div class="flex gap-4">
+                        <a href="https://api.whatsapp.com/send?phone=55113220050" target="_blank"
+                            class="text-2xl text-gray-400 whatsapp-bounce transition-colors">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://www.instagram.com/senaisorocaba/" target="_blank"
+                            class="text-2xl text-gray-400 instagram-bounce transition-colors">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/senaisp.sorocabarosalia/" target="_blank"
+                            class="text-2xl text-gray-400 facebook-bounce transition-colors">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4
+                        class="text-white font-bold uppercase tracking-widest text-sm mb-6 border-l-4 border-senai-red pl-3">
+                        Institucional</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="https://sp.senai.br/unidade/sorocaba/" class="footer-link hover:text-senai-red"
+                                target="_blank">Portal SENAI</a></li>
+                        <li><a href="https://sp.senai.br/noticias" class="footer-link hover:text-senai-red"
+                                target="_blank">Notícias</a></li>
+                        <li><a href="https://sp.senai.br/cursos/0/0?cidadeint=sorocaba&pag=1"
+                                class="footer-link hover:text-senai-red" target="_blank">Cursos</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4
+                        class="text-white font-bold uppercase tracking-widest text-sm mb-6 border-l-4 border-senai-red pl-3">
+                        Links Rápidos</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="index.html" class="footer-link hover:text-senai-red">Início</a></li>
+                        <li><a href="#" class="footer-link hover:text-senai-red">Perfil</a></li>
+                        <li><a href="about_us.html" class="footer-link hover:text-senai-red">Sobre</a></li>
+                        <li><a href="produtos.html" class="footer-link hover:text-senai-red">Catálogo</a></li>
+                        <li><a href="cart.html" class="footer-link hover:text-senai-red">Carrinho</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4
+                        class="text-white font-bold uppercase tracking-widest text-sm mb-6 border-l-4 border-senai-red pl-3">
+                        Endereço & Contato</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot text-senai-red mt-1"></i>
+                            <address class="not-italic text-gray-400">
+                                SENAI Santa Rosália<br>
+                                Praça Roberto Mange,<br>
+                                R. Santa Rosália, 30<br>
+                                Sorocaba - SP
+                            </address>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-senai-red"></i>
+                            <a href="tel:08000551000" class="hover:text-white transition-colors">0800-055-1000
+                                (fixo)</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-senai-red"></i>
+                            <a href="mailto:senaisorocaba@sp.senai.br"
+                                class="hover:text-white transition-colors">senaisorocaba@sp.senai.br</a>
                         </li>
                     </ul>
                 </div>
-                
-                <div class="mt-6 border-t border-gray-200 pt-4">
-                    <h3 class="font-bold text-gray-900 mb-2">Descrição</h3>
-                    <p id="decricao" class="mt-2 text-gray-600 text-sm leading-relaxed">
-                        Um produto inovador desenvolvido para atender às suas necessidades. Personalize ao máximo para que ele se torne único e reflita a sua criatividade com a qualidade SENAI.
-                    </p>
-<<<<<<< HEAD
-                    <!--almost forgot-->
-=======
->>>>>>> 85c5f6208d15322c0029ee0f4202fd61417bd80c
-                </div>
 
             </div>
-        </section>
-        
-        <section id="personalizacao" class="max-w-3xl mx-auto scroll-mt-24">
-            <div class="bg-white border-2 border-senai-red shadow-xl relative p-8 md:p-12">
-                <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-senai-red text-white px-8 py-2 font-bold uppercase tracking-widest text-sm shadow-md">
-                    Personalização
-                </div>
+        </div>
 
-                <h2 class="text-3xl font-bold text-gray-900 text-center mb-10 mt-2">Configure seu Produto</h2>
-                
-                <form class="space-y-6">
-                    <div class="grid grid-cols-1 gap-6">
-                        
-                        <div id="tipo_personalizacao">
-                            <label for="nome" class="block text-gray-700 font-semibold text-sm mb-2 uppercase tracking-wide">Nome:</label>
-                            <input type="text" id="nome" name="nome" maxlength="8" placeholder="Ex.: Diana" class="input-pro w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm p-3.5 outline-none transition-all">
-                        </div>
-                        
-                        <div id="persona_dimen">
-                            <label for="dimensoes" class="block text-gray-700 font-semibold text-sm mb-2 uppercase tracking-wide">Dimensões:</label>
-                            <select class=" border-gray-300 border w-full bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900" name="dimensoes" id="dimensoes">
-                                <option class="bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900" value="cor" selected>L 40mm, A 30mm e C 35mm</option>
-                            </select>
-                        </div>
-
-                        <div id="persona_cor">
-                            <label for="cor" class="block text-gray-700 font-semibold text-sm mb-2 uppercase tracking-wide">Cor:</label>
-                            <select class="border-gray-300 border w-full bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900" name="cor" id="cor">
-                                <option class="bg-gray-50 text-sm p-3.5 outline-none transition-all inline-flex items-center justify-left text-gray-700 hover:bg-gray-100 hover:text-gray-900" value="cor" slected>Prata</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-
-                    <div class="pt-8">
-                        <a href="cart.html"><button type="submit" class="w-full bg-zinc-900 text-white font-bold text-lg py-4 hover:bg-black transition-all duration-300 uppercase tracking-widest shadow-lg flex justify-center items-center gap-3">
-                            <i class="fa-solid fa-cart-plus"></i> Adicionar ao Carrinho
-                        </button></a>
-                    </div>
-                </form>
-            </div>
-        </section>
-        
-    </div>
-</main>
-
-<footer class="bg-neutral-900 text-gray-300 relative mt-auto border-t-4 border-senai-red">
-    
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-            
-            <div class="space-y-6">
-                <img src="img/logo_footer.png" alt="Logo SENAI" class="h-12 w-auto opacity-90">
-                <p class="text-sm text-gray-400 leading-relaxed">
-                    Sistema de recompensas para alunos e visitantes durante datas importantes no SENAI Sorocaba.
+        <div class="bg-black border-t border-gray-800">
+            <div
+                class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-xs text-gray-500">
+                    © 2025 SENAI-SP Sorocaba - Todos os direitos reservados.
                 </p>
-                
-                <div class="flex gap-4">
-                    <a href="https://api.whatsapp.com/send?phone=55113220050" target="_blank" class="text-2xl text-gray-400 whatsapp-bounce transition-colors">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
-                    <a href="https://www.instagram.com/senaisorocaba/" target="_blank" class="text-2xl text-gray-400 instagram-bounce transition-colors">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                    <a href="https://www.facebook.com/senaisp.sorocabarosalia/" target="_blank" class="text-2xl text-gray-400 facebook-bounce transition-colors">
-                        <i class="fab fa-facebook"></i>
+                <div class="flex items-center gap-2">
+                    <a href="https://github.com/otaviomulato/projeto_de_conclusao" target="_blank">
+                        <img src="img/ophidiana.png" alt="Selo Ophidiana"
+                            class="h-6 w-auto grayscale opacity-80 hover:opacity-100 transition-opacity">
                     </a>
                 </div>
             </div>
-
-            <div>
-                <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-6 border-l-4 border-senai-red pl-3">Institucional</h4>
-                <ul class="space-y-3 text-sm">
-                    <li><a href="https://sp.senai.br/unidade/sorocaba/" class="footer-link hover:text-senai-red" target="_blank">Portal SENAI</a></li>
-                    <li><a href="https://sp.senai.br/noticias" class="footer-link hover:text-senai-red" target="_blank">Notícias</a></li>
-                    <li><a href="https://sp.senai.br/cursos/0/0?cidadeint=sorocaba&pag=1" class="footer-link hover:text-senai-red" target="_blank">Cursos</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-6 border-l-4 border-senai-red pl-3">Links Rápidos</h4>
-                <ul class="space-y-3 text-sm">
-                    <li><a href="index.html" class="footer-link hover:text-senai-red">Início</a></li>
-                    <li><a href="#" class="footer-link hover:text-senai-red">Perfil</a></li>
-                    <li><a href="about_us.html" class="footer-link hover:text-senai-red">Sobre</a></li>
-                    <li><a href="produtos.html" class="footer-link hover:text-senai-red">Catálogo</a></li>
-                    <li><a href="cart.html" class="footer-link hover:text-senai-red">Carrinho</a></li> </ul>
-            </div>
-            <div>
-                <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-6 border-l-4 border-senai-red pl-3">Endereço & Contato</h4>
-                <ul class="space-y-4 text-sm">
-                    <li class="flex items-start gap-3">
-                        <i class="fa-solid fa-location-dot text-senai-red mt-1"></i>
-                        <address class="not-italic text-gray-400">
-                            SENAI Santa Rosália<br>
-                            Praça Roberto Mange,<br>
-                            R. Santa Rosália, 30<br>
-                            Sorocaba - SP
-                        </address>
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <i class="fa-solid fa-phone text-senai-red"></i>
-                        <a href="tel:08000551000" class="hover:text-white transition-colors">0800-055-1000 (fixo)</a>
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <i class="fa-solid fa-envelope text-senai-red"></i>
-                        <a href="mailto:senaisorocaba@sp.senai.br" class="hover:text-white transition-colors">senaisorocaba@sp.senai.br</a>
-                    </li>
-                </ul>
-            </div>
-            
         </div>
-    </div>
-
-    <div class="bg-black border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p class="text-xs text-gray-500">
-                © 2025 SENAI-SP Sorocaba - Todos os direitos reservados.
-            </p>
-            <div class="flex items-center gap-2">
-                <a href="https://github.com/otaviomulato/projeto_de_conclusao" target="_blank">
-                    <img src="img/ophidiana.png" alt="Selo Ophidiana" class="h-6 w-auto grayscale opacity-80 hover:opacity-100 transition-opacity">
-                </a>
-            </div>
-        </div>
-    </div>
-</footer>
+    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -341,18 +433,18 @@
         const personadimen = document.getElementById("persona_dimen");
         const personacor = document.getElementById("persona_cor");
         function fetchprodutos() {
-                fetch("http://127.0.0.1:8000/api/produtos/1/")
-                .then (res => res.json())
-                .then (data => renderchave(data))
-                .catch (err => console.error("erro ao buscar", err))
+            fetch("http://127.0.0.1:8000/api/produtos/1/")
+                .then(res => res.json())
+                .then(data => renderchave(data))
+                .catch(err => console.error("erro ao buscar", err))
         }
         function fetchimagens() {
             fetch("http://127.0.0.1:8000/api/imagens/")
-            .then (res => res.json())
-            .then (imgs => renderchave_img(imgs))
-            .catch (err => console.error("erro ao buscar", err))
+                .then(res => res.json())
+                .then(imgs => renderchave_img(imgs))
+                .catch(err => console.error("erro ao buscar", err))
         }
-        function renderchave(produto){
+        function renderchave(produto) {
             nome_produto_pag.innerHTML = `${produto.nome_produto}`;
             viewer.innerHTML = `
                 ${produto.link3D}
@@ -401,8 +493,8 @@
             `;
             // tem que zoiar aqui, pois pode ser diferente caso a personalização mude
         }
-        
-        function renderchave_img(imagens){
+
+        function renderchave_img(imagens) {
             const container = document.getElementById("imagens");
             var ides = 0
             container.innerHTML = `<button class="text-gray-400 hover:text-senai-red transition-colors text-center pb-1"><i class="fa-solid fa-chevron-up"></i></button>`;
@@ -419,11 +511,11 @@
                 }
             });
             const carde = document.createElement("button");
-                carde.className = "text-gray-400 hover:text-senai-red transition-colors text-center pt-1"
-                carde.innerHTML = `
+            carde.className = "text-gray-400 hover:text-senai-red transition-colors text-center pt-1"
+            carde.innerHTML = `
                     <i class="fa-solid fa-chevron-down"></i>
                 `;
-                container.appendChild(carde)
+            container.appendChild(carde)
         };
         function destaque(ide) {
             const clicado = document.getElementById(ide);
@@ -437,6 +529,53 @@
                 view_img.style.zIndex = "2"
             }
         }
+
+        function addToCart(event) {
+            event.preventDefault();
+            // Assuming product ID 1 for now as per fetchprodutos()
+            const productId = 1;
+
+            fetch(`http://127.0.0.1:8000/cart/api/add/${productId}/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include', // Important for sessions
+                body: JSON.stringify({
+                    quantity: 1
+                })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.text().then(text => {
+                            throw new Error(`Server error: ${response.status} ${response.statusText} - ${text}`);
+                        });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.status === 'success') {
+                        // Update cart count badge if it exists
+                        const cartBadge = document.querySelector('.fa-cart-shopping + span');
+                        if (cartBadge) {
+                            cartBadge.innerText = data.cart_total_items;
+                        }
+
+                        // Show success feedback
+                        alert('Produto adicionado ao carrinho!');
+
+                        // Redirect to cart
+                        window.location.href = 'cart.html';
+                    } else {
+                        alert('Erro do servidor: ' + (data.message || 'Desconhecido'));
+                    }
+                })
+                .catch(error => {
+                    console.error('Error adding to cart:', error);
+                    alert('Erro detalhado: ' + error.message);
+                });
+        }
     </script>
 </body>
+
 </html>

@@ -1,6 +1,6 @@
 from decimal import Decimal
 from django.conf import settings
-from produtos.models import Produto
+from dados.models import Produto
 
 class Cart:
     def __init__(self, request):
@@ -12,12 +12,15 @@ class Cart:
             cart = self.session[settings.CART_SESSION_ID] = {}
         self.cart = cart
 
-    def add(self, product, quantity=1, override_quantity=False):
+    def add(self, product, quantity=1, override_quantity=False, customization=None):
         #Adiciona um produto ao carrinho ou atualiza/sobrescreve sua quantidade.
         product_id = str(product.id)
         if product_id not in self.cart:
-            self.cart[product_id] = {'quantity': 0, 'price': str(product.preco)}
+            self.cart[product_id] = {'quantity': 0, 'price': str(product.preco), 'customization': {}}
         
+        if customization:
+            self.cart[product_id]['customization'] = customization
+            
         if override_quantity:
             self.cart[product_id]['quantity'] = quantity
         else:
