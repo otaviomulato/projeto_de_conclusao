@@ -199,7 +199,6 @@
                             <label
                                 class="block text-[10px] uppercase font-bold text-gray-400 mb-1 flex items-center gap-2">
                                 <i class="fa-solid fa-briefcase"></i> Cargo / Função
-                                <!--Sinceramente não sei por que o Amarildo quer isso-->
                             </label>
                             <p class="text-gray-900 font-medium" id="profissao2"></p>
                         </div>
@@ -219,7 +218,7 @@
                             </label>
                             <div class="flex items-center">
     
-                            <span id="texto_senha" class="text-gray-900 font-medium mr-3" style="letter-spacing: 2px;">
+                            <span id="senha" class="text-gray-900 font-medium mr-3" style="letter-spacing: 2px;">
                                 ••••••••
                             </span>
 
@@ -353,29 +352,59 @@
     </footer>
 
     <script>
-        const texto_Senha = data.senha_user;
-        const data = {
-            senha_user: texto_senha
-        };
+        let senhaReal = null;
+        function fetchusuarios() {
+            fetch("http://127.0.0.1:8000/api/usuarios/2/")
+                .then(res => res.json())
+                .then(data => preencheruser(data))
+                .catch(err => console.error("erro ao buscar", err))               
+        }
 
-        let senhaReal = data.senha_user;
-    document.addEventListener("DOMContentLoaded", function() {
+        function preencheruser(data){
+                senhaReal = data.senha_user;
+                 document.getElementById("nome").textContent = data.nome_user;
+                 document.getElementById("nome2").textContent = data.nome_user;
+                 document.getElementById("email").textContent = data.email_user;
+                 document.getElementById("telefone").textContent = data.telefone;
+                 document.getElementById("profissao").textContent = data.profissao;
+                 document.getElementById("profissao2").textContent = data.profissao;
+                 document.getElementById("idade").textContent = data.idade;
+                 document.getElementById("idade").textContent = data.idade;
+        }
 
+          document.addEventListener("DOMContentLoaded", function (event) {
+            fetchusuarios(); // Carregar categorias existentes
+
+
+                
+                document.getElementById("senha").textContent = "••••••••";
+                configurarToggleSenha();
+
+             });
+
+    function configurarToggleSenha() {
         const senhaMascarada = "••••••••";
         
         let isSenhaVisivel = false;
 
-        const textoSenhaEl = document.getElementById('texto_senha');
+        const textoSenhaEl = document.getElementById('senha');
         const btnToggleEl = document.getElementById('btn-toggle-senha');
         const iconeOlhoEl = document.getElementById('icone-olho');
+
+        if (!btnToggleEl || !iconeOlhoEl || !textoSenhaEl) {
+            console.error("Elementos DOM do toggle não encontrados.");
+            return;
+        }
 
         const svgOlhoAberto = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />';
         
         const svgOlhoFechado = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />';
 
+        iconeOlhoEl.innerHTML = svgOlhoAberto;
+
         btnToggleEl.addEventListener('click', function() {
             
-            if (!senhaReal || senhaReal === "••••••••") {
+            if (!senhaReal || senhaReal === senhaMascarada) {
                 console.warn("Aguardando carregamento da senha da API...");
                 return;
             }
@@ -392,32 +421,7 @@
                 textoSenhaEl.style.letterSpacing = "2px";
             }
         });
-    });
-
-        function fetchusuarios() {
-            fetch("http://127.0.0.1:8000/api/usuarios/1/")
-                .then(res => res.json())
-                .then(data => preencheruser(data))
-                .catch(err => console.error("erro ao buscar", err))               
-        }
-
-        function preencheruser(data){
-                 document.getElementById("nome").textContent = data.nome_user;
-                 document.getElementById("nome2").textContent = data.nome_user;
-                 document.getElementById("email").textContent = data.email_user;
-                 document.getElementById("telefone").textContent = data.telefone;
-                 document.getElementById("profissao").textContent = data.profissao;
-                 document.getElementById("profissao2").textContent = data.profissao;
-                 document.getElementById("idade").textContent = data.idade;
-                 document.getElementById("senha").textContent = data.senha_user;
-                 document.getElementById("texto_senha").textContent = data.senha_user;
-                 document.getElementById("idade").textContent = data.idade;
-        }
-
-          document.addEventListener("DOMContentLoaded", function (event) {
-            fetchusuarios(); // Carregar categorias existentes
-
-             });
+    }
     </script>
 
 </body>
