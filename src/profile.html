@@ -219,7 +219,7 @@
                             </label>
                             <div class="flex items-center">
     
-                            <span id="texto-senha" class="text-gray-900 font-medium mr-3" style="letter-spacing: 2px;">
+                            <span id="texto_senha" class="text-gray-900 font-medium mr-3" style="letter-spacing: 2px;">
                                 ••••••••
                             </span>
 
@@ -353,14 +353,19 @@
     </footer>
 
     <script>
-        let senhaReal = "••••••••";
+        const texto_Senha = data.senha_user;
+        const data = {
+            senha_user: texto_senha
+        };
+
+        let senhaReal = data.senha_user;
     document.addEventListener("DOMContentLoaded", function() {
 
         const senhaMascarada = "••••••••";
         
         let isSenhaVisivel = false;
 
-        const textoSenhaEl = document.getElementById('texto-senha');
+        const textoSenhaEl = document.getElementById('texto_senha');
         const btnToggleEl = document.getElementById('btn-toggle-senha');
         const iconeOlhoEl = document.getElementById('icone-olho');
 
@@ -382,7 +387,6 @@
                 iconeOlhoEl.innerHTML = svgOlhoFechado;
                 textoSenhaEl.style.letterSpacing = "normal";
             } else {
-                // ESCONDER A SENHA
                 textoSenhaEl.innerText = senhaMascarada;
                 iconeOlhoEl.innerHTML = svgOlhoAberto;
                 textoSenhaEl.style.letterSpacing = "2px";
@@ -406,7 +410,7 @@
                  document.getElementById("profissao2").textContent = data.profissao;
                  document.getElementById("idade").textContent = data.idade;
                  document.getElementById("senha").textContent = data.senha_user;
-                 document.getElementById("texto-senha").textContent = data.senha_user;
+                 document.getElementById("texto_senha").textContent = data.senha_user;
                  document.getElementById("idade").textContent = data.idade;
         }
 
