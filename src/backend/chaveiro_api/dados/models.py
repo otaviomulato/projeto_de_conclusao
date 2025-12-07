@@ -25,8 +25,8 @@ class Servidor(models.Model):
     def __str__(self):
         return self.credito_add
 class Pedido(models.Model):
-    data_criacao = models.DateTimeField(auto_now_add=True)
-    data_entrega = models.DateTimeField(blank=True, null=True)
+    data_criacao = models.DateField(auto_now_add=True)
+    data_entrega = models.DateField(blank=True, null=True)
     status = models.IntegerField()
     persona = models.TextField(blank=True, null=True)
     avaliacao = models.TextField(blank=True, null=True)
