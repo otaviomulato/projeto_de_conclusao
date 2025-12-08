@@ -1,0 +1,392 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso SENAI - Login </title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        senai: {
+                            red: '#E30613',
+                            dark: '#1A1A1A',
+                            lightgray: '#F3F4F6'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    transitionProperty: {
+                        'height': 'height',
+                        'spacing': 'margin, padding',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Floating Labels (Mantido) */
+        .floating-input {
+            padding-top: 1.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        .floating-label {
+            position: absolute;
+            left: 1rem;
+            top: 1rem;
+            transition: all 0.2s ease-out;
+            pointer-events: none;
+            color: #9ca3af;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .floating-input:focus~.floating-label,
+        .floating-input:not(:placeholder-shown)~.floating-label {
+            top: 0.25rem;
+            font-size: 0.65rem;
+            color: #E30613;
+            font-weight: 700;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            transition: color 0.2s;
+        }
+
+        .floating-input:focus~.input-icon {
+            color: #E30613;
+        }
+
+        .has-icon .floating-input {
+            padding-left: 3rem;
+        }
+
+        .has-icon .floating-label {
+            left: 3rem;
+        }
+
+        /* --- ESTILOS DA NOVA TRANSIÇÃO (SLIDER) --- */
+
+        /* Janela que esconde o que está fora */
+        .slider-viewport {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+            /* A transição de altura deve ser suave */
+            transition: height 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* O trilho que move os formulários */
+        .slider-track {
+            display: flex;
+            width: 200%;
+            /* Cabe os 2 formulários */
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            /* Curva Bezier para suavidade premium */
+        }
+
+        /* Cada formulário ocupa 50% do trilho (100% da viewport) */
+        .form-slide {
+            width: 50%;
+            padding: 2px;
+            /* Evita cortes de outline/shadow */
+        }
+
+        /* Estilo da linha vermelha das abas */
+        .tab-indicator {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background-color: #E30613;
+            width: 50%;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+    </style>
+</head>
+
+<body class="bg-senai-lightgray h-screen flex items-center justify-center overflow-hidden">
+
+    <div class="w-full h-full flex shadow-2xl overflow-hidden bg-white">
+
+        <div
+            class="hidden lg:flex w-5/12 relative overflow-hidden bg-black items-center justify-center p-12 text-white z-0">
+            <div class="relative z-20 flex flex-col items-center text-center">
+                <a href="{% url 'index' %}">
+                    <img src="{% static 'img/logo_footer.png' %}" alt="Logo SENAI"
+                        class="h-24 w-auto mb-10 drop-shadow-lg">
+                </a>
+                <h2 class="text-5xl font-black mb-6 uppercase tracking-tight leading-tight">Inovação <br>em Conexão</h2>
+                <div class="w-20 h-2 bg-senai-red mb-6"></div>
+                <p class="text-gray-200 text-lg max-w-sm mx-auto leading-relaxed font-light">
+                    Sua porta de entrada para o ecossistema de tecnologia e educação profissional do SENAI Sorocaba.
+                </p>
+            </div>
+        </div>
+
+        <div class="w-full lg:w-7/12 flex flex-col bg-white overflow-y-auto relative z-30 custom-scrollbar">
+
+            <div class="lg:hidden p-6 text-center bg-black">
+                <img src="{% static 'img/logo_footer.png' %}" alt="Logo SENAI" class="h-12 mx-auto">
+            </div>
+
+            <div class="flex-grow flex flex-col justify-center px-8 md:px-20 lg:px-24 py-12">
+                <div class="max-w-md w-full mx-auto">
+
+                    <div class="relative flex mb-12 border-b-2 border-gray-100">
+                        <button onclick="switchTab(0)" id="btn-login"
+                            class="w-1/2 py-4 text-center font-bold text-senai-red transition-colors uppercase tracking-widest text-sm z-10">
+                            Acessar Conta
+                        </button>
+                        <button onclick="switchTab(1)" id="btn-register"
+                            class="w-1/2 py-4 text-center font-bold text-gray-400 hover:text-senai-red transition-colors uppercase tracking-widest text-sm z-10">
+                            Novo Cadastro
+                        </button>
+                        <div id="tab-indicator" class="tab-indicator"></div>
+                    </div>
+
+                    <div id="form-viewport" class="slider-viewport">
+                        <div id="form-track" class="slider-track">
+
+                            <div class="form-slide" id="slide-login">
+                                <div class="space-y-8">
+                                    <div>
+                                        <h1 class="text-4xl font-black text-gray-900 mb-3 tracking-tight">Bem-vindo de
+                                            volta.</h1>
+                                        <p class="text-gray-500">Insira suas credenciais para continuar.</p>
+                                    </div>
+
+                                    <form class="space-y-6">
+                                        <div class="relative has-icon">
+                                            <input type="email" id="login-email" placeholder=" "
+                                                class="floating-input w-full bg-gray-50 border-b-2 border-gray-200 focus:border-senai-red outline-none transition-colors rounded-t-sm text-gray-900 font-medium peer">
+                                            <label for="login-email" class="floating-label">E-mail
+                                                Corporativo/Pessoal</label>
+                                            <i class="fa-regular fa-envelope input-icon"></i>
+                                        </div>
+
+                                        <div class="relative has-icon">
+                                            <input type="password" id="login-pass" placeholder=" "
+                                                class="floating-input w-full bg-gray-50 border-b-2 border-gray-200 focus:border-senai-red outline-none transition-colors rounded-t-sm text-gray-900 font-medium peer">
+                                            <label for="login-pass" class="floating-label">Sua Senha</label>
+                                            <i class="fa-solid fa-lock input-icon"></i>
+                                        </div>
+
+                                        <div class="flex justify-end">
+                                            <a href="#"
+                                                class="text-sm text-senai-red hover:text-red-800 font-semibold transition-colors">Esqueceu
+                                                sua senha?</a>
+                                        </div>
+
+                                        <button
+                                            class="w-full bg-senai-red text-white font-bold py-5 rounded-sm hover:bg-red-700 transition-all shadow-md hover:shadow-xl uppercase tracking-widest text-sm flex justify-center items-center gap-3 group relative overflow-hidden">
+                                            <span class="relative z-10">Entrar no Sistema</span>
+                                            <i
+                                                class="fa-solid fa-arrow-right relative z-10 group-hover:translate-x-1 transition-transform"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="form-slide" id="slide-register">
+                                <div class="space-y-8">
+                                    <div>
+                                        <h1 class="text-4xl font-black text-gray-900 mb-3 tracking-tight">Criar nova
+                                            conta.</h1>
+                                        <p class="text-gray-500">Preencha os dados técnicos para registro.</p>
+                                    </div>
+
+                                    <form class="space-y-5" onsubmit="event.preventDefault()">
+                                        <div class="relative">
+                                            <input type="text" id="reg-nome" placeholder=" "
+                                                class="floating-input w-full bg-gray-50 border-b-2 border-gray-200 focus:border-senai-red outline-none px-4 peer">
+                                            <label for="reg-nome" class="floating-label left-4">Nome Completo</label>
+                                        </div>
+
+                                        <div class="relative">
+                                            <input type="email" id="reg-email" placeholder=" "
+                                                class="floating-input w-full bg-gray-50 border-b-2 border-gray-200 focus:border-senai-red outline-none px-4 peer">
+                                            <label for="reg-email" class="floating-label left-4">E-mail
+                                                Principal</label>
+                                        </div>
+
+                                        <div class="relative">
+                                            <input type="tel" id="reg-zap" placeholder=" "
+                                                class="floating-input w-full bg-gray-50 border-b-2 border-gray-200 focus:border-senai-red outline-none px-4 peer">
+                                            <label for="reg-zap" class="floating-label left-4">Whatsapp</label>
+                                        </div>
+
+                                        <div class="grid grid-cols-2 gap-5">
+                                            <div class="relative">
+                                                <input type="text" id="reg-prof" placeholder=" "
+                                                    class="floating-input w-full bg-gray-50 border-b-2 border-gray-200 focus:border-senai-red outline-none px-4 peer">
+                                                <label for="reg-prof" class="floating-label left-4">Profissão</label>
+                                            </div>
+                                            <div class="relative">
+                                                <input type="number" id="reg-idade" placeholder=" "
+                                                    class="floating-input w-full bg-gray-50 border-b-2 border-gray-200 focus:border-senai-red outline-none px-4 peer">
+                                                <label for="reg-idade" class="floating-label left-4">Idade</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="relative">
+                                            <input type="password" id="reg-pass" placeholder=" "
+                                                class="floating-input w-full bg-gray-50 border-b-2 border-gray-200 focus:border-senai-red outline-none px-4 peer">
+                                            <label for="reg-pass" class="floating-label left-4">Defina uma Senha</label>
+                                        </div>
+
+                                        <div class="pt-6">
+                                            <button id="enviar"
+                                                class="w-full bg-black text-white font-bold py-5 rounded-sm hover:bg-gray-900 transition-all shadow-md hover:shadow-xl uppercase tracking-widest text-sm">
+                                                Finalizar Registro
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="text-center py-4 text-gray-400 text-xs bg-gray-50 lg:bg-white border-t border-gray-100">
+                © 2025 SENAI Sorocaba. Ambiente Seguro.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Enviar formulário sem recarregar a página
+            document.getElementById('enviar').addEventListener('click', criarUsuario);
+            chamrfetch()
+        });
+
+        const apiUrl = 'http://127.0.0.1:8000/api/';
+        // Inicializa a altura correta no carregamento
+        window.onload = () => updateHeight(0);
+
+        function switchTab(index) {
+            const track = document.getElementById('form-track');
+            const indicator = document.getElementById('tab-indicator');
+            const btnLogin = document.getElementById('btn-login');
+            const btnRegister = document.getElementById('btn-register');
+
+            // 1. Move o trilho
+            if (index === 0) {
+                // Login
+                track.style.transform = 'translateX(0)';
+                indicator.style.transform = 'translateX(0)';
+
+                // Atualiza cores dos botões
+                btnLogin.classList.add('text-senai-red');
+                btnLogin.classList.remove('text-gray-400');
+                btnRegister.classList.remove('text-senai-red');
+                btnRegister.classList.add('text-gray-400');
+
+            } else {
+                // Cadastro
+                track.style.transform = 'translateX(-50%)';
+                indicator.style.transform = 'translateX(100%)'; // Move a linha 100% da própria largura para direita
+
+                // Atualiza cores dos botões
+                btnRegister.classList.add('text-senai-red');
+                btnRegister.classList.remove('text-gray-400');
+                btnLogin.classList.remove('text-senai-red');
+                btnLogin.classList.add('text-gray-400');
+            }
+
+            // 2. Anima a altura
+            updateHeight(index);
+        }
+
+        function updateHeight(index) {
+            const viewport = document.getElementById('form-viewport');
+            const slideLogin = document.getElementById('slide-login');
+            const slideRegister = document.getElementById('slide-register');
+
+            // Pega a altura do filho direto do slide (o div space-y-8)
+            const height = index === 0
+                ? slideLogin.firstElementChild.offsetHeight
+                : slideRegister.firstElementChild.offsetHeight;
+
+            viewport.style.height = height + 'px';
+        }
+        var cred = 0
+        function chamrfetch() {
+            fetch("http://127.0.0.1:8000/api/servidor/1/")
+                .then(res => res.json())
+                .then(data => {
+
+                    cred = data.credito_add
+                })
+                .catch(err => console.error("erro ao buscar o servidor", err))
+        }
+
+        async function criarUsuario(event) {
+
+
+            const nome = document.getElementById('reg-nome').value;
+            const email = document.getElementById('reg-email').value;
+            const telefone = document.getElementById('reg-zap').value;
+            const profissao = document.getElementById('reg-prof').value;
+            const idade = document.getElementById('reg-idade').value;
+            const senha = document.getElementById('reg-pass').value;
+
+            let credi = cred
+
+            const fd = new FormData();
+            fd.append('nome_user', nome);
+            fd.append('email_user', email);
+            fd.append('telefone', telefone);
+            fd.append('profissao', profissao);
+            fd.append('idade', idade);
+            fd.append('senha_user', senha);
+            fd.append('credito', credi);
+
+
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/usuarios/', {
+                    method: 'POST',
+                    body: fd
+                });
+
+                if (!response.ok) {
+                    throw new Error('Erro ao cadastrar o usuário');
+                }
+
+                const cadastrado = await response.json();
+                console.log('Cadastrado com sucesso:', cadastrado);
+
+                // Limpar o campo
+            } catch (error) {
+                console.error('Erro ao se cadastrar:', error);
+                alert('Ocorreu um erro ao se cadastrar. Detalhes: ' + error.message);
+            }
+        }
+    </script>
+</body>
+
+</html>

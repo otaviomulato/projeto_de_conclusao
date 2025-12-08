@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>drop da bomb</title>
+</head>
+<body>
+    <main>
+        <div id="her">
+
+        </div>
+        <div id="somethin">
+
+        </div>
+        <button onclick="crick() , funfa()">
+            clica aqui ó doido
+        </button>
+      
+    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded",()=>{
+            fetchprodutos()
+            fetchimagens()
+        });
+        function crick() {
+            console.log("clicado");
+        }
+        function funfa() {
+            console.log("funfa");
+        }
+        function fetchprodutos() {
+            fetch("http://127.0.0.1:8000/api/produtos/2/")
+            .then (res => res.json())
+            .then (data => renderchave(data))
+            .catch (err => console.error("erro ao buscar", err))
+        }
+        function fetchimagens() {
+            fetch("http://127.0.0.1:8000/api/imagens/")
+            .then (res => res.json())
+            .then (imgs => renderchave_img(imgs))
+            .catch (err => console.error("erro ao buscar", err))
+        }
+        //como resolver sapoxa
+        // tenta puxar só os que quer
+        // ou puxa tudo e organiza certinho depois
+        function renderchave(produtos){
+            const container = document.getElementById("hero");
+            container.innerHTML = "";
+            const card = document.createElement("div");
+            card.innerHTML = `
+                <p>${produtos.nome_produto}</p>
+                <p>${produtos.descricao}</p>
+                <p>${produtos.preco}</p>
+                <p>${produtos.tipo_persona}</p>
+                ${produtos.link3D}
+                
+            `;
+            container.appendChild(card)
+        }
+        function renderchave_img(imagens){
+            const container = document.getElementById("something");
+            container.innerHTML = "";
+            imagens.forEach(imagem => {
+                if (imagem.FK_produto.id == 2) {
+                    const card = document.createElement("div");
+                    card.innerHTML = `
+                        <p>bla bla</p>
+                        <p>${imagem.id}</p>
+                        <p>${imagem.FK_produto.nome_produto}</p>
+                        <img src="${imagem.img_produto}" alt="">
+                        
+                    `;
+                    container.appendChild(card)
+                    
+                } else {
+                    
+                }
+
+            });
+        };
+    </script>
+    <!--Isso ae faz a vizualização 3D funfar, 
+    logo só o splineviewer é necessario no banco 
+    (eu acho, espero que esse script não seja unico para cada modelo)-->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.11.6/build/spline-viewer.js"></script>
+</body>
+</html>
+<!--mexer no produtos e clicar para substituir viewer por imagem tipo loja memo-->
