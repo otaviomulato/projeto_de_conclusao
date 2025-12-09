@@ -574,23 +574,6 @@
     </footer>
 
     <script src="{% static 'js/index.js' %}"></script>
-    <script>
-        
-        const credito_place = document.getElementById('credito')
-        const userid = credito_place.innerHTML
-        function fetchprodutos(id) {
-            fetch(`http://127.0.0.1:8000/api/usuarios/${id}/`)
-                .then(res => res.json())
-                .then(data => {
-                    credito_place.innerHTML = `$ ${data.credito}`;
-                })
-                .catch(err => console.error("erro ao buscar", err))
-        }
-        fetchprodutos(userid)
-        
-        
-        
-    </script>
 </body>
 
 </html>
