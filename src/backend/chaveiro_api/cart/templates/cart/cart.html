@@ -302,6 +302,7 @@
         const credito_place = document.getElementById('credito');
         const userid = credito_place.innerHTML;
         var credito_atual = null
+        var server = false
         
 
         let currentCartItems = [];
@@ -309,6 +310,12 @@
         document.addEventListener('DOMContentLoaded', () => {
             fetchCart();
             fetchuser(LOGGED_USER_ID);
+            fetch(`http://127.0.0.1:8000/api/servidores/1/`)
+                .then(res => res.json())
+                .then(data => {
+                    server = data.ligado;
+                })
+                .catch(err => console.error("erro ao buscar", err))
 
             const btnEnviar = document.getElementById('btn-enviar');
             if (btnEnviar) {
@@ -444,6 +451,12 @@
                 alert("Crédito insuficiente")
                 return
             }
+
+            if (server == false) {
+                alert("o servidor das maquinas está desligado")
+                return
+            }
+
             const nomePersonalizado = item.customization ? item.customization.nome : "Sem nome";
 
             const fd = new FormData();
