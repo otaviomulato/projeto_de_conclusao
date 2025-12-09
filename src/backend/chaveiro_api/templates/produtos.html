@@ -394,14 +394,25 @@
 
     <script>
         let currentProductId = null;
+        const credito_place = document.getElementById('credito');
+        const userid = credito_place.innerHTML;
 
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             const urlId = urlParams.get('id') || 1;
+            troca_credito(userid)
             fetchprodutos(1);
             // mude quando o user funfar
             fetchimagens();
         });
+        function troca_credito(id) {
+            fetch(`http://127.0.0.1:8000/api/usuarios/${id}/`)
+                .then(res => res.json())
+                .then(data => {
+                    credito_place.innerHTML = `$ ${data.credito}`;
+                })
+                .catch(err => console.error("erro ao buscar", err))
+        }
 
         function fetchprodutos(id) {
             fetch(`http://127.0.0.1:8000/api/produtos/${id}/`)

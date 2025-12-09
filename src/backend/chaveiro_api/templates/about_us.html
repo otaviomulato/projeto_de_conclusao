@@ -483,6 +483,17 @@
                 mobileMenu.classList.toggle('hidden');
             });
         }
+        const credito_place = document.getElementById('credito');
+        const userid = credito_place.innerHTML;
+        function troca_credito(id) {
+            fetch(`http://127.0.0.1:8000/api/usuarios/${id}/`)
+                .then(res => res.json())
+                .then(data => {
+                    credito_place.innerHTML = `$ ${data.credito}`;
+                })
+                .catch(err => console.error("erro ao buscar", err))
+        }
+        troca_credito(userid)
     </script>
 
 </body>
