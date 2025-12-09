@@ -97,6 +97,7 @@ def profile_api(request):
             usuario.telefone = data.get('telefone', usuario.telefone)
             usuario.profissao = data.get('profissao', usuario.profissao)
             usuario.idade = data.get('idade', usuario.idade)
+            usuario.credito = data.get('credito', usuario.credito)
             
             nova_senha = data.get('senha')
             if nova_senha and nova_senha.strip() != "":

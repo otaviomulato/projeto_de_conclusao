@@ -39,33 +39,101 @@
 
             <ul class="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-8">
                 <li><a href="{% url 'index' %}"
-                        class="font-medium text-white tracking-wide uppercase text-sm">Início</a></li>
+                        class="font-medium text-white border-b-2 border-senai-red pb-1 tracking-wide uppercase text-sm">Início</a>
+                </li>
                 <li><a href="{% url 'produtos' %}"
                         class="font-medium text-gray-300 hover:text-white transition-colors tracking-wide uppercase text-sm">Catálogo</a>
+                </li>
+                <li><a href="{% url 'about_us' %}"
+                        class="font-medium text-gray-300 hover:text-white transition-colors tracking-wide uppercase text-sm">Sobre</a>
                 </li>
             </ul>
 
             <div class="hidden lg:flex items-center gap-6">
+                <a href="#"
+                    class="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-400 text-black rounded-full px-4 py-1.5 font-bold shadow-lg shadow-yellow-500/20 transition-all transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-wallet"></i>
+                    <span class="text-sm font-mono">$ --</span>
+                </a>
+
                 {% if request.session.user_id %}
                 <div class="relative group z-50">
-                    <button class="flex items-center gap-2 text-white hover:text-senai-red transition-colors">
-                        <i class="fa-solid fa-user text-sm"></i>
-                        <span class="text-sm font-bold uppercase">{{ request.session.user_name }}</span>
+                    <button
+                        class="flex items-center gap-2 text-white hover:text-senai-red transition-colors focus:outline-none py-2">
+                        <div
+                            class="w-8 h-8 rounded-full bg-senai-red flex items-center justify-center text-white border-2 border-zinc-800">
+                            <i class="fa-solid fa-user text-xs"></i>
+                        </div>
+                        <span class="text-sm font-bold uppercase hidden sm:block max-w-[100px] truncate">
+                            {{ request.session.user_name }}
+                        </span>
+                        <i
+                            class="fa-solid fa-chevron-down text-[10px] opacity-70 group-hover:rotate-180 transition-transform"></i>
                     </button>
-                    <div class="absolute right-0 top-full pt-2 w-48 hidden group-hover:block hover:block">
-                        <div class="bg-white rounded shadow-xl border-t-4 border-senai-red">
-                            <a href="{% url 'usuarios:logout' %}"
-                                class="block px-4 py-3 text-sm text-red-600 hover:bg-red-50 font-bold">Sair</a>
+
+                    <div class="absolute right-0 top-full pt-2 w-56 hidden group-hover:block hover:block">
+                        <div class="bg-white rounded-lg shadow-xl border-t-4 border-senai-red overflow-hidden">
+                            <div class="px-4 py-3 border-b border-gray-100 bg-gray-50">
+                                <p class="text-xs text-gray-500 uppercase tracking-wider">Logado como</p>
+                                <p class="font-bold text-gray-900 truncate">{{ request.session.user_name }}</p>
+                            </div>
+
+                            <div class="py-1">
+                                <a href="{% url 'profile' %}"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-senai-red transition-colors">
+                                    <i class="fa-regular fa-id-card w-6 text-center"></i> Meu Perfil
+                                </a>
+                                <a href="{% url 'orders' %}"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-senai-red transition-colors">
+                                    <i class="fa-solid fa-box-open w-6 text-center"></i> Meus Pedidos
+                                </a>
+                            </div>
+
+                            <div class="border-t border-gray-100 py-1">
+                                <a href="{% url 'usuarios:logout' %}"
+                                    class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50 font-bold transition-colors">
+                                    <i class="fa-solid fa-right-from-bracket w-6 text-center"></i> Sair
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 {% else %}
-                <a href="{% url 'sign_in' %}" class="text-white hover:text-senai-red transition-colors">
-                    <i class="fa-regular fa-user text-xl"></i>
+                <a href="{% url 'sign_in' %}"
+                    class="text-white hover:text-senai-red transition-colors flex flex-col items-center group"
+                    title="Fazer Login">
+                    <i class="fa-regular fa-user text-xl group-hover:scale-110 transition-transform"></i>
                 </a>
                 {% endif %}
+
+                <a href="{% url 'cart:cart_detail' %}"
+                    class="relative text-white hover:text-senai-red transition-colors">
+                    <i class="fa-solid fa-cart-shopping text-xl"></i>
+                    <span
+                        class="absolute -top-2 -right-2 bg-senai-red text-white text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center border-2 border-black">0</span>
+                </a>
             </div>
+
+            <button id="menu-toggle" class="lg:hidden p-2 text-white hover:text-senai-red">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
         </nav>
+
+        <div id="mobile-menu"
+            class="hidden lg:hidden absolute top-full left-0 w-full bg-zinc-900 border-t border-gray-800 shadow-xl z-50">
+            <ul class="flex flex-col items-center gap-6 py-8">
+                <li><a href="{% url 'index' %}" class="font-bold text-white text-lg">INÍCIO</a></li>
+                <li><a href="{% url 'produtos' %}" class="font-bold text-gray-300 text-lg">CATÁLOGO</a></li>
+                <li><a href="{% url 'about_us' %}" class="font-bold text-gray-300 text-lg">SOBRE</a></li>
+
+                {% if request.session.user_id %}
+                <li><a href="{% url 'usuarios:logout' %}" class="font-bold text-red-500 text-lg">SAIR ({{
+                        request.session.user_name }})</a></li>
+                {% else %}
+                <li><a href="{% url 'sign_in' %}" class="font-bold text-senai-red text-lg">FAZER LOGIN</a></li>
+                {% endif %}
+            </ul>
+        </div>
     </header>
 
     <main class="flex-grow bg-gray-50 py-10">
@@ -128,18 +196,101 @@
     </div>
 
     <footer class="bg-neutral-900 text-gray-300 relative mt-auto border-t-4 border-senai-red">
+
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+
                 <div class="space-y-6">
                     <img src="{% static 'img/logo_footer.png' %}" alt="Logo SENAI" class="h-12 w-auto opacity-90">
-                    <p class="text-sm text-gray-400 leading-relaxed">Sistema de recompensas para alunos e visitantes.
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        Sistema de recompensas para alunos e visitantes durante datas importantes no SENAI Sorocaba.
                     </p>
+
+                    <div class="flex gap-4">
+                        <a href="https://api.whatsapp.com/send?phone=55113220050" target="_blank"
+                            class="text-2xl text-gray-400 whatsapp-bounce transition-colors">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://www.instagram.com/senaisorocaba/" target="_blank"
+                            class="text-2xl text-gray-400 instagram-bounce transition-colors">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/senaisp.sorocabarosalia/" target="_blank"
+                            class="text-2xl text-gray-400 facebook-bounce transition-colors">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
                 </div>
+
+                <div>
+                    <h4
+                        class="text-white font-bold uppercase tracking-widest text-sm mb-6 border-l-4 border-senai-red pl-3">
+                        Institucional</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="https://sp.senai.br/unidade/sorocaba/" class="footer-link hover:text-senai-red"
+                                target="_blank">Portal SENAI</a></li>
+                        <li><a href="https://sp.senai.br/noticias" class="footer-link hover:text-senai-red"
+                                target="_blank">Notícias</a></li>
+                        <li><a href="https://sp.senai.br/cursos/0/0?cidadeint=sorocaba&pag=1"
+                                class="footer-link hover:text-senai-red" target="_blank">Cursos</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4
+                        class="text-white font-bold uppercase tracking-widest text-sm mb-6 border-l-4 border-senai-red pl-3">
+                        Links Rápidos</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="{% url 'index' %}" class="footer-link hover:text-senai-red">Início</a></li>
+                        <li><a href="{% url 'profile' %}" class="footer-link hover:text-senai-red">Perfil</a></li>
+                        <li><a href="{% url 'about_us' %}" class="footer-link hover:text-senai-red">Sobre</a></li>
+                        <li><a href="{% url 'produtos' %}" class="footer-link hover:text-senai-red">Catálogo</a></li>
+                        <li><a href="{% url 'cart:cart_detail' %}" class="footer-link hover:text-senai-red">Carrinho</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4
+                        class="text-white font-bold uppercase tracking-widest text-sm mb-6 border-l-4 border-senai-red pl-3">
+                        Endereço & Contato</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot text-senai-red mt-1"></i>
+                            <address class="not-italic text-gray-400">
+                                SENAI Santa Rosália<br>
+                                Praça Roberto Mange,<br>
+                                R. Santa Rosália, 30<br>
+                                Sorocaba - SP
+                            </address>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-senai-red"></i>
+                            <a href="tel:08000551000" class="hover:text-white transition-colors">0800-055-1000
+                                (fixo)</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-senai-red"></i>
+                            <a href="mailto:senaisorocaba@sp.senai.br"
+                                class="hover:text-white transition-colors">senaisorocaba@sp.senai.br</a>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
         </div>
+
         <div class="bg-black border-t border-gray-800">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between gap-4">
-                <p class="text-xs text-gray-500">© 2025 SENAI-SP Sorocaba - Todos os direitos reservados.</p>
+            <div
+                class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-xs text-gray-500">
+                    © 2025 SENAI-SP Sorocaba - Todos os direitos reservados.
+                </p>
+                <div class="flex items-center gap-2">
+                    <a href="https://github.com/otaviomulato/projeto_de_conclusao" target="_blank">
+                        <img src="{% static 'img/ophidiana.png' %}" alt="Selo Ophidiana"
+                            class="h-6 w-auto grayscale opacity-80 hover:opacity-100 transition-opacity">
+                    </a>
+                </div>
             </div>
         </div>
     </footer>
@@ -147,11 +298,15 @@
     <script>
         // --- SEGURANÇA: ID do Usuário da Sessão Django ---
         const LOGGED_USER_ID = "{{ request.session.user_id|default_if_none:'' }}";
+        const PROFILE_API_URL = "{% url 'usuarios:profile_api' %}";
+        var credito_atual = null
+        
 
         let currentCartItems = [];
 
         document.addEventListener('DOMContentLoaded', () => {
             fetchCart();
+            fetchuser(LOGGED_USER_ID);
 
             const btnEnviar = document.getElementById('btn-enviar');
             if (btnEnviar) {
@@ -167,6 +322,7 @@
                     }
                 });
             }
+
         });
 
         function fetchCart() {
@@ -178,6 +334,15 @@
                     updateTotalsDisplay(data.total_price);
                 })
                 .catch(err => console.error("Erro ao buscar carrinho:", err));
+        }
+        function fetchuser(id) {
+            fetch(`http://127.0.0.1:8000/api/usuarios/${id}/`)
+                .then(res => res.json())
+                .then(data => {
+                    credito_atual = data.credito
+                    
+                })
+                .catch(err => console.error("erro ao buscar", err))
         }
 
         function renderCartItems(items) {
@@ -230,7 +395,7 @@
                         <div class="flex justify-between items-end mt-4 sm:mt-0">
                             <div class="text-xs font-bold text-gray-500 uppercase tracking-wide bg-gray-50 px-3 py-1 rounded">Qtd: 1 (Máx)</div>
                             <div class="text-right">
-                                <p class="text-2xl font-bold text-senai-red">R$ ${item.total_price}</p>
+                                <p class="text-2xl font-bold text-senai-red">R$ ${item.total_price} </p>
                             </div>
                         </div>
                     </div>
@@ -261,9 +426,13 @@
             if (currentCartItems.length === 0) {
                 alert("Seu carrinho está vazio!");
                 return;
-            }
+            } 
 
             const item = currentCartItems[0];
+            if (credito_atual < item.total_price) {
+                alert("Crédito insuficiente")
+                return
+            }
             const nomePersonalizado = item.customization ? item.customization.nome : "Sem nome";
 
             const fd = new FormData();
@@ -272,6 +441,11 @@
             fd.append('produto_id', item.product_id);
             fd.append('status', 0);
             fd.append('persona', nomePersonalizado);
+            let credito_resultante = credito_atual - item.total_price
+            
+
+            
+            
 
             const btn = document.getElementById('btn-enviar');
             const originalText = btn.innerHTML;
@@ -288,7 +462,27 @@
 
                 const pedido_res = await response.json();
                 console.log('Pedido criado:', pedido_res);
-                finishPurchase();
+                const dados = {
+                    credito: credito_resultante
+                };
+
+                try {
+                    const res = await fetch(PROFILE_API_URL, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(dados)
+                    });
+
+                    const json = await res.json();
+
+                    if (json.status === 'success') {
+                        finishPurchase()
+                    } else {
+                        alert('Erro: ' + json.message);
+                    }
+                } catch (err) {
+                    alert('Erro de conexão ao salvar.');
+                }
 
             } catch (error) {
                 console.error('Erro ao fazer o pedido:', error);
