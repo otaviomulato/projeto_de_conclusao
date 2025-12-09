@@ -221,11 +221,11 @@
                             </div>
 
                             <div class="py-1">
-                                <a href="#"
+                                <a href="{% url 'profile' %}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-senai-red transition-colors">
                                     <i class="fa-regular fa-id-card w-6 text-center"></i> Meu Perfil
                                 </a>
-                                <a href="#"
+                                <a href="{% url 'orders' %}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-senai-red transition-colors">
                                     <i class="fa-solid fa-box-open w-6 text-center"></i> Meus Pedidos
                                 </a>
@@ -280,6 +280,7 @@
 
     <main class="flex-grow">
         <section class="relative bg-black h-[600px] flex items-center justify-center overflow-hidden text-center px-4">
+
             <div class="absolute inset-0 overflow-hidden pointer-events-none">
                 <i
                     class="fa-solid fa-gear absolute -bottom-20 -left-20 text-[20rem] text-white opacity-5 animate-spin-slow"></i>
@@ -288,14 +289,17 @@
                 <i
                     class="fa-solid fa-network-wired absolute top-10 left-10 text-[8rem] text-senai-red opacity-10 animate-pulse"></i>
             </div>
+
             <div class="relative z-10 max-w-5xl mx-auto">
                 <div
                     class="inline-block mb-6 px-4 py-1 border border-senai-red/50 text-senai-red text-xs font-bold uppercase tracking-[0.2em] rounded-full">
                     Indústria 4.0 • Sorocaba
                 </div>
+
                 <h1 class="titulo-principal">
                     <span class="texto"></span><span class="cursor"></span>
                 </h1>
+
                 <div class="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
                     <a href="{% url 'produtos' %}"
                         class="bg-senai-red hover:bg-red-700 text-white font-bold py-4 px-10 rounded-sm transition-all transform hover:-translate-y-1 shadow-lg uppercase tracking-wider">
@@ -329,13 +333,17 @@
 
         <section class="bg-white py-24 px-4">
             <div class="max-w-4xl mx-auto">
+
                 <h2 class="text-4xl font-bold text-center text-gray-900 uppercase mb-16 font-[Oswald]">Processo</h2>
                 <div class="relative pl-4 md:pl-0">
                     <div class="timeline-line md:left-1/2 md:-ml-[2px] bg-gray-300"></div>
+
                     <div
                         class="timeline-step relative flex flex-col md:flex-row items-center justify-between mb-16 group">
                         <div class="md:w-5/12 text-left md:text-right order-2 md:order-1 pl-16 md:pl-0 md:pr-12">
                             <h3 class="text-2xl font-bold text-senai-red mb-2 font-[Oswald]">1. PERSONALIZAÇÃO</h3>
+                            <p class="text-gray-600">Acesse a página do produto, configure seu chaveiro exclusivo e
+                                adicione seu nome.</p>
                             <p class="text-gray-600">Acesse a página do produto, configure seu chaveiro e adicione seu
                                 nome.</p>
                         </div>
@@ -344,6 +352,33 @@
                             1</div>
                         <div class="md:w-5/12 order-3"></div>
                     </div>
+
+                    <div
+                        class="timeline-step relative flex flex-col md:flex-row items-center justify-between mb-16 group">
+                        <div class="md:w-5/12 order-3 md:order-1"></div>
+                        <div
+                            class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-12 h-12 bg-white border-4 border-senai-red rounded-full shadow-lg flex items-center justify-center text-senai-red font-bold z-10 order-1 md:order-2">
+                            2</div>
+                        <div class="md:w-5/12 text-left order-2 md:order-3 pl-16 md:pl-12">
+                            <h3 class="text-2xl font-bold text-senai-red mb-2 font-[Oswald]">2. FABRICAÇÃO</h3>
+                            <p class="text-gray-600">Nossas máquinas automatizadas recebem o código e produzem sua peça
+                                em tempo real.</p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="timeline-step relative flex flex-col md:flex-row items-center justify-between mb-16 group">
+                        <div class="md:w-5/12 text-left md:text-right order-2 md:order-1 pl-16 md:pl-0 md:pr-12">
+                            <h3 class="text-2xl font-bold text-senai-red mb-2 font-[Oswald]">3. RETIRADA</h3>
+                            <p class="text-gray-600">Assim que finalizado, retire seu brinde exclusivo no balcão de
+                                entrega.</p>
+                        </div>
+                        <div
+                            class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-12 h-12 bg-black text-white rounded-full border-4 border-white shadow-lg flex items-center justify-center font-bold z-10 order-1 md:order-2">
+                            3</div>
+                        <div class="md:w-5/12 order-3"></div>
+                    </div>
+
                     <div class="relative text-center pt-8 z-20 pl-4 md:pl-0">
                         <a href="{% url 'produtos' %}"
                             class="inline-flex items-center gap-3 bg-senai-red hover:bg-red-700 text-white text-xl font-bold py-5 px-12 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 uppercase tracking-wide font-[Oswald]">
@@ -383,6 +418,54 @@
                                 <p class="font-bold text-gray-900 mt-auto">- Maria Alice</p>
                             </div>
                         </div>
+                        <div class="swiper-slide">
+                            <div class="review-card">
+                                <div class="flex text-yellow-400 text-lg mb-4">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="italic text-gray-600 mb-4">"Adorei poder personalizar com meu nome. Ficou
+                                    incrível!"</p>
+                                <p class="font-bold text-gray-900 mt-auto">- Maria Alice</p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="review-card">
+                                <div class="flex text-yellow-400 text-lg mb-4">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="italic text-gray-600 mb-4">"Adorei poder personalizar com meu nome. Ficou
+                                    incrível!"</p>
+                                <p class="font-bold text-gray-900 mt-auto">- Maria Alice</p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="review-card">
+                                <div class="flex text-yellow-400 text-lg mb-4">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="italic text-gray-600 mb-4">"Adorei poder personalizar com meu nome. Ficou
+                                    incrível!"</p>
+                                <p class="font-bold text-gray-900 mt-auto">- Maria Alice</p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="review-card">
+                                <div class="flex text-yellow-400 text-lg mb-4">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                        class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="italic text-gray-600 mb-4">"Adorei poder personalizar com meu nome. Ficou
+                                    incrível!"</p>
+                                <p class="font-bold text-gray-900 mt-auto">- Maria Alice</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
@@ -391,32 +474,101 @@
     </main>
 
     <footer class="bg-neutral-900 text-gray-300 relative mt-auto border-t-4 border-senai-red">
+
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+
                 <div class="space-y-6">
                     <img src="{% static 'img/logo_footer.png' %}" alt="Logo SENAI" class="h-12 w-auto opacity-90">
-                    <p class="text-sm text-gray-400 leading-relaxed">Sistema de recompensas para alunos e visitantes.
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        Sistema de recompensas para alunos e visitantes durante datas importantes no SENAI Sorocaba.
                     </p>
+
+                    <div class="flex gap-4">
+                        <a href="https://api.whatsapp.com/send?phone=55113220050" target="_blank"
+                            class="text-2xl text-gray-400 whatsapp-bounce transition-colors">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://www.instagram.com/senaisorocaba/" target="_blank"
+                            class="text-2xl text-gray-400 instagram-bounce transition-colors">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/senaisp.sorocabarosalia/" target="_blank"
+                            class="text-2xl text-gray-400 facebook-bounce transition-colors">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
                 </div>
+
+                <div>
+                    <h4
+                        class="text-white font-bold uppercase tracking-widest text-sm mb-6 border-l-4 border-senai-red pl-3">
+                        Institucional</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="https://sp.senai.br/unidade/sorocaba/" class="footer-link hover:text-senai-red"
+                                target="_blank">Portal SENAI</a></li>
+                        <li><a href="https://sp.senai.br/noticias" class="footer-link hover:text-senai-red"
+                                target="_blank">Notícias</a></li>
+                        <li><a href="https://sp.senai.br/cursos/0/0?cidadeint=sorocaba&pag=1"
+                                class="footer-link hover:text-senai-red" target="_blank">Cursos</a></li>
+                    </ul>
+                </div>
+
                 <div>
                     <h4
                         class="text-white font-bold uppercase tracking-widest text-sm mb-6 border-l-4 border-senai-red pl-3">
                         Links Rápidos</h4>
                     <ul class="space-y-3 text-sm">
                         <li><a href="{% url 'index' %}" class="footer-link hover:text-senai-red">Início</a></li>
+                        <li><a href="{% url 'profile' %}" class="footer-link hover:text-senai-red">Perfil</a></li>
+                        <li><a href="{% url 'about_us' %}" class="footer-link hover:text-senai-red">Sobre</a></li>
+                        <li><a href="{% url 'produtos' %}" class="footer-link hover:text-senai-red">Catálogo</a></li>
                         <li><a href="{% url 'cart:cart_detail' %}" class="footer-link hover:text-senai-red">Carrinho</a>
                         </li>
                     </ul>
                 </div>
+                <div>
+                    <h4
+                        class="text-white font-bold uppercase tracking-widest text-sm mb-6 border-l-4 border-senai-red pl-3">
+                        Endereço & Contato</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot text-senai-red mt-1"></i>
+                            <address class="not-italic text-gray-400">
+                                SENAI Santa Rosália<br>
+                                Praça Roberto Mange,<br>
+                                R. Santa Rosália, 30<br>
+                                Sorocaba - SP
+                            </address>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-senai-red"></i>
+                            <a href="tel:08000551000" class="hover:text-white transition-colors">0800-055-1000
+                                (fixo)</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-senai-red"></i>
+                            <a href="mailto:senaisorocaba@sp.senai.br"
+                                class="hover:text-white transition-colors">senaisorocaba@sp.senai.br</a>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
         </div>
+
         <div class="bg-black border-t border-gray-800">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-between gap-4">
-                <p class="text-xs text-gray-500">© 2025 SENAI-SP Sorocaba - Todos os direitos reservados.</p>
-                <a href="https://github.com/otaviomulato/projeto_de_conclusao" target="_blank">
-                    <img src="{% static 'img/ophidiana.png' %}" alt="Selo Ophidiana"
-                        class="h-6 w-auto grayscale opacity-80 hover:opacity-100 transition-opacity">
-                </a>
+            <div
+                class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-xs text-gray-500">
+                    © 2025 SENAI-SP Sorocaba - Todos os direitos reservados.
+                </p>
+                <div class="flex items-center gap-2">
+                    <a href="https://github.com/otaviomulato/projeto_de_conclusao" target="_blank">
+                        <img src="{% static 'img/ophidiana.png' %}" alt="Selo Ophidiana"
+                            class="h-6 w-auto grayscale opacity-80 hover:opacity-100 transition-opacity">
+                    </a>
+                </div>
             </div>
         </div>
     </footer>
