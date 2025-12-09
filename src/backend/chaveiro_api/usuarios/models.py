@@ -9,5 +9,8 @@ class Usuario(models.Model):
     email_user = models.EmailField(max_length=100, unique=True)
     telefone = models.CharField(max_length=50)
     
+    # Novo campo para "Soft Delete"
+    is_active = models.BooleanField(default=True)
+    
     def __str__(self):
         return self.nome_user

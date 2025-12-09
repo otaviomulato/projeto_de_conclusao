@@ -11,7 +11,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Oswald:wght@500;700&display=swap"
         rel="stylesheet">
-
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -27,11 +26,6 @@
             }
         }
     </script>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-    </style>
 </head>
 
 <body class="bg-white flex flex-col min-h-screen text-gray-800">
@@ -49,43 +43,29 @@
                 <li><a href="{% url 'produtos' %}"
                         class="font-medium text-gray-300 hover:text-white transition-colors tracking-wide uppercase text-sm">Catálogo</a>
                 </li>
-                <li><a href="{% url 'about_us' %}"
-                        class="font-medium text-gray-300 hover:text-white transition-colors tracking-wide uppercase text-sm">Sobre</a>
-                </li>
             </ul>
 
             <div class="hidden lg:flex items-center gap-6">
-                <a href="#"
-                    class="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-400 text-black rounded-full px-4 py-1.5 font-bold shadow-lg shadow-yellow-500/20 transition-all transform hover:-translate-y-0.5">
-                    <i class="fa-solid fa-wallet"></i>
-                    <span class="text-sm font-mono">$ --</span>
-                </a>
-
+                {% if request.session.user_id %}
+                <div class="relative group z-50">
+                    <button class="flex items-center gap-2 text-white hover:text-senai-red transition-colors">
+                        <i class="fa-solid fa-user text-sm"></i>
+                        <span class="text-sm font-bold uppercase">{{ request.session.user_name }}</span>
+                    </button>
+                    <div class="absolute right-0 top-full pt-2 w-48 hidden group-hover:block hover:block">
+                        <div class="bg-white rounded shadow-xl border-t-4 border-senai-red">
+                            <a href="{% url 'usuarios:logout' %}"
+                                class="block px-4 py-3 text-sm text-red-600 hover:bg-red-50 font-bold">Sair</a>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
                 <a href="{% url 'sign_in' %}" class="text-white hover:text-senai-red transition-colors">
                     <i class="fa-regular fa-user text-xl"></i>
                 </a>
-
-                <a href="{% url 'cart:cart_detail' %}"
-                    class="relative text-white hover:text-senai-red transition-colors">
-                    <i class="fa-solid fa-cart-shopping text-xl"></i>
-                    <span
-                        class="absolute -top-2 -right-2 bg-senai-red text-white text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center border-2 border-black">!</span>
-                </a>
+                {% endif %}
             </div>
-
-            <button id="menu-toggle" class="lg:hidden p-2 text-white hover:text-senai-red">
-                <i class="fas fa-bars text-2xl"></i>
-            </button>
         </nav>
-
-        <div id="mobile-menu"
-            class="hidden lg:hidden absolute top-full left-0 w-full bg-zinc-900 border-t border-gray-800 shadow-xl z-50">
-            <ul class="flex flex-col items-center gap-6 py-8">
-                <li><a href="{% url 'index' %}" class="font-bold text-white text-lg">INÍCIO</a></li>
-                <li><a href="{% url 'produtos' %}" class="font-bold text-gray-300 text-lg">CATÁLOGO</a></li>
-                <li><a href="{% url 'about_us' %}" class="font-bold text-gray-300 text-lg">SOBRE</a></li>
-            </ul>
-        </div>
     </header>
 
     <main class="flex-grow bg-gray-50 py-10">
@@ -152,94 +132,47 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
                 <div class="space-y-6">
                     <img src="{% static 'img/logo_footer.png' %}" alt="Logo SENAI" class="h-12 w-auto opacity-90">
-                    <p class="text-sm text-gray-400 leading-relaxed">
-                        Sistema de recompensas para alunos e visitantes durante datas importantes no SENAI Sorocaba.
+                    <p class="text-sm text-gray-400 leading-relaxed">Sistema de recompensas para alunos e visitantes.
                     </p>
-                    <div class="flex gap-4">
-                        <a href="https://api.whatsapp.com/send?phone=55113220050" target="_blank"
-                            class="text-2xl text-gray-400 whatsapp-bounce transition-colors"><i
-                                class="fab fa-whatsapp"></i></a>
-                        <a href="https://www.instagram.com/senaisorocaba/" target="_blank"
-                            class="text-2xl text-gray-400 instagram-bounce transition-colors"><i
-                                class="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.facebook.com/senaisp.sorocabarosalia/" target="_blank"
-                            class="text-2xl text-gray-400 facebook-bounce transition-colors"><i
-                                class="fab fa-facebook"></i></a>
-                    </div>
-                </div>
-                <div>
-                    <h4
-                        class="text-white font-bold uppercase tracking-widest text-sm mb-6 border-l-4 border-senai-red pl-3">
-                        Institucional</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li><a href="https://sp.senai.br/unidade/sorocaba/" class="footer-link hover:text-senai-red"
-                                target="_blank">Portal SENAI</a></li>
-                        <li><a href="https://sp.senai.br/noticias" class="footer-link hover:text-senai-red"
-                                target="_blank">Notícias</a></li>
-                        <li><a href="https://sp.senai.br/cursos/0/0?cidadeint=sorocaba&pag=1"
-                                class="footer-link hover:text-senai-red" target="_blank">Cursos</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4
-                        class="text-white font-bold uppercase tracking-widest text-sm mb-6 border-l-4 border-senai-red pl-3">
-                        Links Rápidos</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li><a href="{% url 'index' %}" class="footer-link hover:text-senai-red">Início</a></li>
-                        <li><a href="#" class="footer-link hover:text-senai-red">Perfil</a></li>
-                        <li><a href="{% url 'about_us' %}" class="footer-link hover:text-senai-red">Sobre</a></li>
-                        <li><a href="{% url 'produtos' %}" class="footer-link hover:text-senai-red">Catálogo</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4
-                        class="text-white font-bold uppercase tracking-widest text-sm mb-6 border-l-4 border-senai-red pl-3">
-                        Endereço & Contato</h4>
-                    <ul class="space-y-4 text-sm">
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-location-dot text-senai-red mt-1"></i>
-                            <address class="not-italic text-gray-400">SENAI Santa Rosália<br>Praça Roberto Mange,<br>R.
-                                Santa Rosália, 30<br>Sorocaba - SP</address>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i class="fa-solid fa-phone text-senai-red"></i>
-                            <a href="tel:08000551000" class="hover:text-white transition-colors">0800-055-1000
-                                (fixo)</a>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i class="fa-solid fa-envelope text-senai-red"></i>
-                            <a href="mailto:senaisorocaba@sp.senai.br"
-                                class="hover:text-white transition-colors">senaisorocaba@sp.senai.br</a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
         <div class="bg-black border-t border-gray-800">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between gap-4">
                 <p class="text-xs text-gray-500">© 2025 SENAI-SP Sorocaba - Todos os direitos reservados.</p>
-                <a href="https://github.com/otaviomulato/projeto_de_conclusao" target="_blank">
-                    <img src="{% static 'img/ophidiana.png' %}" alt="Selo"
-                        class="h-6 w-auto grayscale opacity-80 hover:opacity-100 transition-opacity">
-                </a>
             </div>
         </div>
     </footer>
 
     <script>
-        // Variável global para armazenar os itens do carrinho atuais
+        // --- SEGURANÇA: ID do Usuário da Sessão Django ---
+        const LOGGED_USER_ID = "{{ request.session.user_id|default_if_none:'' }}";
+
         let currentCartItems = [];
 
         document.addEventListener('DOMContentLoaded', () => {
             fetchCart();
-            document.getElementById('btn-enviar').addEventListener('click', criarPedido);
+
+            const btnEnviar = document.getElementById('btn-enviar');
+            if (btnEnviar) {
+                btnEnviar.addEventListener('click', (e) => {
+                    // Verifica se está logado antes de tentar comprar
+                    if (!LOGGED_USER_ID) {
+                        e.preventDefault();
+                        if (confirm("Você precisa estar logado para finalizar a compra.\nDeseja fazer login agora?")) {
+                            window.location.href = "{% url 'sign_in' %}";
+                        }
+                    } else {
+                        criarPedido(e);
+                    }
+                });
+            }
         });
 
         function fetchCart() {
             fetch('http://127.0.0.1:8000/cart/api/', { credentials: 'include' })
                 .then(r => r.json())
                 .then(data => {
-                    // Armazena os dados na variável global para uso no checkout
                     currentCartItems = data.items || [];
                     renderCartItems(data.items);
                     updateTotalsDisplay(data.total_price);
@@ -258,14 +191,12 @@
                          <p class="text-gray-500 font-medium">Seu carrinho está vazio.</p>
                          <a href="{% url 'produtos' %}" class="inline-block mt-4 text-senai-red font-bold hover:underline uppercase text-sm">Ir para o Catálogo</a>
                     </div>`;
-                // Desabilita botão se vazio
                 const btn = document.getElementById('btn-enviar');
                 btn.disabled = true;
                 btn.classList.add('opacity-50', 'cursor-not-allowed');
                 return;
             }
 
-            // Habilita botão se tem itens
             const btn = document.getElementById('btn-enviar');
             btn.disabled = false;
             btn.classList.remove('opacity-50', 'cursor-not-allowed');
@@ -309,16 +240,10 @@
 
         function removeItem(productId) {
             if (!confirm("Tem certeza que deseja remover este item?")) return;
-
-            fetch(`http://127.0.0.1:8000/cart/remove/${productId}/`, {
-                credentials: 'include'
-            })
+            fetch(`http://127.0.0.1:8000/cart/remove/${productId}/`, { credentials: 'include' })
                 .then(response => {
-                    if (response.ok) {
-                        fetchCart();
-                    } else {
-                        alert("Erro ao remover item.");
-                    }
+                    if (response.ok) fetchCart();
+                    else alert("Erro ao remover item.");
                 })
                 .catch(error => console.error("Erro:", error));
         }
@@ -330,28 +255,24 @@
             document.getElementById('total').innerText = formatted;
         }
 
-        // --- LÓGICA DE CHECKOUT ---
         async function criarPedido(event) {
-            event.preventDefault(); // Impede refresh imediato
+            event.preventDefault();
 
-            // Verifica se tem itens
             if (currentCartItems.length === 0) {
                 alert("Seu carrinho está vazio!");
                 return;
             }
 
-            // Pega o primeiro item (já que o sistema limita a 1)
-            // Se tiver mais lógica no futuro para multiplos itens, ajustar aqui
             const item = currentCartItems[0];
             const nomePersonalizado = item.customization ? item.customization.nome : "Sem nome";
 
             const fd = new FormData();
-            fd.append('usuario_id', 1); // ID fixo por enquanto, conforme pedido
-            fd.append('produto_id', item.product_id); // Pega o ID real do produto no carrinho
-            fd.append('status', 0); // Status inicial
-            fd.append('persona', nomePersonalizado); // O texto da personalização
+            // ID DO USUÁRIO AGORA É DINÂMICO
+            fd.append('usuario_id', LOGGED_USER_ID);
+            fd.append('produto_id', item.product_id);
+            fd.append('status', 0);
+            fd.append('persona', nomePersonalizado);
 
-            // Feedback visual de carregamento
             const btn = document.getElementById('btn-enviar');
             const originalText = btn.innerHTML;
             btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
@@ -363,17 +284,11 @@
                     body: fd
                 });
 
-                if (!response.ok) {
-                    throw new Error('Erro na resposta do servidor');
-                }
+                if (!response.ok) throw new Error('Erro na resposta do servidor');
 
                 const pedido_res = await response.json();
                 console.log('Pedido criado:', pedido_res);
-
-                // Se deu certo, chama a animação e o modal
                 finishPurchase();
-
-                // Opcional: Limpar o carrinho no backend se necessário
 
             } catch (error) {
                 console.error('Erro ao fazer o pedido:', error);
@@ -384,12 +299,9 @@
         }
 
         function finishPurchase() {
-            // Mostra o modal
             const modal = document.getElementById('success-modal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
-
-            // Dispara confetes
             var duration = 3 * 1000;
             var animationEnd = Date.now() + duration;
             var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 70 };
