@@ -3,6 +3,12 @@ from usuarios.models import Usuario
 
 # Create your models here.
 
+def get_imagem_principal(self):
+    img = self.dados_img.first() # Pega a primeira imagem associada
+    if img and img.img_produto:
+        return img.img_produto.url
+    return None
+
 class Produto(models.Model):
     nome_produto = models.CharField(max_length=50)
     descricao = models.TextField(blank=True, null=True)
