@@ -348,7 +348,7 @@
             const fd = new FormData();
             fd.append('usuario_id', 1); // ID fixo por enquanto, conforme pedido
             fd.append('produto_id', item.product_id); // Pega o ID real do produto no carrinho
-            fd.append('status', 'Pendente'); // Status inicial
+            fd.append('status', 0); // Status inicial
             fd.append('persona', nomePersonalizado); // O texto da personalização
 
             // Feedback visual de carregamento

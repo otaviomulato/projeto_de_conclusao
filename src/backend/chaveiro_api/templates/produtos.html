@@ -383,7 +383,7 @@
             document.getElementById("decricao").innerHTML = `${produto.descricao}`;
             document.getElementById("persona").innerHTML = `
                 <label
-                    class="block text-gray-700 font-bold font-oswald text-sm mb-2 uppercase">Nome/Texto:</label>
+                    class="block text-gray-700 font-bold font-oswald text-sm mb-2 uppercase">${produto.tipo_persona}:</label>
                 <input type="text" id="custom_nome" maxlength="8"
                     class="w-full bg-gray-50 border border-gray-300 p-3.5 focus:border-senai-red focus:outline-none"
                     placeholder="Ex: Otavio">
@@ -457,7 +457,7 @@
 
             const nome = nomeEl ? nomeEl.value : "";
             const dimen = dimenEl ? dimenEl.value : "Padrão";
-            const cor = corEl ? corEl.value : "Cinza";
+            const cor = corEl ? corEl.value : "Prata";
 
             fetch(`http://127.0.0.1:8000/cart/api/add/${currentProductId}/`, {
                 method: 'POST',

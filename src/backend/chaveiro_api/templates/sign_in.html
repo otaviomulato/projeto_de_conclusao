@@ -282,6 +282,7 @@
             // Enviar formulário sem recarregar a página
             document.getElementById('enviar').addEventListener('click', criarUsuario);
             chamrfetch()
+            
         });
 
         const apiUrl = 'http://127.0.0.1:8000/api/';
@@ -334,9 +335,9 @@
 
             viewport.style.height = height + 'px';
         }
-        var cred = 0
+        var cred = null
         function chamrfetch() {
-            fetch("http://127.0.0.1:8000/api/servidor/1/")
+            fetch("http://127.0.0.1:8000/api/servidores/1/")
                 .then(res => res.json())
                 .then(data => {
 
@@ -365,6 +366,7 @@
             fd.append('idade', idade);
             fd.append('senha_user', senha);
             fd.append('credito', credi);
+            
 
 
             try {
