@@ -11,6 +11,9 @@ router.register(r'imagens', views.ImagemViewSet)
 router.register(r'usuarios', views.UsuarioViewSet)
 
 urlpatterns = [
-    # As URLs da API são geradas automaticamente aqui
+    # Rota do Site (HTML)
+    path('catalogo/', views.CatalogView.as_view(), name='catalogo'),
+    
+    # Rotas da API (JSON)
     path('', include(router.urls)),
 ]
