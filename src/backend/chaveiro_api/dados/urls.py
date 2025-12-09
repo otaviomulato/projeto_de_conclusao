@@ -12,7 +12,7 @@ router.register(r'usuarios', views.UsuarioViewSet)
 
 urlpatterns = [
     # Rota do Site (HTML)
-    path('catalogo/', views.CatalogView.as_view(), name='catalogo'),
+    path('catalog/', views.CatalogView.as_view(), name='catalog'),
     
     # Rotas da API (JSON)
     path('', include(router.urls)),

@@ -57,10 +57,10 @@
 
             <ul class="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-8">
                 <li><a href="{% url 'index' %}"
-                        class="font-medium text-white border-b-2 border-senai-red pb-1 tracking-wide uppercase text-sm">Início</a>
+                        class="font-medium text-gray-300 hover:text-white tracking-wide uppercase text-sm">Início</a>
                 </li>
                 <li><a href="{% url 'produtos' %}"
-                        class="font-medium text-gray-300 hover:text-white transition-colors tracking-wide uppercase text-sm">Catálogo</a>
+                        class="font-medium text-white hover:text-white border-b-2 pb-1 border-senai-red transition-colors tracking-wide uppercase text-sm">Catálogo</a>
                 </li>
                 <li><a href="{% url 'about_us' %}"
                         class="font-medium text-gray-300 hover:text-white transition-colors tracking-wide uppercase text-sm">Sobre</a>
@@ -71,7 +71,7 @@
                 <a href="#"
                     class="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-400 text-black rounded-full px-4 py-1.5 font-bold shadow-lg shadow-yellow-500/20 transition-all transform hover:-translate-y-0.5">
                     <i class="fa-solid fa-wallet"></i>
-                    <span class="text-sm font-mono">$ --</span>
+                    <span id="credito" class="text-sm font-mono">{{ request.session.user_id }}</span>
                 </a>
 
                 {% if request.session.user_id %}
@@ -141,7 +141,7 @@
             class="hidden lg:hidden absolute top-full left-0 w-full bg-zinc-900 border-t border-gray-800 shadow-xl z-50">
             <ul class="flex flex-col items-center gap-6 py-8">
                 <li><a href="{% url 'index' %}" class="font-bold text-white text-lg">INÍCIO</a></li>
-                <li><a href="{% url 'produtos' %}" class="font-bold text-gray-300 text-lg">CATÁLOGO</a></li>
+                <li><a href="{% url 'catalog' %}" class="font-bold text-gray-300 text-lg">CATÁLOGO</a></li>
                 <li><a href="{% url 'about_us' %}" class="font-bold text-gray-300 text-lg">SOBRE</a></li>
 
                 {% if request.session.user_id %}
@@ -154,13 +154,14 @@
         </div>
     </header>
 
+
     <main class="flex-grow py-8 md:py-12 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
 
             <nav class="text-sm text-gray-500 mb-6 flex items-center gap-2">
                 <a href="{% url 'index' %}" class="hover:text-senai-red transition-colors">Início</a> <span
                     class="text-gray-300">/</span>
-                <a href="{% url 'produtos' %}" class="hover:text-senai-red transition-colors">Catálogo</a> <span
+                <a href="{% url 'catalog' %}" class="hover:text-senai-red transition-colors">Catálogo</a> <span
                     class="text-gray-300">/</span>
                 <span class="text-gray-900 font-semibold">Produto</span>
             </nav>
@@ -340,7 +341,7 @@
                         <li><a href="{% url 'index' %}" class="footer-link hover:text-senai-red">Início</a></li>
                         <li><a href="{% url 'profile' %}" class="footer-link hover:text-senai-red">Perfil</a></li>
                         <li><a href="{% url 'about_us' %}" class="footer-link hover:text-senai-red">Sobre</a></li>
-                        <li><a href="{% url 'produtos' %}" class="footer-link hover:text-senai-red">Catálogo</a></li>
+                        <li><a href="{% url 'catalog' %}" class="footer-link hover:text-senai-red">Catálogo</a></li>
                         <li><a href="{% url 'cart:cart_detail' %}" class="footer-link hover:text-senai-red">Carrinho</a>
                         </li>
                     </ul>

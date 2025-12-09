@@ -124,13 +124,13 @@
 
             <ul class="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-8">
                 <li><a href="{% url 'index' %}"
-                        class="font-medium text-white border-b-2 border-senai-red pb-1 tracking-wide uppercase text-sm">Início</a>
+                        class="font-medium text-gray-300 hover:text-white tracking-wide uppercase text-sm">Início</a>
                 </li>
-                <li><a href="{% url 'produtos' %}"
+                <li><a href="{% url 'catalog' %}"
                         class="font-medium text-gray-300 hover:text-white transition-colors tracking-wide uppercase text-sm">Catálogo</a>
                 </li>
                 <li><a href="{% url 'about_us' %}"
-                        class="font-medium text-gray-300 hover:text-white transition-colors tracking-wide uppercase text-sm">Sobre</a>
+                        class="font-medium text-white hover:text-white border-b-2 pb-1 border-senai-red transition-colors tracking-wide uppercase text-sm">Sobre</a>
                 </li>
             </ul>
 
@@ -138,7 +138,7 @@
                 <a href="#"
                     class="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-400 text-black rounded-full px-4 py-1.5 font-bold shadow-lg shadow-yellow-500/20 transition-all transform hover:-translate-y-0.5">
                     <i class="fa-solid fa-wallet"></i>
-                    <span class="text-sm font-mono">$ --</span>
+                    <span id="credito" class="text-sm font-mono">{{ request.session.user_id }}</span>
                 </a>
 
                 {% if request.session.user_id %}
