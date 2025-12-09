@@ -177,49 +177,41 @@
                 </div>
 
                 <div class="flex bg-white rounded-xl p-1.5 shadow-sm border border-gray-200 gap-1">
-                    <button
+                    <button id="btn-todos" onclick="filtrarPedidos('todos')"
                         class="px-5 py-2 rounded-lg bg-black text-white font-bold text-xs uppercase shadow-md transition-all">Todos</button>
-                    <button
+                    <button id="btn-abertos" onclick="filtrarPedidos('abertos')"
                         class="px-5 py-2 rounded-lg text-gray-500 hover:text-gray-900 hover:bg-gray-50 font-bold text-xs uppercase transition-all">Em
                         Aberto</button>
-                    <button
+                    <button id="btn-finalizados" onclick="filtrarPedidos('finalizados')"
                         class="px-5 py-2 rounded-lg text-gray-500 hover:text-gray-900 hover:bg-gray-50 font-bold text-xs uppercase transition-all">Finalizados</button>
                 </div>
             </div>
 
             <div id="ultralist" class="space-y-8">
-
             </div>
         </div>
     </main>
 
     <footer class="bg-neutral-900 text-gray-300 relative mt-auto border-t-4 border-senai-red">
-
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-
                 <div class="space-y-6">
                     <img src="{% static 'img/logo_footer.png' %}" alt="Logo SENAI" class="h-12 w-auto opacity-90">
                     <p class="text-sm text-gray-400 leading-relaxed">
                         Sistema de recompensas para alunos e visitantes durante datas importantes no SENAI Sorocaba.
                     </p>
-
                     <div class="flex gap-4">
                         <a href="https://api.whatsapp.com/send?phone=55113220050" target="_blank"
-                            class="text-2xl text-gray-400 whatsapp-bounce transition-colors">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
+                            class="text-2xl text-gray-400 whatsapp-bounce transition-colors"><i
+                                class="fab fa-whatsapp"></i></a>
                         <a href="https://www.instagram.com/senaisorocaba/" target="_blank"
-                            class="text-2xl text-gray-400 instagram-bounce transition-colors">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
+                            class="text-2xl text-gray-400 instagram-bounce transition-colors"><i
+                                class="fa-brands fa-instagram"></i></a>
                         <a href="https://www.facebook.com/senaisp.sorocabarosalia/" target="_blank"
-                            class="text-2xl text-gray-400 facebook-bounce transition-colors">
-                            <i class="fab fa-facebook"></i>
-                        </a>
+                            class="text-2xl text-gray-400 facebook-bounce transition-colors"><i
+                                class="fab fa-facebook"></i></a>
                     </div>
                 </div>
-
                 <div>
                     <h4
                         class="text-white font-bold uppercase tracking-widest text-sm mb-6 border-l-4 border-senai-red pl-3">
@@ -233,7 +225,6 @@
                                 class="footer-link hover:text-senai-red" target="_blank">Cursos</a></li>
                     </ul>
                 </div>
-
                 <div>
                     <h4
                         class="text-white font-bold uppercase tracking-widest text-sm mb-6 border-l-4 border-senai-red pl-3">
@@ -252,37 +243,24 @@
                         class="text-white font-bold uppercase tracking-widest text-sm mb-6 border-l-4 border-senai-red pl-3">
                         Endereço & Contato</h4>
                     <ul class="space-y-4 text-sm">
-                        <li class="flex items-start gap-3">
-                            <i class="fa-solid fa-location-dot text-senai-red mt-1"></i>
-                            <address class="not-italic text-gray-400">
-                                SENAI Santa Rosália<br>
-                                Praça Roberto Mange,<br>
-                                R. Santa Rosália, 30<br>
-                                Sorocaba - SP
-                            </address>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-location-dot text-senai-red mt-1"></i>
+                            <address class="not-italic text-gray-400">SENAI Santa Rosália<br>Praça Roberto Mange,<br>R.
+                                Santa Rosália, 30<br>Sorocaba - SP</address>
                         </li>
-                        <li class="flex items-center gap-3">
-                            <i class="fa-solid fa-phone text-senai-red"></i>
-                            <a href="tel:08000551000" class="hover:text-white transition-colors">0800-055-1000
-                                (fixo)</a>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i class="fa-solid fa-envelope text-senai-red"></i>
-                            <a href="mailto:senaisorocaba@sp.senai.br"
-                                class="hover:text-white transition-colors">senaisorocaba@sp.senai.br</a>
-                        </li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-phone text-senai-red"></i><a
+                                href="tel:08000551000" class="hover:text-white transition-colors">0800-055-1000
+                                (fixo)</a></li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-envelope text-senai-red"></i><a
+                                href="mailto:senaisorocaba@sp.senai.br"
+                                class="hover:text-white transition-colors">senaisorocaba@sp.senai.br</a></li>
                     </ul>
                 </div>
-
             </div>
         </div>
-
         <div class="bg-black border-t border-gray-800">
             <div
                 class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-                <p class="text-xs text-gray-500">
-                    © 2025 SENAI-SP Sorocaba - Todos os direitos reservados.
-                </p>
+                <p class="text-xs text-gray-500">© 2025 SENAI-SP Sorocaba - Todos os direitos reservados.</p>
                 <div class="flex items-center gap-2">
                     <a href="https://github.com/otaviomulato/projeto_de_conclusao" target="_blank">
                         <img src="{% static 'img/ophidiana.png' %}" alt="Selo Ophidiana"
@@ -294,15 +272,16 @@
     </footer>
 
     <script>
-        let userID = null
+        let userID = null;
+        let todosOsPedidos = []; // Array global para armazenar os pedidos da API
+
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             const urlId = urlParams.get('id') || 1;
-            userID = urlId
+            userID = urlId;
             fetchpedidos();
-            
-            
         });
+
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         if (menuToggle && mobileMenu) {
@@ -328,20 +307,67 @@
                 parent.classList.remove('open');
             }
         }
-        function fetchpedidos(id) {
+
+        // 1. Busca os pedidos UMA vez e salva na variável global
+        function fetchpedidos() {
             fetch(`http://127.0.0.1:8000/api/pedidos/`)
                 .then(res => res.json())
                 .then(data => {
-                    renderpedidos(data);
+                    todosOsPedidos = data;
+                    filtrarPedidos('todos'); // Renderiza todos inicialmente
                 })
-                .catch(err => console.error("erro ao buscar", err))
+                .catch(err => console.error("erro ao buscar", err));
         }
+
+        // 2. Filtra os pedidos baseado no botão clicado
+        function filtrarPedidos(tipo) {
+            // Atualiza visual dos botões
+            const botoes = {
+                'todos': document.getElementById('btn-todos'),
+                'abertos': document.getElementById('btn-abertos'),
+                'finalizados': document.getElementById('btn-finalizados')
+            };
+
+            // Reseta estilo de todos
+            Object.values(botoes).forEach(btn => {
+                if (btn) btn.className = "px-5 py-2 rounded-lg text-gray-500 hover:text-gray-900 hover:bg-gray-50 font-bold text-xs uppercase transition-all cursor-pointer";
+            });
+
+            // Ativa o botão selecionado
+            if (botoes[tipo]) {
+                botoes[tipo].className = "px-5 py-2 rounded-lg bg-black text-white font-bold text-xs uppercase shadow-md transition-all cursor-pointer";
+            }
+
+            // Lógica do Filtro
+            let pedidosFiltrados = [];
+            if (tipo === 'todos') {
+                pedidosFiltrados = todosOsPedidos;
+            } else if (tipo === 'abertos') {
+                // Status 0, 1 e 2 são "Em Aberto"
+                pedidosFiltrados = todosOsPedidos.filter(p => p.status == 0 || p.status == 1 || p.status == 2);
+            } else if (tipo === 'finalizados') {
+                // Status > 2 são "Finalizados"
+                pedidosFiltrados = todosOsPedidos.filter(p => p.status > 2);
+            }
+
+            renderpedidos(pedidosFiltrados);
+        }
+
+        // 3. Renderiza o HTML completo de cada card
         function renderpedidos(pedidos) {
             const container = document.getElementById("ultralist");
             container.innerHTML = ``;
+
+            if (pedidos.length === 0) {
+                container.innerHTML = `<div class="text-center py-10"><p class="text-gray-400 font-medium">Nenhum pedido encontrado nesta categoria.</p></div>`;
+                return;
+            }
+
             pedidos.forEach(pedido => {
                 if (pedido.FK_user.id == userID) {
                     const card = document.createElement("div");
+
+                    // --- STATUS 0: RECEBIDO ---
                     if (pedido.status == 0) {
                         card.innerHTML = `
                             <div class="bg-white rounded-2xl shadow-sm hover:shadow-lg border border-gray-100 overflow-hidden transition-all duration-300 group">
@@ -353,7 +379,7 @@
                                         <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-8 w-full">
                                             <div>
                                                 <span class="text-[10px] text-gray-400 uppercase font-bold tracking-widest block mb-0.5">Pedido</span>
-                                                <p class="text-xl font-bold text-gray-900 font-oswald tracking-wide">#ORD-2025-003</p>
+                                                <p class="text-xl font-bold text-gray-900 font-oswald tracking-wide">#ORD-${pedido.id}</p>
                                             </div>
                                             <div class="hidden sm:block w-px h-8 bg-gray-200"></div>
                                             <div>
@@ -383,15 +409,12 @@
 
                                 <div class="order-details bg-gray-50/80 border-t border-gray-100">
                                     <div class="p-6 lg:p-10">
-                                        <!-- TIMELINE (Vermelho Inicial) -->
                                         <div class="mb-20 px-2 sm:px-8 mt-10"> 
                                             <div class="relative">
                                                 <div class="absolute top-1/2 left-0 w-full h-1 bg-gray-200 -translate-y-1/2 z-0 rounded-full"></div>
-                                                <!-- Progresso 12% (Início) -->
                                                 <div class="absolute top-1/2 left-0 w-[12%] h-1.5 bg-senai-red -translate-y-1/2 z-0 shadow-lg shadow-red-500/30 rounded-full"></div>
 
                                                 <div class="relative z-10 flex justify-between w-full">
-                                                    <!-- Passo 1 (Atual - Vermelho) -->
                                                     <div class="flex flex-col items-center group/step relative w-1/4">
                                                         <div class="absolute -inset-2 bg-red-100 rounded-full blur opacity-50 animate-pulse-slow"></div>
                                                         <div class="w-14 h-14 rounded-full bg-senai-red text-white flex items-center justify-center shadow-xl shadow-red-500/40 z-10 transform scale-110 border-4 border-white">
@@ -402,7 +425,6 @@
                                                             <span class="inline-block mt-2 px-3 py-1 bg-red-100 text-red-700 text-[9px] font-bold rounded uppercase shadow-sm">Agora</span>
                                                         </div>
                                                     </div>
-                                                    <!-- Outros passos (Inativos) -->
                                                     <div class="flex flex-col items-center group/step opacity-40 grayscale w-1/4">
                                                         <div class="w-10 h-10 rounded-full bg-white border-2 border-gray-300 text-gray-400 flex items-center justify-center shadow-sm z-10"><i class="fa-solid fa-gears text-sm"></i></div>
                                                         <div class="mt-12 text-center w-full"><p class="text-[10px] font-bold text-gray-600 uppercase">Produção</p></div>
@@ -421,7 +443,9 @@
                                     </div>
                                 </div>
                             </div>
-                        `;  
+                        `;
+
+                        // --- STATUS 1: EM PRODUÇÃO ---
                     } else if (pedido.status == 1) {
                         card.innerHTML = `
                             <div class="bg-white rounded-2xl shadow-sm hover:shadow-lg border border-gray-100 overflow-hidden transition-all duration-300 group">
@@ -433,7 +457,7 @@
                                         <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-8 w-full">
                                             <div>
                                                 <span class="text-[10px] text-gray-400 uppercase font-bold tracking-widest block mb-0.5">Pedido</span>
-                                                <p class="text-xl font-bold text-gray-900 font-oswald tracking-wide">#ORD-2025-001</p>
+                                                <p class="text-xl font-bold text-gray-900 font-oswald tracking-wide">#ORD-${pedido.id}</p>
                                             </div>
                                             <div class="hidden sm:block w-px h-8 bg-gray-200"></div>
                                             <div>
@@ -466,7 +490,6 @@
                                         <div class="mb-20 px-2 sm:px-8 mt-10"> 
                                             <div class="relative">
                                                 <div class="absolute top-1/2 left-0 w-full h-1 bg-gray-200 -translate-y-1/2 z-0 rounded-full"></div>
-                                                <!-- Progresso 50% -->
                                                 <div class="absolute top-1/2 left-0 w-1/2 h-1.5 bg-gradient-to-r from-senai-red to-yellow-500 -translate-y-1/2 z-0 shadow-lg shadow-yellow-500/30 rounded-full timeline-progress"></div>
 
                                                 <div class="relative z-10 flex justify-between w-full">
@@ -496,7 +519,9 @@
                                     </div>
                                 </div>
                             </div>
-                        `;   
+                        `;
+
+                        // --- STATUS 2: DISPONÍVEL ---
                     } else if (pedido.status == 2) {
                         card.innerHTML = `
                             <div class="bg-white rounded-2xl shadow-sm hover:shadow-lg border border-gray-100 overflow-hidden transition-all duration-300 group">
@@ -508,7 +533,7 @@
                                         <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-8 w-full">
                                             <div>
                                                 <span class="text-[10px] text-gray-400 uppercase font-bold tracking-widest block mb-0.5">Pedido</span>
-                                                <p class="text-xl font-bold text-gray-900 font-oswald tracking-wide">#ORD-2025-002</p>
+                                                <p class="text-xl font-bold text-gray-900 font-oswald tracking-wide">#ORD-${pedido.id}</p>
                                             </div>
                                             <div class="hidden sm:block w-px h-8 bg-gray-200"></div>
                                             <div>
@@ -538,11 +563,9 @@
 
                                 <div class="order-details bg-gray-50/80 border-t border-gray-100">
                                     <div class="p-6 lg:p-10">
-                                        <!-- TIMELINE (Azul - 75%) -->
                                         <div class="mb-20 px-2 sm:px-8 mt-10"> 
                                             <div class="relative">
                                                 <div class="absolute top-1/2 left-0 w-full h-1 bg-gray-200 -translate-y-1/2 z-0 rounded-full"></div>
-                                                <!-- Progresso 75% -->
                                                 <div class="absolute top-1/2 left-0 w-[75%] h-1.5 bg-gradient-to-r from-senai-red via-yellow-500 to-blue-600 -translate-y-1/2 z-0 shadow-lg shadow-blue-500/30 rounded-full timeline-progress"></div>
 
                                                 <div class="relative z-10 flex justify-between w-full">
@@ -554,7 +577,6 @@
                                                         <div class="w-10 h-10 rounded-full bg-zinc-800 text-white flex items-center justify-center border-4 border-white shadow-md z-10"><i class="fa-solid fa-gears text-sm"></i></div>
                                                         <div class="mt-12 text-center w-full"><p class="text-[10px] font-bold text-gray-900 uppercase">Produção</p></div>
                                                     </div>
-                                                    <!-- Passo Atual (Azul) -->
                                                     <div class="flex flex-col items-center group/step relative w-1/4">
                                                         <div class="absolute -inset-2 bg-blue-100 rounded-full blur opacity-50 animate-pulse-slow"></div>
                                                         <div class="w-14 h-14 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-xl shadow-blue-500/40 z-10 transform scale-110 border-4 border-white"><i class="fa-solid fa-box-open text-lg"></i></div>
@@ -573,7 +595,9 @@
                                     </div>
                                 </div>
                             </div>
-                        `;   
+                        `;
+
+                        // --- STATUS > 2: CONCLUÍDO / OUTROS ---
                     } else {
                         card.innerHTML = `
                             <div class="bg-white rounded-2xl shadow-sm hover:shadow-lg border border-gray-100 overflow-hidden transition-all duration-300 group opacity-75 hover:opacity-100">
@@ -585,7 +609,7 @@
                                         <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-8 w-full">
                                             <div>
                                                 <span class="text-[10px] text-gray-400 uppercase font-bold tracking-widest block mb-0.5">Pedido</span>
-                                                <p class="text-xl font-bold text-gray-900 font-oswald tracking-wide">#ORD-2024-852</p>
+                                                <p class="text-xl font-bold text-gray-900 font-oswald tracking-wide">#ORD-${pedido.id}</p>
                                             </div>
                                             <div class="hidden sm:block w-px h-8 bg-gray-200"></div>
                                             <div>
@@ -615,7 +639,6 @@
                                         <div class="mb-16 px-2 sm:px-8 mt-10">
                                             <div class="relative">
                                                 <div class="absolute top-1/2 left-0 w-full h-1 bg-gray-200 -translate-y-1/2 z-0 rounded-full"></div>
-                                                <!-- Progresso 100% -->
                                                 <div class="absolute top-1/2 left-0 w-full h-1.5 bg-gradient-to-r from-senai-red via-yellow-500 via-blue-600 to-green-600 -translate-y-1/2 z-0 shadow-sm rounded-full"></div>
 
                                                 <div class="relative z-10 flex justify-between w-full">
@@ -631,14 +654,13 @@
                                                         <div class="w-10 h-10 rounded-full bg-zinc-800 text-white flex items-center justify-center border-4 border-white shadow-md"><i class="fa-solid fa-box-open text-sm"></i></div>
                                                         <p class="text-[10px] mt-12 font-bold text-gray-900 uppercase tracking-wide text-center">Disponível</p>
                                                     </div>
-                                                    <!-- Entregue (Verde) -->
                                                     <div class="flex flex-col items-center w-1/4 relative">
                                                         <div class="w-12 h-12 rounded-full bg-green-600 text-white flex items-center justify-center border-4 border-white shadow-lg transform scale-110"><i class="fa-solid fa-flag-checkered text-lg"></i></div>
                                                         <p class="text-[10px] mt-11 font-bold text-green-700 uppercase tracking-wide text-center">Entregue</p>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <p class="text-center text-xs font-medium text-gray-400 mt-4">Entregue em ${pedido.data_entrega}</p>
+                                            <p class="text-center text-xs font-medium text-gray-400 mt-4">Entregue em ${pedido.data_entrega || "recentemente"}</p>
                                         </div>
 
                                         <div class="flex justify-end pt-4 border-t border-gray-200">
@@ -651,8 +673,7 @@
                             </div>
                         `;
                     }
-                    container.appendChild(card)
-                } else {
+                    container.appendChild(card);
                 }
             });
         }
