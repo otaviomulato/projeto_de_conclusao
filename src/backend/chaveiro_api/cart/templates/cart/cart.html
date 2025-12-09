@@ -53,7 +53,7 @@
                 <a href="#"
                     class="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-400 text-black rounded-full px-4 py-1.5 font-bold shadow-lg shadow-yellow-500/20 transition-all transform hover:-translate-y-0.5">
                     <i class="fa-solid fa-wallet"></i>
-                    <span class="text-sm font-mono">$ --</span>
+                    <span id="credito" class="text-sm font-mono">{{ request.session.user_id }}</span>
                 </a>
 
                 {% if request.session.user_id %}
@@ -299,6 +299,8 @@
         // --- SEGURANÇA: ID do Usuário da Sessão Django ---
         const LOGGED_USER_ID = "{{ request.session.user_id|default_if_none:'' }}";
         const PROFILE_API_URL = "{% url 'usuarios:profile_api' %}";
+        const credito_place = document.getElementById('credito');
+        const userid = credito_place.innerHTML;
         var credito_atual = null
         
 
@@ -322,8 +324,17 @@
                     }
                 });
             }
+            troca_credito(userid)
 
         });
+        function troca_credito(id) {
+            fetch(`http://127.0.0.1:8000/api/usuarios/${id}/`)
+                .then(res => res.json())
+                .then(data => {
+                    credito_place.innerHTML = `$ ${data.credito}`;
+                })
+                .catch(err => console.error("erro ao buscar", err))
+        }
 
         function fetchCart() {
             fetch('http://127.0.0.1:8000/cart/api/', { credentials: 'include' })
