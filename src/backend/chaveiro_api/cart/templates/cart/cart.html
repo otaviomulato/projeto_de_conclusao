@@ -298,6 +298,7 @@
     <script>
         // --- SEGURANÇA: ID do Usuário da Sessão Django ---
         const LOGGED_USER_ID = "{{ request.session.user_id|default_if_none:'' }}";
+        const PROFILE_API_URL = "{% url 'usuarios:profile_api' %}";
         var credito_atual = null
         
 
@@ -440,8 +441,9 @@
             fd.append('produto_id', item.product_id);
             fd.append('status', 0);
             fd.append('persona', nomePersonalizado);
-            console.log(item.total_price);
-            console.log(credito_atual);
+            let credito_resultante = credito_atual - item.total_price
+            
+
             
             
 
@@ -460,29 +462,26 @@
 
                 const pedido_res = await response.json();
                 console.log('Pedido criado:', pedido_res);
-                //
-                let credito_resultante = credito_atual - item.total_price
-
-                const fd2 = new FormData();
-                fd2.append('credito', credito_resultante);
+                const dados = {
+                    credito: credito_resultante
+                };
 
                 try {
-                    const response = await fetch(`http://127.0.0.1:8000/api/usuarios/${LOGGED_USER_ID}/`, {
+                    const res = await fetch(PROFILE_API_URL, {
                         method: 'PUT',
-                        body: fd2
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(dados)
                     });
 
-                    if (!response.ok) {
-                        throw new Error('Erro ao atualizar o crédito');
-                    }
+                    const json = await res.json();
 
-                    const creditoAtualizado = await response.json();
-                    console.log('Crédito autalizado atualizada com sucesso:', creditoAtualizado);
-                    
-                    finishPurchase();
-                } catch (error) {
-                    console.error('Erro ao atualizar o crédito:', error);
-                    alert('Ocorreu um erro ao atualizar o crédito. Detalhes: ' + error.message);
+                    if (json.status === 'success') {
+                        finishPurchase()
+                    } else {
+                        alert('Erro: ' + json.message);
+                    }
+                } catch (err) {
+                    alert('Erro de conexão ao salvar.');
                 }
 
             } catch (error) {
@@ -491,8 +490,6 @@
                 btn.innerHTML = originalText;
                 btn.disabled = false;
             }
-            //
-            
         }
 
         function finishPurchase() {
