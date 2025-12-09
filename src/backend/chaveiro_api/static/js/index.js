@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const menuToggle = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
+    //esses dois abaixo tambem são necessarios para funcionar o credito
+    const credito_place = document.getElementById('credito');
+    const userid = credito_place.innerHTML;
 
     if (menuToggle && mobileMenu) {
         const menuIcon = menuToggle.querySelector('i');
@@ -20,6 +23,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+    //daqui
+    function troca_credito(id) {
+        fetch(`http://127.0.0.1:8000/api/usuarios/${id}/`)
+            .then(res => res.json())
+            .then(data => {
+                credito_place.innerHTML = `$ ${data.credito}`;
+            })
+            .catch(err => console.error("erro ao buscar", err))
+    }
+    troca_credito(userid)
+    //até aqui é o que faz fumegar o credito ser trocado
 
     const frases = [
         "SISTEMA DE RECOMPENSAS.",

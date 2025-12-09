@@ -147,11 +147,14 @@
     <script>
         // --- SEGURANÇA: ID do Usuário da Sessão Django ---
         const LOGGED_USER_ID = "{{ request.session.user_id|default_if_none:'' }}";
+        var credito_atual = null
+        
 
         let currentCartItems = [];
 
         document.addEventListener('DOMContentLoaded', () => {
             fetchCart();
+            fetchuser(LOGGED_USER_ID);
 
             const btnEnviar = document.getElementById('btn-enviar');
             if (btnEnviar) {
@@ -167,6 +170,7 @@
                     }
                 });
             }
+
         });
 
         function fetchCart() {
@@ -178,6 +182,15 @@
                     updateTotalsDisplay(data.total_price);
                 })
                 .catch(err => console.error("Erro ao buscar carrinho:", err));
+        }
+        function fetchuser(id) {
+            fetch(`http://127.0.0.1:8000/api/usuarios/${id}/`)
+                .then(res => res.json())
+                .then(data => {
+                    credito_atual = data.credito
+                    
+                })
+                .catch(err => console.error("erro ao buscar", err))
         }
 
         function renderCartItems(items) {
@@ -230,7 +243,7 @@
                         <div class="flex justify-between items-end mt-4 sm:mt-0">
                             <div class="text-xs font-bold text-gray-500 uppercase tracking-wide bg-gray-50 px-3 py-1 rounded">Qtd: 1 (Máx)</div>
                             <div class="text-right">
-                                <p class="text-2xl font-bold text-senai-red">R$ ${item.total_price}</p>
+                                <p class="text-2xl font-bold text-senai-red">R$ ${item.total_price} </p>
                             </div>
                         </div>
                     </div>
@@ -261,9 +274,13 @@
             if (currentCartItems.length === 0) {
                 alert("Seu carrinho está vazio!");
                 return;
-            }
+            } 
 
             const item = currentCartItems[0];
+            if (credito_atual < item.total_price) {
+                alert("Crédito insuficiente")
+                return
+            }
             const nomePersonalizado = item.customization ? item.customization.nome : "Sem nome";
 
             const fd = new FormData();
@@ -272,6 +289,10 @@
             fd.append('produto_id', item.product_id);
             fd.append('status', 0);
             fd.append('persona', nomePersonalizado);
+            console.log(item.total_price);
+            console.log(credito_atual);
+            
+            
 
             const btn = document.getElementById('btn-enviar');
             const originalText = btn.innerHTML;
@@ -288,7 +309,30 @@
 
                 const pedido_res = await response.json();
                 console.log('Pedido criado:', pedido_res);
-                finishPurchase();
+                //
+                let credito_resultante = credito_atual - item.total_price
+
+                const fd2 = new FormData();
+                fd2.append('credito', credito_resultante);
+
+                try {
+                    const response = await fetch(`http://127.0.0.1:8000/api/usuarios/${LOGGED_USER_ID}/`, {
+                        method: 'PUT',
+                        body: fd2
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Erro ao atualizar o crédito');
+                    }
+
+                    const creditoAtualizado = await response.json();
+                    console.log('Crédito autalizado atualizada com sucesso:', creditoAtualizado);
+                    
+                    finishPurchase();
+                } catch (error) {
+                    console.error('Erro ao atualizar o crédito:', error);
+                    alert('Ocorreu um erro ao atualizar o crédito. Detalhes: ' + error.message);
+                }
 
             } catch (error) {
                 console.error('Erro ao fazer o pedido:', error);
@@ -296,6 +340,8 @@
                 btn.innerHTML = originalText;
                 btn.disabled = false;
             }
+            //
+            
         }
 
         function finishPurchase() {
