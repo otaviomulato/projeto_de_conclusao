@@ -332,6 +332,19 @@
             </div>
         </div>
     </footer>
+    <script>
+        const LOGGED_USER_ID = "{{ request.session.user_id|default_if_none:'' }}";
+        const credito_place = document.getElementById('credito');
+        function troca_credito(id) {
+            fetch(`http://127.0.0.1:8000/api/usuarios/${id}/`)
+                .then(res => res.json())
+                .then(data => {
+                    credito_place.innerHTML = `$ ${data.credito}`;
+                })
+                .catch(err => console.error("erro ao buscar", err))
+        }
+        troca_credito(LOGGED_USER_ID)
+    </script>
 
 </body>
 </html>

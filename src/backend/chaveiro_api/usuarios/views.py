@@ -24,7 +24,7 @@ def register_api(request):
             telefone=data.get('telefone'),
             profissao=data.get('profissao'),
             idade=int(data.get('idade')),
-            credito=0
+            credito=int(data.get('credito'))
         )
         
         # Loga automaticamente

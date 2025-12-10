@@ -289,6 +289,7 @@
                     fazerLogin();
                 });
             }
+            fetchdicred()
         });
 
         // --- FUNÇÃO DE LOGIN ---
@@ -321,6 +322,16 @@
                 alert('Erro de conexão com o servidor.');
             }
         }
+        var cred = null
+        function fetchdicred() {
+            fetch("http://127.0.0.1:8000/api/servidores/1/")
+                .then(res => res.json())
+                .then(data => {
+
+                    cred = data.credito_add
+                })
+                .catch(err => console.error("erro ao buscar o servidor", err))
+        }
 
         // --- FUNÇÃO DE CADASTRO ---
         async function criarUsuario(event) {
@@ -347,7 +358,8 @@
                 senha: senha,
                 telefone: telefone,
                 profissao: profissao,
-                idade: idade
+                idade: idade,
+                credito: cred
             };
 
             try {
