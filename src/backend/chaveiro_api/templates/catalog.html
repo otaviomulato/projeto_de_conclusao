@@ -126,7 +126,7 @@
             class="hidden lg:hidden absolute top-full left-0 w-full bg-zinc-900 border-t border-gray-800 shadow-xl z-50">
             <ul class="flex flex-col items-center gap-6 py-8">
                 <li><a href="{% url 'index' %}" class="font-bold text-white text-lg">INÍCIO</a></li>
-                <li><a href="{% url 'produtos' %}" class="font-bold text-gray-300 text-lg">CATÁLOGO</a></li>
+                <li><a href="{% url 'catalog' %}" class="font-bold text-gray-300 text-lg">CATÁLOGO</a></li>
                 <li><a href="{% url 'about_us' %}" class="font-bold text-gray-300 text-lg">SOBRE</a></li>
 
                 {% if request.session.user_id %}
@@ -157,7 +157,7 @@
             <nav class="text-sm text-gray-500 mb-6 flex items-center gap-2">
                 <a href="{% url 'index' %}" class="hover:text-senai-red transition-colors">Início</a> <span
                     class="text-gray-300">/</span>
-                <a href="{% url 'produtos' %}" class="text-gray-900 font-semibold">Catálogo</a> 
+                <a href="{% url 'catalog' %}" class="text-gray-900 font-semibold">Catálogo</a> 
             </nav>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -120,7 +120,7 @@
                 <li><a href="{% url 'index' %}"
                         class="font-medium text-white border-b-2 border-senai-red pb-1 tracking-wide uppercase text-sm">Início</a>
                 </li>
-                <li><a href="{% url 'produtos' %}"
+                <li><a href="{% url 'catalog' %}"
                         class="font-medium text-gray-300 hover:text-white transition-colors tracking-wide uppercase text-sm">Catálogo</a>
                 </li>
                 <li><a href="{% url 'about_us' %}"
@@ -202,7 +202,7 @@
             class="hidden lg:hidden absolute top-full left-0 w-full bg-zinc-900 border-t border-gray-800 shadow-xl z-50">
             <ul class="flex flex-col items-center gap-6 py-8">
                 <li><a href="{% url 'index' %}" class="font-bold text-white text-lg">INÍCIO</a></li>
-                <li><a href="{% url 'produtos' %}" class="font-bold text-gray-300 text-lg">CATÁLOGO</a></li>
+                <li><a href="{% url 'catalog' %}" class="font-bold text-gray-300 text-lg">CATÁLOGO</a></li>
                 <li><a href="{% url 'about_us' %}" class="font-bold text-gray-300 text-lg">SOBRE</a></li>
 
                 {% if request.session.user_id %}
@@ -286,7 +286,7 @@
                         <li><a href="{% url 'index' %}" class="footer-link hover:text-senai-red">Início</a></li>
                         <li><a href="#" class="footer-link hover:text-senai-red">Perfil</a></li>
                         <li><a href="{% url 'about_us' %}" class="footer-link hover:text-senai-red">Sobre</a></li>
-                        <li><a href="{% url 'produtos' %}" class="footer-link hover:text-senai-red">Catálogo</a></li>
+                        <li><a href="{% url 'catalog' %}" class="footer-link hover:text-senai-red">Catálogo</a></li>
                         <li><a href="{% url 'cart:cart_detail' %}" class="footer-link hover:text-senai-red">Carrinho</a>
                         </li>
                     </ul>
