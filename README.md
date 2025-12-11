@@ -17,3 +17,7 @@ Projeto de conclusão de curso da turma CT-DEV 2A SENAI
 ![Django](https://img.shields.io/badge/Django-4E6A1C.svg?style=for-the-badge&logo=Django&logoColor=white)
 
 Trabalho sustentado pela ferramenta Trello para planejamento, Figma para o processo de criação, Visual Studio para programação e Github para compartilhamento de arquivos.
+
+# Tutorial Spline
+* https://youtu.be/cD66DLdqb0w?si=4WYssj42w4HB55iR <---Link
+* https://youtu.be/a3b-skzGXhY?si=Dqm9KgEhvoJIFDYc <---Personalizar
